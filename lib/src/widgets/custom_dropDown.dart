@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomDropDown extends StatefulWidget {
   final List<String> lista;
-
-  const CustomDropDown({required this.lista});
+  const CustomDropDown({required this.lista}); // constructor para traer la lista desde otro widget
 
   @override
   _CustomDropDownState createState() => _CustomDropDownState(lista);
@@ -54,7 +53,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
     );
   }
 
-
+// esta función recorre la lista para crear los items del DropDown
 List<DropdownMenuItem<String>> getOpcionesDropdown() {
   List<DropdownMenuItem<String>> lista = [];
   this.listaGenero.forEach((genero) {

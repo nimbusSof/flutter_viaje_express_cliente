@@ -67,7 +67,7 @@ class __FormState extends State<_Form> {
   final cedulaCtrl = TextEditingController();
   final nombresCtrl = TextEditingController();
   final apellidosCtrl = TextEditingController();
-  List<String> listaGenero = ['masculino', 'femenino', 'otro'];
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +93,7 @@ class __FormState extends State<_Form> {
               keyboardType: TextInputType.name,
               textController: apellidosCtrl),
 
-          CustomDropDown(lista: listaGenero),
+          
 
           CustomButton(
               text: 'Siguiente',
@@ -111,18 +111,6 @@ class __FormState extends State<_Form> {
     );
   }
 
-  List<DropdownMenuItem<String>> getOpcionesDropdown() {
-    List<DropdownMenuItem<String>> lista = [];
-    listaGenero.forEach((genero) {
-      
-      lista.add(DropdownMenuItem(
-        child: Text(genero),
-        value: genero,
-      ));
-    });
-
-    return lista;
-  }
 
 }
 
@@ -133,6 +121,7 @@ class _Form1 extends StatefulWidget {
 
 class __Form1State extends State<_Form1> {
   final telefonoCtrl = TextEditingController();
+   List<String> listaGenero = ['masculino', 'femenino', 'otro'];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -145,6 +134,7 @@ class __Form1State extends State<_Form1> {
               placeHolder: 'Teléfono',
               keyboardType: TextInputType.phone,
               textController: telefonoCtrl),
+              CustomDropDown(lista: listaGenero),
           CustomButton(
               text: 'Siguiente',
               onPressed: () {
@@ -155,7 +145,9 @@ class __Form1State extends State<_Form1> {
               text: 'Regresar',
               onPressed: () {
                 BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
-              })
+              }),
+
+              LabelCancelar(subtitulo: 'Cancelar')
         ],
       ),
     );
@@ -206,7 +198,8 @@ class __Form2State extends State<_Form2> {
               text: 'Regresar',
               onPressed: () {
                 BlocProvider.of<SigninBloc>(context).add(CambiarPanel(1));
-              })
+              }),
+              LabelCancelar(subtitulo: 'Cancelar')
         ],
       ),
     );

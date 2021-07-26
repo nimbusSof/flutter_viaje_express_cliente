@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
 
 class Labels extends StatelessWidget {
   final String ruta;
   final String titulo;
   final String subtitulo;
 
-  const Labels({
-    Key? key, 
-    required this.ruta,
-    required this.titulo,
-    required this.subtitulo
-    }) : super(key: key);
+  const Labels(
+      {Key? key,
+      required this.ruta,
+      required this.titulo,
+      required this.subtitulo})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +41,25 @@ class Labels extends StatelessWidget {
   }
 }
 
+class LabelCancelar extends StatelessWidget {
+  final String subtitulo;
 
-
-class cance extends StatelessWidget {
-  const cance({ Key? key }) : super(key: key);
+  const LabelCancelar({Key? key, required this.subtitulo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      padding: EdgeInsets.only(top: 25),
+      child: GestureDetector(
+        child: Text(this.subtitulo,
+            style: TextStyle(
+                color: Colors.blue[600],
+                fontSize: 18,
+                fontWeight: FontWeight.bold)),
+        onTap: () {
+          BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
+        },
+      ),
     );
   }
 }

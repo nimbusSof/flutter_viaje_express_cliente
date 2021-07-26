@@ -5,7 +5,8 @@ import 'package:flutter_viaje_express_cliente/src/widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/custom_dropDown.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/custom_input.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/custom_selectDate.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/login_widget/labels.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgtets/labels.dart';
+
 
 
 

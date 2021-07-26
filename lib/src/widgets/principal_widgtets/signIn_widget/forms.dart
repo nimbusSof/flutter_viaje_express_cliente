@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/custom_dropDown.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/custom_input.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/custom_selectDate.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/login_widget/labels.dart';
 
-import '../custom_button.dart';
-import '../custom_input.dart';
-import '../labels.dart';
+
 
 // FORMULARIO CON LOS CAMPOS: CÉDULA, NOMBRES, APELLIDOS
 
@@ -78,6 +80,7 @@ class Form1 extends StatefulWidget {
 
 class Form1State extends State<Form1> {
   final telefonoCtrl = TextEditingController();
+  final dateCtrl = TextEditingController();
    List<String> listaGenero = ['masculino', 'femenino', 'otro'];
   @override
   Widget build(BuildContext context) {
@@ -93,6 +96,8 @@ class Form1State extends State<Form1> {
               textController: telefonoCtrl),
 
               CustomDropDown(lista: listaGenero),
+
+              CustomSelectDate(inputFieldDataController: dateCtrl),
 
           CustomButton(
               text: 'Siguiente',

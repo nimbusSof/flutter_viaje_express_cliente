@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/custom_input.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/labels.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/logo.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/login_widget/labels.dart';
+
+import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgtets/login_widget/logo.dart';
 
 class LoginPage extends StatelessWidget {
   @override

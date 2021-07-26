@@ -13,7 +13,7 @@ class Cabecera extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.symmetric(vertical: 150),
+          padding: EdgeInsets.symmetric(vertical: 130),
           decoration: BoxDecoration(color: yellowColor),
         ),
         LabelInicio(titulo: titulo, subtitulo: subtitulo)
@@ -32,7 +32,7 @@ class LabelInicio extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.only(top: size.height * 0.15),
+      padding: EdgeInsets.only(top: size.height * 0.13),
       margin: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: <Widget>[

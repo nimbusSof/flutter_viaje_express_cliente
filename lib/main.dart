@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Viaje Express',
-      initialRoute: '/',
+      initialRoute: 'inicio',
       routes: appRoutes,
     );
   }

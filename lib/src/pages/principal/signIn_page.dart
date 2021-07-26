@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/custom_button.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/custom_dropDown.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/custom_input.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/labels.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/logo_signin.dart';
 
 class SignInPage extends StatelessWidget {
-  final int op = 0;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -24,17 +24,13 @@ class SignInPage extends StatelessWidget {
             physics:
                 BouncingScrollPhysics(), //animacion rebote tanto en IOs como en android
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.9,
+              //height: MediaQuery.of(context).size.height * 0.8,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   LogoSignIn(),
+                  SizedBox(height: 35),
                   SiguientePanel(),
-                  Labels(
-                    ruta: 'login',
-                    titulo: '¿Ya tienes cuenta?',
-                    subtitulo: '¡Ingresa ahora!',
-                  ),
                 ],
               ),
             ),
@@ -43,14 +39,9 @@ class SignInPage extends StatelessWidget {
       ),
     );
   }
-
-  
 }
 
-
 class SiguientePanel extends StatelessWidget {
-  
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SigninBloc, SigninState>(builder: (_, state) {
@@ -58,6 +49,8 @@ class SiguientePanel extends StatelessWidget {
         return _Form();
       } else if (state.opcion == 1) {
         return _Form1();
+      } else if (state.opcion == 2) {
+        return _Form2();
       } else {
         return _Form();
       }
@@ -65,17 +58,81 @@ class SiguientePanel extends StatelessWidget {
   }
 }
 
-
-
 class _Form extends StatefulWidget {
   @override
   __FormState createState() => __FormState();
 }
 
 class __FormState extends State<_Form> {
-  final emailCtrl = TextEditingController();
-  final passCtrl = TextEditingController();
-  final nameCtrl = TextEditingController();
+  final cedulaCtrl = TextEditingController();
+  final nombresCtrl = TextEditingController();
+  final apellidosCtrl = TextEditingController();
+  List<String> listaGenero = ['masculino', 'femenino', 'otro'];
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return Container(
+      margin: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.symmetric(horizontal: 50),
+      child: Column(
+        children: <Widget>[
+          CustomInput(
+              icon: Icons.perm_identity,
+              placeHolder: 'Cédula',
+              keyboardType: TextInputType.number,
+              textController: cedulaCtrl),
+          CustomInput(
+              icon: Icons.perm_identity,
+              placeHolder: 'Nombres',
+              keyboardType: TextInputType.name,
+              textController: nombresCtrl),
+          CustomInput(
+              icon: Icons.perm_identity,
+              placeHolder: 'Apellidos',
+              keyboardType: TextInputType.name,
+              textController: apellidosCtrl),
+
+          CustomDropDown(lista: listaGenero),
+
+          CustomButton(
+              text: 'Siguiente',
+              onPressed: () {
+                BlocProvider.of<SigninBloc>(context).add(CambiarPanel(1));
+              }),
+          SizedBox(height: 35),
+          Labels(
+            ruta: 'login',
+            titulo: '¿Ya tienes cuenta?',
+            subtitulo: '¡Ingresa ahora!',
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<DropdownMenuItem<String>> getOpcionesDropdown() {
+    List<DropdownMenuItem<String>> lista = [];
+    listaGenero.forEach((genero) {
+      
+      lista.add(DropdownMenuItem(
+        child: Text(genero),
+        value: genero,
+      ));
+    });
+
+    return lista;
+  }
+
+}
+
+class _Form1 extends StatefulWidget {
+  @override
+  __Form1State createState() => __Form1State();
+}
+
+class __Form1State extends State<_Form1> {
+  final telefonoCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -85,9 +142,42 @@ class __FormState extends State<_Form> {
         children: <Widget>[
           CustomInput(
               icon: Icons.perm_identity,
-              placeHolder: 'Nombre',
-              keyboardType: TextInputType.name,
-              textController: nameCtrl),
+              placeHolder: 'Teléfono',
+              keyboardType: TextInputType.phone,
+              textController: telefonoCtrl),
+          CustomButton(
+              text: 'Siguiente',
+              onPressed: () {
+                BlocProvider.of<SigninBloc>(context).add(CambiarPanel(2));
+              }),
+              SizedBox(height: 15),
+          CustomButton(
+              text: 'Regresar',
+              onPressed: () {
+                BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
+              })
+        ],
+      ),
+    );
+  }
+}
+
+class _Form2 extends StatefulWidget {
+  @override
+  __Form2State createState() => __Form2State();
+}
+
+class __Form2State extends State<_Form2> {
+  final emailCtrl = TextEditingController();
+  final passCtrl = TextEditingController();
+  final pass2Ctrl = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.symmetric(horizontal: 50),
+      child: Column(
+        children: <Widget>[
           CustomInput(
             icon: Icons.mail_outline,
             placeHolder: 'Correo',
@@ -100,8 +190,20 @@ class __FormState extends State<_Form> {
             isPassword: true,
             textController: passCtrl,
           ),
+          CustomInput(
+            icon: Icons.lock_outline,
+            placeHolder: 'Confirmar Password',
+            isPassword: true,
+            textController: pass2Ctrl,
+          ),
           CustomButton(
-              text: 'Siguiente',
+              text: 'Finalizar Registro',
+              onPressed: () {
+                BlocProvider.of<SigninBloc>(context).add(CambiarPanel(1));
+              }),
+              SizedBox(height: 15),
+          CustomButton(
+              text: 'Regresar',
               onPressed: () {
                 BlocProvider.of<SigninBloc>(context).add(CambiarPanel(1));
               })
@@ -111,30 +213,7 @@ class __FormState extends State<_Form> {
   }
 }
 
-class _Form1 extends StatefulWidget {
-  @override
-  __Form1State createState() => __Form1State();
-}
 
-class __Form1State extends State<_Form1> {
-  final emailCtrl = TextEditingController();
-  final passCtrl = TextEditingController();
-  final nameCtrl = TextEditingController();
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 20),
-      padding: EdgeInsets.symmetric(horizontal: 50),
-      child: Column(
-        children: <Widget>[
-          CustomInput(
-              icon: Icons.perm_identity,
-              placeHolder: 'Nombre',
-              keyboardType: TextInputType.name,
-              textController: nameCtrl),
-          CustomButton(text: 'Siguiente', onPressed: () {})
-        ],
-      ),
-    );
-  }
-}
+
+
+

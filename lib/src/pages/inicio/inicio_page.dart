@@ -19,7 +19,8 @@ class _EstructuraPage extends StatelessWidget {
       children: <Widget>[
         Cabecera(
             titulo: 'Listos para un nuevo destino', subtitulo: 'Viaje Express'),
-            BtnViajar(texto: '¿A dónde deseas ir?')
+            BtnViajar(texto: '¿A dónde deseas ir?'),
+            BtnRutasGuardadas(texto: 'Selecciona una ruta guardada')
       ],
     );
   }

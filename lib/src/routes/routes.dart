@@ -8,6 +8,7 @@ import 'package:flutter_viaje_express_cliente/src/pages/principal/login_page.dar
 import 'package:flutter_viaje_express_cliente/src/pages/principal/signIn_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/principal/splash_screen_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/rutasGuardadas/rutasGuardadas_inicio_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/viajeNuevo_inicio_page.dart';
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
   '/'                            :  (_) => SplashScreen(),
@@ -19,4 +20,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'configuraciones_inicio'       :  (_) => ConfiguracionesInicioPage(),
   'rutasGuardadas_inicio'        :  (_) => RutasGuardadasInicioPage(),
   'perfil_inicio'                :  (_) => PerfilInicioPage(),
+  'viajeNuevo_inicio'            :  (_) => ViajeNuevoInicioPage(),
 };

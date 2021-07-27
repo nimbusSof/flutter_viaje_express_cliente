@@ -30,7 +30,7 @@ class _SideBarState extends State<SideBar> {
         ListTile(
           leading: Icon(Icons.map),
           title: Text('Viaje Nuevo'),
-          onTap: () {},
+          onTap: () {Navigator.popAndPushNamed(context, 'viajeNuevo_inicio');},
         ),
         ListTile(
           leading: Icon(Icons.save),

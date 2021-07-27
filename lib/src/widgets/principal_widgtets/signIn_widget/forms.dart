@@ -162,7 +162,7 @@ class Form2State extends State<Form2> {
           CustomButton(
               text: 'Finalizar Registro',
               onPressed: () {
-                BlocProvider.of<SigninBloc>(context).add(CambiarPanel(1));
+                BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
               }),
               SizedBox(height: 15),
           CustomButton(

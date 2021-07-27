@@ -3,7 +3,6 @@ import 'package:flutter_viaje_express_cliente/src/widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/custom_input.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgtets/labels.dart';
 
-
 import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgtets/login_widget/logo.dart';
 
 class LoginPage extends StatelessWidget {
@@ -13,17 +12,22 @@ class LoginPage extends StatelessWidget {
       backgroundColor: Color(0xffF2F2F2),
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(), //animacion rebote tanto en IOs como en android
+          physics:
+              BouncingScrollPhysics(), //animacion rebote tanto en IOs como en android
           child: Container(
-            height: MediaQuery.of(context).size.height *0.9,
+            height: MediaQuery.of(context).size.height * 0.9,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Logo(titulo: 'Login',),
+                Logo(
+                  titulo: 'Login',
+                ),
                 _Form(),
-                Labels(ruta: 'signin',
-                titulo: '¿No tienes cuenta?',
-                subtitulo: '¡Crea una ahora!',),
+                Labels(
+                  ruta: 'signin',
+                  titulo: '¿No tienes cuenta?',
+                  subtitulo: '¡Crea una ahora!',
+                ),
               ],
             ),
           ),
@@ -60,7 +64,11 @@ class __FormState extends State<_Form> {
             isPassword: true,
             textController: passCtrl,
           ),
-          CustomButton(text: 'Ingresar', onPressed: () {})
+          CustomButton(
+              text: 'Ingresar',
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, 'inicio');
+              })
         ],
       ),
     );

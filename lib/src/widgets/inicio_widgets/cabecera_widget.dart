@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 
+
 class Cabecera extends StatelessWidget {
   final String titulo;
   final String subtitulo;
@@ -9,11 +10,11 @@ class Cabecera extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final size = MediaQuery.of(context);
+    final size = MediaQuery.of(context).size;
     return Stack(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.symmetric(vertical: 130),
+          padding: EdgeInsets.symmetric(vertical: size.height*0.159),
           decoration: BoxDecoration(color: yellowColor),
         ),
         LabelInicio(titulo: titulo, subtitulo: subtitulo)
@@ -32,7 +33,7 @@ class LabelInicio extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.only(top: size.height * 0.13),
+      padding: EdgeInsets.only(top: size.height * 0.10),
       margin: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: <Widget>[

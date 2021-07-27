@@ -40,12 +40,12 @@ class _SideBarState extends State<SideBar> {
         ListTile(
           leading: Icon(Icons.credit_card),
           title: Text('Payment'),
-          onTap: () {Navigator.popAndPushNamed(context, 'metodoPago');},
+          onTap: () {Navigator.popAndPushNamed(context, 'metodoPago_inicio');},
         ),
         ListTile(
           leading: Icon(Icons.history),
           title: Text('Historial de viajes'),
-          onTap: () {},
+          onTap: () {Navigator.popAndPushNamed(context, 'historialViajes_inicio');},
         ),
         ListTile(
           leading: Icon(Icons.settings),

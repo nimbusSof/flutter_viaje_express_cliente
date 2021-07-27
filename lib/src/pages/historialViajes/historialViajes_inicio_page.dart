@@ -57,8 +57,8 @@ class _EstructuraPage extends StatelessWidget {
       children: <Widget>[
         Cabecera(
             titulo: 'Historial de viajes', subtitulo: 'Viaje Express'),
-        BtnSimple(texto: 'Viajes concluidos', icono: Icons.credit_card, color: Colors.blue,),
-        BtnSimple(texto: 'Viajes cancelados', icono: Icons.attach_money, color: Colors.green,),
+        BtnSimple(texto: 'Viajes concluidos', icono: Icons.check_circle, color: Colors.green,),
+        BtnSimple(texto: 'Viajes cancelados', icono: Icons.cancel, color: Colors.red,),
       ],
     );
   }

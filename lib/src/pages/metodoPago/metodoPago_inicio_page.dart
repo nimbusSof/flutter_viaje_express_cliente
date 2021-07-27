@@ -5,12 +5,12 @@ import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar
 
 
 
-class MetodoPagoPage extends StatefulWidget {
+class MetodoPagoInicioPage extends StatefulWidget {
   @override
-  _MetodoPagoPageState createState() => _MetodoPagoPageState();
+  _MetodoPagoInicioPageState createState() => _MetodoPagoInicioPageState();
 }
 
-class _MetodoPagoPageState extends State<MetodoPagoPage> {
+class _MetodoPagoInicioPageState extends State<MetodoPagoInicioPage> {
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {

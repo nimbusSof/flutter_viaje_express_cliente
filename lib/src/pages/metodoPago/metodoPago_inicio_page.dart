@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/cabecera_widgets/cabecera_widget.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar_widgets/sideBar_widget.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/metodoPago_widgets/custom_button_metodoPago.dart';
+
 
 
 class MetodoPagoPage extends StatefulWidget {
@@ -57,8 +58,8 @@ class _EstructuraPage extends StatelessWidget {
       children: <Widget>[
         Cabecera(
             titulo: 'Método de Pago', subtitulo: 'Viaje Express'),
-        BtnMetodoPago(texto: 'Tarjeta de crédito o débito', icono: Icons.credit_card, color: Colors.blue,),
-        BtnMetodoPago(texto: 'Dinero en efectivo', icono: Icons.attach_money, color: Colors.green,),
+        BtnSimple(texto: 'Tarjeta de crédito o débito', icono: Icons.credit_card, color: Colors.blue,),
+        BtnSimple(texto: 'Dinero en efectivo', icono: Icons.attach_money, color: Colors.green,),
       ],
     );
   }

@@ -35,7 +35,7 @@ class _SideBarState extends State<SideBar> {
         ListTile(
           leading: Icon(Icons.save),
           title: Text('Rutas guardadas'),
-          onTap: () {},
+          onTap: () {Navigator.popAndPushNamed(context, 'rutasGuardadas_inicio');},
         ),
         ListTile(
           leading: Icon(Icons.credit_card),

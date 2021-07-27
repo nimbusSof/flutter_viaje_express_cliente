@@ -6,6 +6,7 @@ import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/metodoPago_in
 import 'package:flutter_viaje_express_cliente/src/pages/principal/login_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/principal/signIn_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/principal/splash_screen_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/rutasGuardadas/rutasGuardadas_inicio_page.dart';
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
   '/'                            :  (_) => SplashScreen(),
@@ -14,5 +15,6 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'inicio'                       :  (_) => InicioPage(),
   'metodoPago_inicio'            :  (_) => MetodoPagoInicioPage(),
   'historialViajes_inicio'       :  (_) => HistorialViajesInicioPage(),
-  'configuraciones_inicio'       :  (_) => ConfiguracionesInicioPage()
+  'configuraciones_inicio'       :  (_) => ConfiguracionesInicioPage(),
+  'rutasGuardadas_inicio'        :  (_) => RutasGuardadasInicioPage(),
 };

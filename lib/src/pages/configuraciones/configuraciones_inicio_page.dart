@@ -3,13 +3,15 @@ import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/cabecer
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar_widgets/sideBar_widget.dart';
 
-class HistorialViajesInicioPage extends StatefulWidget {
+
+class ConfiguracionesInicioPage extends StatefulWidget {
+  
 
   @override
-  _HistorialViajesInicioPageState createState() => _HistorialViajesInicioPageState();
+  _ConfiguracionesInicioPageState createState() => _ConfiguracionesInicioPageState();
 }
 
-class _HistorialViajesInicioPageState extends State<HistorialViajesInicioPage> {
+class _ConfiguracionesInicioPageState extends State<ConfiguracionesInicioPage> {
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,7 @@ class _HistorialViajesInicioPageState extends State<HistorialViajesInicioPage> {
   }
 }
 
+
 class _EstructuraPage extends StatelessWidget {
   
 
@@ -55,9 +58,12 @@ class _EstructuraPage extends StatelessWidget {
     return Column(
       children: <Widget>[
         Cabecera(
-            titulo: 'Historial de viajes', subtitulo: 'Viaje Express'),
-        BtnSimpleIcon(texto: 'Viajes concluidos', icono: Icons.check_circle, color: Colors.green,),
-        BtnSimpleIcon(texto: 'Viajes cancelados', icono: Icons.cancel, color: Colors.red,),
+            titulo: 'Configuraciones', subtitulo: 'Viaje Express'),
+        BtnSimple(texto: 'Cambiar número de teléfono', ),
+        BtnSimple(texto: 'Idioma',  ),
+        BtnSimple(texto: 'Formato de fecha y formato de distancia',  ),
+        BtnSimple(texto: 'Acerca de la aplicación',  ),
+        BtnSimple(texto: 'Cerrar sesión',  ),
       ],
     );
   }

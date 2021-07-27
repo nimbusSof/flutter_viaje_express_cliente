@@ -11,7 +11,7 @@ class _SideBarState extends State<SideBar> {
     return Drawer(
       child: ListView(padding: EdgeInsets.zero, children: <Widget>[
         GestureDetector(
-          onTap: () {},
+          onTap: () {Navigator.popAndPushNamed(context, 'perfil_inicio');},
           child: DrawerHeader(
             child: Container(),
             decoration: BoxDecoration(

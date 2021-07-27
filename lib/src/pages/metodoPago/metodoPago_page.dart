@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar_widgets/sideBar_widget.dart';
-
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/cabecera_widgets/cabecera_widget.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/inicio_widgets/contenedorMapa_widget.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/inicio_widgets/custom_buttom_inicio.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar_widgets/sideBar_widget.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/metodoPago_widgets/custom_button_metodoPago.dart';
 
 
-class InicioPage extends StatefulWidget {
+class MetodoPagoPage extends StatefulWidget {
   @override
-  _InicioPageState createState() => _InicioPageState();
+  _MetodoPagoPageState createState() => _MetodoPagoPageState();
 }
 
-class _InicioPageState extends State<InicioPage> {
+class _MetodoPagoPageState extends State<MetodoPagoPage> {
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: _scafoldKey,
+      key: _scafoldKey,
         drawer: SideBar(),
         body: SafeArea(
             child: SingleChildScrollView(
@@ -31,7 +28,8 @@ class _InicioPageState extends State<InicioPage> {
               ],
             ),
           ],
-        ))));
+        )))
+    );
   }
 
   Widget _buttonDrawer() {
@@ -49,17 +47,18 @@ class _InicioPageState extends State<InicioPage> {
   }
 }
 
+
 class _EstructuraPage extends StatelessWidget {
+  
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Cabecera(
-            titulo: 'Listos para un nuevo destino', subtitulo: 'Viaje Express'),
-        BtnViajar(texto: '¿A dónde deseas ir?'),
-        BtnRutasGuardadas(texto: 'Selecciona una ruta guardada'),
-        SizedBox(height: 25),
-        ContenedorMapa()
+            titulo: 'Método de Pago', subtitulo: 'Viaje Express'),
+        BtnMetodoPago(texto: 'Tarjeta de crédito o débito', icono: Icons.credit_card, color: Colors.blue,),
+        BtnMetodoPago(texto: 'Dinero en efectivo', icono: Icons.attach_money, color: Colors.green,),
       ],
     );
   }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/custom_button.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/custom_dropDown.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/custom_input.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/custom_selectDate.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgtets/labels.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_dropDown.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_input.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_selectDate.dart';
+
+import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/labels.dart';
 
 
 

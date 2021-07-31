@@ -40,24 +40,24 @@ class BtnSimple extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.only(top: 15),
+      padding: EdgeInsets.only(top: size.height * 0.003),
       margin: EdgeInsets.symmetric(horizontal: size.width * 0.01),
       child: MaterialButton(
         onPressed: () {},
         child: Container(
-          // aquí se define las longitudes del botón
-          width: double.infinity,
-          height: 55,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                this.texto,
-                style: TextStyle(fontSize: 20, color: Colors.black),
-              ),
-            ],
-          ),
-        ),
+          padding: EdgeInsets.fromLTRB(0, size.height * 0.02, 0, size.height * 0.02),
+            // aquí se define las longitudes del botón
+            width: double.infinity,
+            height: size.height * 0.07,
+            child: RichText(
+
+              text: TextSpan(
+                text: this.texto,
+                style: TextStyle(fontSize: 20, color: Colors.black)
+              )
+              
+              )
+            ),
       ),
     );
   }
@@ -76,14 +76,14 @@ class BtnSimpleIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.only(top: 30),
+      padding: EdgeInsets.only(top: size.height * 0.03),
       margin: EdgeInsets.symmetric(horizontal: size.width * 0.01),
       child: MaterialButton(
-        onPressed: (){},
+        onPressed: () {},
         child: Container(
           // aquí se define las longitudes del botón
           width: double.infinity,
-          height: size.height*0.07,
+          height: size.height * 0.07,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [

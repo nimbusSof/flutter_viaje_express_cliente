@@ -61,7 +61,7 @@ class _EstructuraPage extends StatelessWidget {
             titulo: 'Configuraciones', subtitulo: 'Viaje Express'),
         BtnSimple(texto: 'Cambiar número de teléfono', ),
         BtnSimple(texto: 'Idioma',  ),
-        BtnSimple(texto: 'Formato de fecha y formato de distancia',  ),
+        BtnSimple(texto: 'Formato de fecha y distancia',  ),
         BtnSimple(texto: 'Acerca de la aplicación',  ),
         BtnSimple(texto: 'Cerrar sesión',  ),
       ],

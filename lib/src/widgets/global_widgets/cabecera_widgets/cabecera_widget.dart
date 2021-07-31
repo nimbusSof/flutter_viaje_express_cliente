@@ -11,14 +11,17 @@ class Cabecera extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Stack(
-      children: <Widget>[
-        Container(
-          padding: EdgeInsets.symmetric(vertical: size.height*0.159),
-          decoration: BoxDecoration(color: yellowColor),
-        ),
-        LabelInicio(titulo: titulo, subtitulo: subtitulo)
-      ],
+    return Container(
+      padding: EdgeInsets.only(bottom: size.height*0.019),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.symmetric(vertical: size.height*0.159),
+            decoration: BoxDecoration(color: yellowColor),
+          ),
+          LabelInicio(titulo: titulo, subtitulo: subtitulo)
+        ],
+      ),
     );
   }
 }

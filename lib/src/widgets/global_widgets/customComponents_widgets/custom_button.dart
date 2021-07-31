@@ -30,22 +30,20 @@ class CustomButton extends StatelessWidget {
   }
 }
 
-
 class BtnSimple extends StatelessWidget {
   final String texto;
   final String? ruta;
-  
-  
 
   const BtnSimple({required this.texto, this.ruta});
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.only(top: 15),
-      margin: EdgeInsets.symmetric(horizontal: 20),
-      child: GestureDetector(
-        onTap: () {},
+      margin: EdgeInsets.symmetric(horizontal: size.width * 0.01),
+      child: MaterialButton(
+        onPressed: () {},
         child: Container(
           // aquí se define las longitudes del botón
           width: double.infinity,
@@ -53,9 +51,6 @@ class BtnSimple extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
-                width: 15,
-              ),
               Text(
                 this.texto,
                 style: TextStyle(fontSize: 20, color: Colors.black),
@@ -68,33 +63,33 @@ class BtnSimple extends StatelessWidget {
   }
 }
 
-
-
 class BtnSimpleIcon extends StatelessWidget {
   final String texto;
   final String? ruta;
   final IconData icono;
-  final Color ? color;
+  final Color? color;
 
-  const BtnSimpleIcon({required this.texto, this.ruta, required this.icono, this.color});
+  const BtnSimpleIcon(
+      {required this.texto, this.ruta, required this.icono, this.color});
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.only(top: 30),
-      margin: EdgeInsets.symmetric(horizontal: 20),
-      child: GestureDetector(
-        onTap: () {},
+      margin: EdgeInsets.symmetric(horizontal: size.width * 0.01),
+      child: MaterialButton(
+        onPressed: (){},
         child: Container(
           // aquí se define las longitudes del botón
           width: double.infinity,
-          height: 55,
+          height: size.height*0.07,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Icon(
                 this.icono,
-                color: this.color!=null ? this.color: Colors.black ,
+                color: this.color != null ? this.color : Colors.black,
                 size: 32,
               ),
               SizedBox(

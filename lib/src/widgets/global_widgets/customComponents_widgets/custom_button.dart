@@ -45,19 +45,15 @@ class BtnSimple extends StatelessWidget {
       child: MaterialButton(
         onPressed: () {},
         child: Container(
-          padding: EdgeInsets.fromLTRB(0, size.height * 0.02, 0, size.height * 0.02),
+            padding: EdgeInsets.fromLTRB(
+                0, size.height * 0.02, 0, size.height * 0.02),
             // aquí se define las longitudes del botón
             width: double.infinity,
             height: size.height * 0.07,
             child: RichText(
-
-              text: TextSpan(
-                text: this.texto,
-                style: TextStyle(fontSize: 20, color: Colors.black)
-              )
-              
-              )
-            ),
+                text: TextSpan(
+                    text: this.texto,
+                    style: TextStyle(fontSize: 20, color: Colors.black)))),
       ),
     );
   }
@@ -76,10 +72,12 @@ class BtnSimpleIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.only(top: size.height * 0.03),
+      padding: EdgeInsets.only(top: size.height * 0.01),
       margin: EdgeInsets.symmetric(horizontal: size.width * 0.01),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: this.ruta!=null?() {
+          Navigator.pushNamed(context, this.ruta!);
+        }:(){},
         child: Container(
           // aquí se define las longitudes del botón
           width: double.infinity,

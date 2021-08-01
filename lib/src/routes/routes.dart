@@ -3,6 +3,7 @@ import 'package:flutter_viaje_express_cliente/src/pages/configuraciones/configur
 import 'package:flutter_viaje_express_cliente/src/pages/historialViajes/historialViajes_inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/inicio/inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/metodoPago_inicio_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/perfil/configuracionPerfil_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/perfil_inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/principal/login_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/principal/signIn_page.dart';
@@ -21,4 +22,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'rutasGuardadas_inicio'        :  (_) => RutasGuardadasInicioPage(),
   'perfil_inicio'                :  (_) => PerfilInicioPage(),
   'viajeNuevo_inicio'            :  (_) => ViajeNuevoInicioPage(),
+  'configuracionPerfil'          :  (_) => ConfiguracionPerfilPage(),
 };

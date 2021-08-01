@@ -56,6 +56,7 @@ class _EstructuraPage extends StatelessWidget {
           texto: 'Configuración de perfil',
           icono: Icons.person,
           color: grisOscuroColor,
+          ruta: 'configuracionPerfil',
         ),
         BtnSimpleIcon(
           texto: 'Mi calificación',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/configuraciones/acercaApp_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/configuraciones/cambiarFormatos_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/configuraciones/cambiarIdioma_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/configuraciones/cambiarNumero_page.dart';
@@ -31,4 +32,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'cambiarNumero'                :  (_) => CambiarNumeroPage(),
   'cambiarIdioma'                :  (_) => CambiarIdiomaPage(),
   'cambiarFormatos'              :  (_) => CambiarFormatosPage(),
+  'acercaApp'                    :  (_) => AcercaAppPage(),
 };

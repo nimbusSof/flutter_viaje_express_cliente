@@ -62,6 +62,7 @@ class _EstructuraPage extends StatelessWidget {
           texto: 'Mi calificación',
           icono: Icons.star,
           color: grisOscuroColor,
+          ruta: 'clasificaciónPerfil',
         )
       ],
     );

@@ -43,7 +43,9 @@ class BtnSimple extends StatelessWidget {
       padding: EdgeInsets.only(top: size.height * 0.003),
       margin: EdgeInsets.symmetric(horizontal: size.width * 0.01),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: this.ruta!=null?() {
+          Navigator.pushNamed(context, this.ruta!);
+        }:(){},
         child: Container(
             padding: EdgeInsets.fromLTRB(
                 0, size.height * 0.02, 0, size.height * 0.02),

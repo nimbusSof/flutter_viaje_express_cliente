@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/configuraciones/cambiarNumero_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/configuraciones/configuraciones_inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/historialViajes/historialViajes_inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/inicio/inicio_page.dart';
@@ -25,4 +26,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'viajeNuevo_inicio'            :  (_) => ViajeNuevoInicioPage(),
   'configuracionPerfil'          :  (_) => ConfiguracionPerfilPage(),
   'clasificaciónPerfil'          :  (_) => ClasificacionPerfilPage(),
+  'cambiarNumero'                :  (_) => CambiarNumeroPage(),
 };

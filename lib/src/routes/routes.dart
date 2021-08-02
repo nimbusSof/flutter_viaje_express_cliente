@@ -5,6 +5,7 @@ import 'package:flutter_viaje_express_cliente/src/pages/configuraciones/cambiarI
 import 'package:flutter_viaje_express_cliente/src/pages/configuraciones/cambiarNumero_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/configuraciones/configuraciones_inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/historialViajes/historialViajes_inicio_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/historialViajes/viajesConcluidos_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/inicio/inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/metodoPago_inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/clasificacionPerfil_page.dart';
@@ -33,4 +34,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'cambiarIdioma'                :  (_) => CambiarIdiomaPage(),
   'cambiarFormatos'              :  (_) => CambiarFormatosPage(),
   'acercaApp'                    :  (_) => AcercaAppPage(),
+  'viajesConcluidos'             :  (_) => ViajesConcluidosPage(),
 };

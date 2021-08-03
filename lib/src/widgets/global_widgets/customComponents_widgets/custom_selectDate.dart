@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 
 class CustomSelectDate extends StatefulWidget {
   final TextEditingController inputFieldDataController;
+  final String? texto;
 
-  const CustomSelectDate({required this.inputFieldDataController});
+  const CustomSelectDate({required this.inputFieldDataController, this.texto});
 
   @override
   _CustomSelectDateState createState() =>
-      _CustomSelectDateState(inputFieldDataController);
+      _CustomSelectDateState(inputFieldDataController, texto);
 }
 
 class _CustomSelectDateState extends State<CustomSelectDate> {
   final TextEditingController inputFieldDataController;
+  final String? texto;
   String _fecha = '';
 
-  _CustomSelectDateState(this.inputFieldDataController);
+  _CustomSelectDateState(this.inputFieldDataController, this.texto);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
           prefixIcon: Icon(Icons.calendar_today),
           focusedBorder: InputBorder.none,
           border: InputBorder.none,
-          hintText: 'Fecha de nacimiento',
+          hintText: this.texto!=null?this.texto:'Fecha de nacimiento',
         ),
         onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());

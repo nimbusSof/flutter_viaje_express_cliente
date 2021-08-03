@@ -9,6 +9,7 @@ import 'package:flutter_viaje_express_cliente/src/pages/historialViajes/viajesCa
 import 'package:flutter_viaje_express_cliente/src/pages/historialViajes/viajesConcluidos_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/inicio/inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/metodoPago_inicio_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/pagoTarjeta_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/clasificacionPerfil_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/configuracionPerfil_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/perfil_inicio_page.dart';
@@ -39,4 +40,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'viajesConcluidos'             :  (_) => ViajesConcluidosPage(),
   'viajesCancelados'             :  (_) => ViajesCanceladosPage(),
   'visualizarRutas'              :  (_) => VisualizarRutasPage(),
+  'pagoTarjeta'                  :  (_) => PagoTarjetaPage(),
 };

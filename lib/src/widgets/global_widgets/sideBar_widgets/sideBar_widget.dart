@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 
 class SideBar extends StatefulWidget {
   @override
@@ -13,11 +14,36 @@ class _SideBarState extends State<SideBar> {
         GestureDetector(
           onTap: () {Navigator.popAndPushNamed(context, 'perfil_inicio');},
           child: DrawerHeader(
-            child: Container(),
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: CircleAvatar(
+                      backgroundColor: grisColor,
+                      radius: 30,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      margin: EdgeInsets.only(top: 15,bottom: 5),
+                      child: Text('Pepito Pérez', style: TextStyle(fontSize: 19),),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+        
+                      child: Text('pepito@gmail.com', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w300),),
+                    ),
+                  )
+                ],
+              ),
+            ),
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/img_util/menu-img.jpg'),
-                    fit: BoxFit.cover)),
+               color: Colors.white
+               ),
           ),
         ),
         ListTile(

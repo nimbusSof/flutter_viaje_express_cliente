@@ -49,29 +49,38 @@ class _ViajeNuevoInicioPageState extends State<ViajeNuevoInicioPage> {
 }
 
 class _EstructuraPage extends StatelessWidget {
-  final ubicacionCtrl = new TextEditingController ();
-  final destinoCtrl = new TextEditingController ();
-
+  final ubicacionCtrl = new TextEditingController();
+  final destinoCtrl = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        CabeceraMapa(),
-        SizedBox(height: 15,),
-        CustomInput(
-            icon: Icons.location_on,
-            placeHolder: 'Mi ubicación',
-            textController: ubicacionCtrl),
-        CustomInput(
-            icon: Icons.location_on,
-            placeHolder: 'Mi destino',
-            textController: destinoCtrl),
-        BtnSelectRutas(texto: 'Seleccionar una ruta guardada'),
-        RbtnMetodoPago(),
-        CustomButton(text: 'Solicitar un auto', onPressed: (){})    
-
-      ],
+    return Container(
+      child: Column(
+        children: <Widget>[
+          CabeceraMapa(),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 15,
+                ),
+                CustomInput(
+                    icon: Icons.location_on,
+                    placeHolder: 'Mi ubicación',
+                    textController: ubicacionCtrl),
+                CustomInput(
+                    icon: Icons.location_on,
+                    placeHolder: 'Mi destino',
+                    textController: destinoCtrl),
+                BtnSelectRutas(texto: 'Seleccionar una ruta guardada'),
+                RbtnMetodoPago(),
+                CustomButton(text: 'Solicitar un auto', onPressed: () {})
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

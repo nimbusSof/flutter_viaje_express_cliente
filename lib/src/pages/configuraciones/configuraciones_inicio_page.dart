@@ -63,7 +63,7 @@ class _EstructuraPage extends StatelessWidget {
         BtnSimple(texto: 'Idioma',  ruta: 'cambiarIdioma',),
         BtnSimple(texto: 'Formato de fecha y distancia', ruta: 'cambiarFormatos', ),
         BtnSimple(texto: 'Acerca de la aplicación', ruta: 'acercaApp', ),
-        BtnSimple(texto: 'Cerrar sesión',  ),
+        BtnSimple(texto: 'Cerrar sesión', ruta: 'login', ),
       ],
     );
   }

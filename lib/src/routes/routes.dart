@@ -16,6 +16,7 @@ import 'package:flutter_viaje_express_cliente/src/pages/principal/login_page.dar
 import 'package:flutter_viaje_express_cliente/src/pages/principal/signIn_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/principal/splash_screen_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/rutasGuardadas/rutasGuardadas_inicio_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/rutasGuardadas/visualizarRutas_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/viajeNuevo_inicio_page.dart';
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -37,4 +38,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'acercaApp'                    :  (_) => AcercaAppPage(),
   'viajesConcluidos'             :  (_) => ViajesConcluidosPage(),
   'viajesCancelados'             :  (_) => ViajesCanceladosPage(),
+  'visualizarRutas'              :  (_) => VisualizarRutasPage(),
 };

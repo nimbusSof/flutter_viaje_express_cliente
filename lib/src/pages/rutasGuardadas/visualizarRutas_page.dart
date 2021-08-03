@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 
-class ViajesConcluidosPage extends StatelessWidget {
+class VisualizarRutasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,6 +18,12 @@ class ViajesConcluidosPage extends StatelessWidget {
         ),
       ),
       body: _EstructuraPage(),
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+        backgroundColor: yellowColor,
+      ),
     ));
   }
 }
@@ -30,26 +37,25 @@ class _EstructuraPage extends StatelessWidget {
           SizedBox(
             height: 15,
           ),
-          _historial()
+          _rutas()
         ],
       ),
     );
   }
 
-  _historial() {
+  _rutas() {
     return Expanded(
       child: ListView(
-        children: _viajeConcluido(),
+        children: rutasGuardadas(),
       ),
     );
   }
 
-  _viajeConcluido() {
+  rutasGuardadas() {
     List<Widget> lista = [];
     Widget viaje = ListTile(
       leading: Icon(
-        Icons.check_circle,
-        color: Colors.green,
+        Icons.stars,
       ),
       title: Container(
         child: RichText(

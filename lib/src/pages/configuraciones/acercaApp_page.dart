@@ -10,7 +10,7 @@ class AcercaAppPage extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           title: Text(
-            'Cambiar número',
+            'Acerca de la app',
             style: TextStyle(
               fontSize: 20,
               color: Colors.black45,

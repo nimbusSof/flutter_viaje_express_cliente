@@ -58,7 +58,7 @@ class _EstructuraPage extends StatelessWidget {
       children: <Widget>[
         Cabecera(
             titulo: 'Rutas Guardadas', subtitulo: 'Viaje Express'),
-        BtnSimpleIcon(texto: 'Visualizar rutas guardadas', icono: Icons.star, color: yellowColor,)
+        BtnSimpleIcon(texto: 'Visualizar rutas guardadas', icono: Icons.star, color: yellowColor,ruta: 'visualizarRutas',)
       ],
     );
   }

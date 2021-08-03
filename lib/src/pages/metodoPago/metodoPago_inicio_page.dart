@@ -59,7 +59,7 @@ class _EstructuraPage extends StatelessWidget {
         Cabecera(
             titulo: 'Método de Pago', subtitulo: 'Viaje Express'),
         BtnSimpleIcon(texto: 'Tarjeta de crédito o débito', icono: Icons.credit_card, color: Colors.blue, ruta: 'pagoTarjeta',),
-        BtnSimpleIcon(texto: 'Dinero en efectivo', icono: Icons.attach_money, color: Colors.green,),
+        BtnSimpleIcon(texto: 'Dinero en efectivo', icono: Icons.attach_money, color: Colors.green, ruta: 'pagoEfectivo',),
       ],
     );
   }

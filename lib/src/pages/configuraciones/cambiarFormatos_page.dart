@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class CambiarFormatosPage extends StatelessWidget {
@@ -27,17 +25,16 @@ class _EstructuraPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      margin: EdgeInsets.only(bottom: 10, top: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        margin: EdgeInsets.only(bottom: 10, top: 10),
         child: Column(
-      children: <Widget>[
-        horas(),
-        Divider(),
-        unidadesDistancia(),
-        Divider()
-        ],
-    ));
+          children: <Widget>[
+            horas(),
+            Divider(),
+            unidadesDistancia(),
+            Divider()
+          ],
+        ));
   }
 
   horas() {
@@ -60,20 +57,20 @@ class _EstructuraPage extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: MaterialButton(
-        onPressed: (){},
+        onPressed: () {},
         child: Container(
           width: double.infinity,
           child: RichText(
-            textAlign: TextAlign.start,
+              textAlign: TextAlign.start,
               text: TextSpan(
                   text: 'Unidades de distancia\n',
                   style: TextStyle(color: Colors.black, fontSize: 18),
                   children: [
-                TextSpan(
-                  text: 'Kilómetros',
-                  style: TextStyle(color: Colors.green, fontSize: 18),
-                )
-              ])),
+                    TextSpan(
+                      text: 'Kilómetros',
+                      style: TextStyle(color: Colors.green, fontSize: 18),
+                    )
+                  ])),
         ),
       ),
     );

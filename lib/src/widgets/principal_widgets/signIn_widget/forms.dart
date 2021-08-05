@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/services/auth_service.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_dropDown.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_input.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_selectDate.dart';
 
 import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/labels.dart';
-
-
-
+import 'package:provider/provider.dart';
 
 // FORMULARIO CON LOS CAMPOS: CÉDULA, NOMBRES, APELLIDOS
 
@@ -22,11 +21,9 @@ class FormState extends State<Form0> {
   final cedulaCtrl = TextEditingController();
   final nombresCtrl = TextEditingController();
   final apellidosCtrl = TextEditingController();
- 
 
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.symmetric(horizontal: 50),
@@ -47,9 +44,6 @@ class FormState extends State<Form0> {
               placeHolder: 'Apellidos',
               keyboardType: TextInputType.name,
               textController: apellidosCtrl),
-
-          
-
           CustomButton(
               text: 'Siguiente',
               onPressed: () {
@@ -65,15 +59,9 @@ class FormState extends State<Form0> {
       ),
     );
   }
-
-
 }
 
-
-
-
 // FORMULARIO CON LOS CAMPOS: TELÉFONO, FECHA DE NACIMIENTO, GÉNERO
-
 
 class Form1 extends StatefulWidget {
   @override
@@ -83,7 +71,7 @@ class Form1 extends StatefulWidget {
 class Form1State extends State<Form1> {
   final telefonoCtrl = TextEditingController();
   final dateCtrl = TextEditingController();
-   List<String> listaGenero = ['masculino', 'femenino', 'otro'];
+  List<String> listaGenero = ['masculino', 'femenino', 'otro'];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -96,33 +84,25 @@ class Form1State extends State<Form1> {
               placeHolder: 'Teléfono',
               keyboardType: TextInputType.phone,
               textController: telefonoCtrl),
-
-              CustomDropDown(lista: listaGenero),
-
-              CustomSelectDate(inputFieldDataController: dateCtrl),
-
+          CustomDropDown(lista: listaGenero),
+          CustomSelectDate(inputFieldDataController: dateCtrl),
           CustomButton(
               text: 'Siguiente',
               onPressed: () {
                 BlocProvider.of<SigninBloc>(context).add(CambiarPanel(2));
               }),
-              SizedBox(height: 15),
+          SizedBox(height: 15),
           CustomButton(
               text: 'Regresar',
               onPressed: () {
                 BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
               }),
-
-              LabelCancelar(subtitulo: 'Cancelar')
+          LabelCancelar(subtitulo: 'Cancelar')
         ],
       ),
     );
   }
 }
-
-
-
-
 
 //FORMULARIO CON LOS CAMPOS: CORREO, PASSWORD, PASSWORD CONFIRMACIÓN
 
@@ -162,16 +142,25 @@ class Form2State extends State<Form2> {
           ),
           CustomButton(
               text: 'Finalizar Registro',
-              onPressed: () {
+              onPressed: () async {
+                final authService =
+                    Provider.of<AuthService>(context, listen: false);
+                final String? errorMessage =
+                    await authService.createUser(emailCtrl.text, passCtrl.text);
+                if (errorMessage == null) {
+                } else {
+                  // mostrar error en pantalla
+                  print(errorMessage);
+                }
                 BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
               }),
-              SizedBox(height: 15),
+          SizedBox(height: 15),
           CustomButton(
               text: 'Regresar',
               onPressed: () {
                 BlocProvider.of<SigninBloc>(context).add(CambiarPanel(1));
               }),
-              LabelCancelar(subtitulo: 'Cancelar')
+          LabelCancelar(subtitulo: 'Cancelar')
         ],
       ),
     );

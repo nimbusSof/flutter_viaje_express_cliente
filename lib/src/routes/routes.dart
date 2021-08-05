@@ -14,6 +14,7 @@ import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/pagoTarjeta_p
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/clasificacionPerfil_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/configuracionPerfil_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/perfil_inicio_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/principal/check_auth_screen.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/principal/login_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/principal/signIn_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/principal/splash_screen_page.dart';
@@ -25,6 +26,7 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   '/'                            :  (_) => SplashScreen(),
   'login'                        :  (_) => LoginPage(),
   'signin'                       :  (_) => SignInPage(), 
+  'checking'                     :  (_) => CheckAuthScreen(), 
   'inicio'                       :  (_) => InicioPage(),
   'metodoPago_inicio'            :  (_) => MetodoPagoInicioPage(),
   'historialViajes_inicio'       :  (_) => HistorialViajesInicioPage(),

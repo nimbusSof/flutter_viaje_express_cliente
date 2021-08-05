@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/services/auth_service.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
+import 'package:provider/provider.dart';
 
 class SideBar extends StatefulWidget {
   @override
@@ -9,10 +11,14 @@ class SideBar extends StatefulWidget {
 class _SideBarState extends State<SideBar> {
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context, listen: false);
+
     return Drawer(
       child: ListView(padding: EdgeInsets.zero, children: <Widget>[
         GestureDetector(
-          onTap: () {Navigator.popAndPushNamed(context, 'perfil_inicio');},
+          onTap: () {
+            Navigator.popAndPushNamed(context, 'perfil_inicio');
+          },
           child: DrawerHeader(
             child: Container(
               child: Column(
@@ -27,23 +33,27 @@ class _SideBarState extends State<SideBar> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
-                      margin: EdgeInsets.only(top: 15,bottom: 5),
-                      child: Text('Pepito Pérez', style: TextStyle(fontSize: 19),),
+                      margin: EdgeInsets.only(top: 15, bottom: 5),
+                      child: Text(
+                        'Pepito Pérez',
+                        style: TextStyle(fontSize: 19),
+                      ),
                     ),
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
-        
-                      child: Text('pepito@gmail.com', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w300),),
+                      child: Text(
+                        'pepito@gmail.com',
+                        style: TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.w300),
+                      ),
                     ),
                   )
                 ],
               ),
             ),
-            decoration: BoxDecoration(
-               color: Colors.white
-               ),
+            decoration: BoxDecoration(color: Colors.white),
           ),
         ),
         ListTile(
@@ -56,12 +66,16 @@ class _SideBarState extends State<SideBar> {
         ListTile(
           leading: Icon(Icons.map),
           title: Text('Viaje Nuevo'),
-          onTap: () {Navigator.popAndPushNamed(context, 'viajeNuevo_inicio');},
+          onTap: () {
+            Navigator.popAndPushNamed(context, 'viajeNuevo_inicio');
+          },
         ),
         ListTile(
           leading: Icon(Icons.save),
           title: Text('Rutas guardadas'),
-          onTap: () {Navigator.popAndPushNamed(context, 'rutasGuardadas_inicio');},
+          onTap: () {
+            Navigator.popAndPushNamed(context, 'rutasGuardadas_inicio');
+          },
         ),
         ListTile(
           leading: Icon(Icons.credit_card),
@@ -88,7 +102,8 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.logout),
           title: Text('Salir'),
           onTap: () {
-            Navigator.popAndPushNamed(context, 'login');
+            authService.logout();
+            Navigator.pushReplacementNamed(context, 'login');
           },
         )
       ]),

@@ -34,6 +34,7 @@ class CustomInput extends StatelessWidget {
           ]),
       child: TextField(
         // propiedades el tipo de input
+        
         controller: this.textController,
         autocorrect: false,
         keyboardType: this.keyboardType,

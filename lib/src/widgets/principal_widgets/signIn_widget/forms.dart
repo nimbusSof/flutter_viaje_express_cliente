@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
-import 'package:flutter_viaje_express_cliente/src/models/registroCliente.dart';
 
 import 'package:flutter_viaje_express_cliente/src/services/auth_service.dart';
+import 'package:flutter_viaje_express_cliente/src/services/signUp_service.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_dropDown.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_input.dart';
@@ -27,10 +27,12 @@ class FormState extends State<Form0> {
   @override
   Widget build(BuildContext context) {
     final signInBloc = BlocProvider.of<SigninBloc>(context);
+    final signUpService = Provider.of<SignUpServide>(context);
 
-    cedulaCtrl.text = signInBloc.state.registroCliente?.cedula ?? '';
-    nombresCtrl.text = signInBloc.state.registroCliente?.nombre ?? '';
-    apellidosCtrl.text = signInBloc.state.registroCliente?.apellido ?? '';
+    cedulaCtrl.text = signUpService.cliente.cedula;
+    nombresCtrl.text = signUpService.cliente.nombre;
+    apellidosCtrl.text = signUpService.cliente.apellido;
+
     return Container(
       margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.symmetric(horizontal: 50),
@@ -54,28 +56,9 @@ class FormState extends State<Form0> {
           CustomButton(
               text: 'Siguiente',
               onPressed: () {
-                if (signInBloc.state.existeUsuario) {
-                  print('opcion1');
-                  signInBloc.add(CambiarCedula(cedulaCtrl.text));
-                  signInBloc.add(CambiarNombres(nombresCtrl.text));
-                  signInBloc.add(CambiarApellidos(apellidosCtrl.text));
-                  print('Usuario: ${signInBloc.state.registroCliente!.cedula}');
-                  print('Usuario: ${signInBloc.state.registroCliente!.nombre}');
-                  print(
-                      'Usuario: ${signInBloc.state.registroCliente!.apellido}');
-                } else {
-                   print('opcion2');
-                  RegistroCliente cliente = new RegistroCliente();
-                  signInBloc.add(ActivarCliente(cliente));
-                  signInBloc.add(CambiarCedula(cedulaCtrl.text));
-                  signInBloc.add(CambiarNombres(nombresCtrl.text));
-                  signInBloc.add(CambiarApellidos(apellidosCtrl.text));
-                  print('Usuario: ${signInBloc.state.registroCliente!.cedula}');
-                  print('Usuario: ${signInBloc.state.registroCliente!.nombre}');
-                  print(
-                      'Usuario: ${signInBloc.state.registroCliente!.apellido}');
-                }
-
+                signUpService.agregarCedula(cedulaCtrl.text);
+                signUpService.agregarNombres(nombresCtrl.text);
+                signUpService.agregarApellidos(apellidosCtrl.text);
                 signInBloc.add(CambiarPanel(1));
               }),
           SizedBox(height: 35),
@@ -100,10 +83,15 @@ class Form1 extends StatefulWidget {
 class Form1State extends State<Form1> {
   final telefonoCtrl = TextEditingController();
   final dateCtrl = TextEditingController();
+
   List<String> listaGenero = ['masculino', 'femenino', 'otro'];
   @override
   Widget build(BuildContext context) {
-    //final signInBloc = BlocProvider.of<SigninBloc>(context);
+    final signInBloc = BlocProvider.of<SigninBloc>(context);
+    final signUpService = Provider.of<SignUpServide>(context);
+
+    telefonoCtrl.text = signUpService.cliente.telefono;
+    dateCtrl.text = signUpService.cliente.fechaNacimiento;
 
     return Container(
       margin: EdgeInsets.only(top: 20),
@@ -120,7 +108,9 @@ class Form1State extends State<Form1> {
           CustomButton(
               text: 'Siguiente',
               onPressed: () {
-                BlocProvider.of<SigninBloc>(context).add(CambiarPanel(2));
+                signUpService.agregarTelefono(telefonoCtrl.text);
+                signUpService.agregarFechaNacimiento(dateCtrl.text);
+                signInBloc.add(CambiarPanel(2));
               }),
           SizedBox(height: 15),
           CustomButton(
@@ -148,6 +138,11 @@ class Form2State extends State<Form2> {
   final pass2Ctrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final signUpService = Provider.of<SignUpServide>(context);
+
+    emailCtrl.text = signUpService.cliente.correo;
+    passCtrl.text = signUpService.cliente.clave;
+    pass2Ctrl.text = signUpService.claveConfirmacion;
     return Container(
       margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.symmetric(horizontal: 50),
@@ -174,6 +169,7 @@ class Form2State extends State<Form2> {
           CustomButton(
               text: 'Finalizar Registro',
               onPressed: () async {
+
                 final authService =
                     Provider.of<AuthService>(context, listen: false);
                 final String? errorMessage =
@@ -189,6 +185,9 @@ class Form2State extends State<Form2> {
           CustomButton(
               text: 'Regresar',
               onPressed: () {
+                signUpService.agregarCorreo(emailCtrl.text);
+                signUpService.agregarPassword(passCtrl.text);
+                signUpService.agregarConfirmacionPassword(pass2Ctrl.text);
                 BlocProvider.of<SigninBloc>(context).add(CambiarPanel(1));
               }),
           LabelCancelar(subtitulo: 'Cancelar')

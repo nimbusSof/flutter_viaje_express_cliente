@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
 
+import 'package:flutter_viaje_express_cliente/src/services/services.dart';
+import 'package:provider/provider.dart';
+
 class Labels extends StatelessWidget {
   final String ruta;
   final String titulo;
@@ -16,6 +19,7 @@ class Labels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final signUpService = Provider.of<SignUpServide>(context);
     return Container(
       child: Column(
         children: <Widget>[
@@ -32,6 +36,7 @@ class Labels extends StatelessWidget {
                     fontSize: 18,
                     fontWeight: FontWeight.bold)),
             onTap: () {
+              signUpService.removerCliente();
               Navigator.pushReplacementNamed(context, this.ruta);
             },
           )
@@ -48,6 +53,7 @@ class LabelCancelar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       padding: EdgeInsets.only(top: 25),
       child: GestureDetector(
@@ -57,6 +63,7 @@ class LabelCancelar extends StatelessWidget {
                 fontSize: 18,
                 fontWeight: FontWeight.bold)),
         onTap: () {
+          
           BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
         },
       ),

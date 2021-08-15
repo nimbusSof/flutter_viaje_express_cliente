@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/models/registroCliente.dart';
 
 import 'package:flutter_viaje_express_cliente/src/services/auth_service.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
@@ -27,52 +28,65 @@ class FormState extends State<Form0> {
   Widget build(BuildContext context) {
     final signInBloc = BlocProvider.of<SigninBloc>(context);
 
-    return BlocBuilder<SigninBloc, SigninState>(builder: (_, state) {
-      cedulaCtrl.text = state.registroCliente?.cedula ?? '';
-      nombresCtrl.text = state.registroCliente?.nombre ?? '';
-      apellidosCtrl.text = state.registroCliente?.apellido ?? '';
-      return Container(
-        margin: EdgeInsets.only(top: 20),
-        padding: EdgeInsets.symmetric(horizontal: 50),
-        child: Column(
-          children: <Widget>[
-            CustomInput(
-                icon: Icons.perm_identity,
-                placeHolder: 'Cédula',
-                keyboardType: TextInputType.number,
-                textController: cedulaCtrl),
-            CustomInput(
-                icon: Icons.perm_identity,
-                placeHolder: 'Nombres',
-                keyboardType: TextInputType.name,
-                textController: nombresCtrl),
-            CustomInput(
-                icon: Icons.perm_identity,
-                placeHolder: 'Apellidos',
-                keyboardType: TextInputType.name,
-                textController: apellidosCtrl),
-            CustomButton(
-                text: 'Siguiente',
-                onPressed: () {
-                  signInBloc.add(ActivarCliente());
+    cedulaCtrl.text = signInBloc.state.registroCliente?.cedula ?? '';
+    nombresCtrl.text = signInBloc.state.registroCliente?.nombre ?? '';
+    apellidosCtrl.text = signInBloc.state.registroCliente?.apellido ?? '';
+    return Container(
+      margin: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.symmetric(horizontal: 50),
+      child: Column(
+        children: <Widget>[
+          CustomInput(
+              icon: Icons.perm_identity,
+              placeHolder: 'Cédula',
+              keyboardType: TextInputType.number,
+              textController: cedulaCtrl),
+          CustomInput(
+              icon: Icons.perm_identity,
+              placeHolder: 'Nombres',
+              keyboardType: TextInputType.name,
+              textController: nombresCtrl),
+          CustomInput(
+              icon: Icons.perm_identity,
+              placeHolder: 'Apellidos',
+              keyboardType: TextInputType.name,
+              textController: apellidosCtrl),
+          CustomButton(
+              text: 'Siguiente',
+              onPressed: () {
+                if (signInBloc.state.existeUsuario) {
+                  print('opcion1');
                   signInBloc.add(CambiarCedula(cedulaCtrl.text));
                   signInBloc.add(CambiarNombres(nombresCtrl.text));
                   signInBloc.add(CambiarApellidos(apellidosCtrl.text));
-                  print('Usuario: ${state.registroCliente?.cedula}');
-                  print('Usuario: ${state.registroCliente?.nombre}');
-                  print('Usuario: ${state.registroCliente?.apellido}');
-                  signInBloc.add(CambiarPanel(1));
-                }),
-            SizedBox(height: 35),
-            Labels(
-              ruta: 'login',
-              titulo: '¿Ya tienes cuenta?',
-              subtitulo: '¡Ingresa ahora!',
-            ),
-          ],
-        ),
-      );
-    });
+                  print('Usuario: ${signInBloc.state.registroCliente!.cedula}');
+                  print('Usuario: ${signInBloc.state.registroCliente!.nombre}');
+                  print(
+                      'Usuario: ${signInBloc.state.registroCliente!.apellido}');
+                } else {
+                   print('opcion2');
+                  RegistroCliente cliente = new RegistroCliente();
+                  signInBloc.add(ActivarCliente(cliente));
+                  signInBloc.add(CambiarCedula(cedulaCtrl.text));
+                  signInBloc.add(CambiarNombres(nombresCtrl.text));
+                  signInBloc.add(CambiarApellidos(apellidosCtrl.text));
+                  print('Usuario: ${signInBloc.state.registroCliente!.cedula}');
+                  print('Usuario: ${signInBloc.state.registroCliente!.nombre}');
+                  print(
+                      'Usuario: ${signInBloc.state.registroCliente!.apellido}');
+                }
+
+                signInBloc.add(CambiarPanel(1));
+              }),
+          SizedBox(height: 35),
+          Labels(
+            ruta: 'login',
+            titulo: '¿Ya tienes cuenta?',
+            subtitulo: '¡Ingresa ahora!',
+          ),
+        ],
+      ),
+    );
   }
 }
 

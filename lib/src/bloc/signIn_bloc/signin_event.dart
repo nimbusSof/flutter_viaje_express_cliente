@@ -8,7 +8,10 @@ class CambiarPanel extends SigninEvent {
   CambiarPanel(this.opcion);
 }
 
-class ActivarCliente extends SigninEvent {}
+class ActivarCliente extends SigninEvent {
+  final RegistroCliente cliente;
+  ActivarCliente(this.cliente);
+}
 
 class CambiarNombres extends SigninEvent {
   final String nombres;

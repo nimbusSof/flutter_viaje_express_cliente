@@ -24,24 +24,11 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
           registroCliente:
               state.registroCliente!.copyWith(apellido: event.apellidos));
     } else if (event is CambiarCedula) {
-      
       yield state.copyWith(
           registroCliente:
               state.registroCliente!.copyWith(cedula: event.cedula));
     } else if (event is ActivarCliente) {
-      
-      final newUsuario = new RegistroCliente(
-        nombre: '',
-        apellido: '',
-        fechaNacimiento: new DateTime.now(),
-        genero: '',
-        telefono: '',
-        correo: '',
-        clave: '',
-        pathFoto: '',
-        cedula: '',
-      );
-      yield state.copyWith(registroCliente: newUsuario);
+      yield state.copyWith(registroCliente: event.cliente);
     }
   }
 }

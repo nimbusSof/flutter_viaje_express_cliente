@@ -13,6 +13,7 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=> new SignUpServide()),
         ChangeNotifierProvider(create: (_)=> new AuthService()),
         ChangeNotifierProvider(create: (_)=> new CustomIputService()),
+        ChangeNotifierProvider(create: (_)=> new ObtenerClienteService()),
         
       ],
       child: MyApp(),

@@ -10,7 +10,7 @@ RegistroCliente registroClienteFromJson(String str) =>
 String registroClienteToJson(RegistroCliente data) =>
     json.encode(data.toJson());
 
-DateTime fechita = new DateTime.now();
+
 
 class RegistroCliente {
   String nombre;

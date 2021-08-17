@@ -2,14 +2,19 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_viaje_express_cliente/src/services/viajeExpressApi_service.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService extends ChangeNotifier {
   //final String _baseUrl = 'identitytoolkit.googleapis.com';
   //final String _firebaseToken = 'AIzaSyD6c9oUsV7CChy_8JrIKj9L9JrAhPXecp4';
-  final String _baseUrl = '10.0.2.2:59454';
 
+  ViajeExpressApi viajeExpressApi = new ViajeExpressApi();
   final storage = new FlutterSecureStorage();
+
+
+  // REGISTRO DEL USUARIO CLIENTE
+
 
   // si retornamos algo, es un error, sino todo bien!
   Future<String?> createUser(String email, String password) async {
@@ -19,7 +24,7 @@ class AuthService extends ChangeNotifier {
     };
 
     final url = Uri.https(
-      _baseUrl,
+      viajeExpressApi.baseUrl,
       '/v1/accounts:signUp', /* {'key': _firebaseToken} */
     );
 
@@ -35,6 +40,12 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+
+
+
+ 
+  // LOGIN DEL USUARIO CLIENTE
+
   Future<bool?> login(String email, String password) async {
     // parametros para enviar al api
     final Map<String, dynamic> authData = {
@@ -44,7 +55,7 @@ class AuthService extends ChangeNotifier {
 
     // emsamble del endpoint
     final url = Uri.http(
-      _baseUrl,
+      viajeExpressApi.baseUrl,
       '/Login/Cliente', /*  {'key': _firebaseToken} */
     );
 
@@ -60,16 +71,21 @@ class AuthService extends ChangeNotifier {
     if (decodedResp.containsKey('token')) {
       // El token se guarda en un lugar seguro
       await storage.write(key: 'token', value: decodedResp['token']);
+      await storage.write(key: 'id_persona_rol', value: decodedResp['id_persona_rol'].toString());
       return decodedResp['exito'];
-    } 
+    }
   }
 
   Future logout() async {
     await storage.delete(key: 'token');
+    await storage.delete(key: 'id_persona_rol');
     return;
   }
 
   Future<String> readToken() async {
     return await storage.read(key: 'token') ?? '';
+  }
+  Future<String> readIdPersonaRol() async {
+    return await storage.read(key: 'id_persona_rol') ?? '';
   }
 }

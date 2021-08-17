@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/services/auth_service.dart';
+import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +13,8 @@ class _SideBarState extends State<SideBar> {
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context, listen: false);
-
+    final clienteService =
+        Provider.of<ObtenerClienteService>(context, listen: false);
     return Drawer(
       child: ListView(padding: EdgeInsets.zero, children: <Widget>[
         GestureDetector(
@@ -35,7 +37,7 @@ class _SideBarState extends State<SideBar> {
                     child: Container(
                       margin: EdgeInsets.only(top: 15, bottom: 5),
                       child: Text(
-                        'Pepito Pérez',
+                        '${clienteService.personaCliente.data?.nombre} ${clienteService.personaCliente.data?.apellido}',
                         style: TextStyle(fontSize: 19),
                       ),
                     ),
@@ -44,7 +46,7 @@ class _SideBarState extends State<SideBar> {
                     alignment: Alignment.centerLeft,
                     child: Container(
                       child: Text(
-                        'pepito@gmail.com',
+                        '${clienteService.personaCliente.data?.correo}',
                         style: TextStyle(
                             fontSize: 17, fontWeight: FontWeight.w300),
                       ),

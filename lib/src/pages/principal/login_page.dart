@@ -69,12 +69,15 @@ class __FormState extends State<_Form> {
           CustomButton(
               text: 'Ingresar',
               onPressed: () async {
+                print('estoy ingresando');
+                //instancia provider
                 final authService =
                     Provider.of<AuthService>(context, listen: false);
-                final String? errorMessage =
+
+                final bool? errorMessage =
                     await authService.login(emailCtrl.text, passCtrl.text);
 
-                if (errorMessage == null) {
+                if (errorMessage == true) {
                   Navigator.pushReplacementNamed(context, 'inicio');
                 } else {
                   // mostrar error en pantalla

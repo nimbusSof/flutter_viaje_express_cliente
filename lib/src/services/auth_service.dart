@@ -35,32 +35,33 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-
-
-  Future<String?> login(String email, String password) async {
+  Future<bool?> login(String email, String password) async {
+    // parametros para enviar al api
     final Map<String, dynamic> authData = {
       'correo': email,
       'clave': password,
     };
 
+    // emsamble del endpoint
     final url = Uri.http(
       _baseUrl,
       '/Login/Cliente', /*  {'key': _firebaseToken} */
     );
 
+    //se realizar la petición post al  api
+    final resp = await http.post(url, body: json.encode(authData), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    });
 
-    final resp = await http.post(url,
-        body: json.encode(authData),
-        headers: {'Content-Type': 'application/json', 'Accept': 'application/json',});
+    //se decodifica la respuesta del api
     final Map<String, dynamic> decodedResp = json.decode(resp.body);
-
+    print(decodedResp);
     if (decodedResp.containsKey('token')) {
       // El token se guarda en un lugar seguro
       await storage.write(key: 'token', value: decodedResp['token']);
-      return null;
-    } else {
       return decodedResp['exito'];
-    }
+    } 
   }
 
   Future logout() async {

@@ -22,7 +22,8 @@ class _CustomDropDownState extends State<CustomDropDown> {
   Widget build(BuildContext context) {
     final signUpService = Provider.of<SignUpServide>(context);
 
-    dropdownValue = signUpService.cliente.genero;
+    //se valida que haya un genero seleccionado en el estado de signUpService
+    dropdownValue = signUpService.cliente.genero!=''?signUpService.cliente.genero:dropdownValue;
 
     return Container(
       padding: EdgeInsets.only(top: 5, left: 40, bottom: 5, right: 20),

@@ -53,7 +53,7 @@ class LabelCancelar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+    final signUpService = Provider.of<SignUpServide>(context);
     return Container(
       padding: EdgeInsets.only(top: 25),
       child: GestureDetector(
@@ -63,7 +63,7 @@ class LabelCancelar extends StatelessWidget {
                 fontSize: 18,
                 fontWeight: FontWeight.bold)),
         onTap: () {
-          
+          signUpService.removerCliente();
           BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
         },
       ),

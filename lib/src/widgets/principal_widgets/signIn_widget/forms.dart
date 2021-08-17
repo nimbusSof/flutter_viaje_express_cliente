@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
 
 import 'package:flutter_viaje_express_cliente/src/services/auth_service.dart';
-import 'package:flutter_viaje_express_cliente/src/services/signUp_service.dart';
+import 'package:flutter_viaje_express_cliente/src/services/services.dart';
+import 'package:flutter_viaje_express_cliente/src/services/signUp_services/signUp_service.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_dropDown.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_input.dart';
@@ -139,7 +140,8 @@ class Form2State extends State<Form2> {
   @override
   Widget build(BuildContext context) {
     final signUpService = Provider.of<SignUpServide>(context);
-
+    //final inputService = Provider.of<CustomIputService>(context);
+    
     emailCtrl.text = signUpService.cliente.correo;
     passCtrl.text = signUpService.cliente.clave;
     pass2Ctrl.text = signUpService.claveConfirmacion;
@@ -155,12 +157,16 @@ class Form2State extends State<Form2> {
             textController: emailCtrl,
           ),
           CustomInput(
+            key: UniqueKey(),
+            sufixIcon: Icons.visibility,
             icon: Icons.lock_outline,
             placeHolder: 'Password',
             isPassword: true,
             textController: passCtrl,
           ),
           CustomInput(
+            key: UniqueKey(),
+            sufixIcon: Icons.visibility,
             icon: Icons.lock_outline,
             placeHolder: 'Confirmar Password',
             isPassword: true,
@@ -169,7 +175,6 @@ class Form2State extends State<Form2> {
           CustomButton(
               text: 'Finalizar Registro',
               onPressed: () async {
-
                 final authService =
                     Provider.of<AuthService>(context, listen: false);
                 final String? errorMessage =

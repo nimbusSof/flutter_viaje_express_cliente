@@ -54,12 +54,12 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
     DateTime? picked = await showDatePicker(
         context: context,
         initialDate: new DateTime.now(),
-        firstDate: new DateTime(2020),
-        lastDate: new DateTime(2025));
+        firstDate: new DateTime(1925),
+        lastDate: new DateTime.now());
 
     if (picked != null) {
       setState(() {
-        _fecha = picked.toString();
+        _fecha = '${picked.day}-${picked.month}-${picked.year}';
         inputFieldDataController.text = _fecha;
       });
     }

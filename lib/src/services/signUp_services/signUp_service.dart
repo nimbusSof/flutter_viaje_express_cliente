@@ -63,6 +63,8 @@ class SignUpServide with ChangeNotifier {
   void removerCliente() {
     RegistroCliente cliente = new RegistroCliente();
     this._cliente = cliente;
+    this._claveConfirmacion = '';
     notifyListeners();
   }
+  
 }

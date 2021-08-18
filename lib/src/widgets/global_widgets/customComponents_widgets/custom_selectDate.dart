@@ -14,7 +14,7 @@ class CustomSelectDate extends StatefulWidget {
 class _CustomSelectDateState extends State<CustomSelectDate> {
   final TextEditingController inputFieldDataController;
   final String? texto;
-  String _fecha = '';
+  DateTime _fecha = DateTime.now();
 
   _CustomSelectDateState(this.inputFieldDataController, this.texto);
 
@@ -40,7 +40,7 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
           prefixIcon: Icon(Icons.calendar_today),
           focusedBorder: InputBorder.none,
           border: InputBorder.none,
-          hintText: this.texto!=null?this.texto:'Fecha de nacimiento',
+          hintText: this.texto != null ? this.texto : 'Fecha de nacimiento',
         ),
         onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());
@@ -59,8 +59,9 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
 
     if (picked != null) {
       setState(() {
-        _fecha = '${picked.day}-${picked.month}-${picked.year}';
-        inputFieldDataController.text = _fecha;
+        //_fecha = '${picked.year}-${picked.month}-${picked.day}';
+        _fecha = picked;
+        inputFieldDataController.text = _fecha.toString();
       });
     }
   }

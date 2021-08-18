@@ -15,7 +15,7 @@ String registroClienteToJson(RegistroCliente data) =>
 class RegistroCliente {
   String nombre;
   String apellido;
-  String fechaNacimiento;
+  DateTime? fechaNacimiento;
   String genero;
   String telefono;
   String correo;
@@ -26,12 +26,12 @@ class RegistroCliente {
   RegistroCliente({
     this.nombre = '',
     this.apellido = '',
-    this.fechaNacimiento='',
+    this.fechaNacimiento,
     this.genero = '',
     this.telefono = '',
     this.correo = '',
     this.clave = '',
-    this.pathFoto = '',
+    this.pathFoto = 'image/image',
     this.cedula = '',
   });
 
@@ -62,7 +62,7 @@ class RegistroCliente {
       RegistroCliente(
         nombre: json["nombre"],
         apellido: json["apellido"],
-        fechaNacimiento: json["fecha_nacimiento"],
+        fechaNacimiento: DateTime.parse(json["fecha_nacimiento"]),
         genero: json["genero"],
         telefono: json["telefono"],
         correo: json["correo"],
@@ -74,7 +74,7 @@ class RegistroCliente {
   Map<String, dynamic> toJson() => {
         "nombre": nombre,
         "apellido": apellido,
-        "fecha_nacimiento": fechaNacimiento.toString(),
+        "fecha_nacimiento": fechaNacimiento!.toIso8601String(),
         "genero": genero,
         "telefono": telefono,
         "correo": correo,

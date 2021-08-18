@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
 
-import 'package:flutter_viaje_express_cliente/src/services/auth_service.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/services/signUp_services/signUp_service.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
@@ -11,6 +11,7 @@ import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customC
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_selectDate.dart';
 
 import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/labels.dart';
+
 import 'package:provider/provider.dart';
 
 // FORMULARIO CON LOS CAMPOS: CÉDULA, NOMBRES, APELLIDOS
@@ -29,6 +30,10 @@ class FormState extends State<Form0> {
   Widget build(BuildContext context) {
     final signInBloc = BlocProvider.of<SigninBloc>(context);
     final signUpService = Provider.of<SignUpServide>(context);
+
+    if (signUpService.cliente.fechaNacimiento == null) {
+      signUpService.agregarFechaNacimiento(DateTime.parse('1935-08-12'));
+    }
 
     cedulaCtrl.text = signUpService.cliente.cedula;
     nombresCtrl.text = signUpService.cliente.nombre;
@@ -92,7 +97,7 @@ class Form1State extends State<Form1> {
     final signUpService = Provider.of<SignUpServide>(context);
 
     telefonoCtrl.text = signUpService.cliente.telefono;
-    dateCtrl.text = signUpService.cliente.fechaNacimiento;
+    dateCtrl.text = signUpService.cliente.fechaNacimiento.toString();
 
     return Container(
       margin: EdgeInsets.only(top: 20),
@@ -110,7 +115,8 @@ class Form1State extends State<Form1> {
               text: 'Siguiente',
               onPressed: () {
                 signUpService.agregarTelefono(telefonoCtrl.text);
-                signUpService.agregarFechaNacimiento(dateCtrl.text);
+                signUpService
+                    .agregarFechaNacimiento(DateTime.parse(dateCtrl.text));
                 signInBloc.add(CambiarPanel(2));
               }),
           SizedBox(height: 15),
@@ -140,8 +146,7 @@ class Form2State extends State<Form2> {
   @override
   Widget build(BuildContext context) {
     final signUpService = Provider.of<SignUpServide>(context);
-    //final inputService = Provider.of<CustomIputService>(context);
-    
+
     emailCtrl.text = signUpService.cliente.correo;
     passCtrl.text = signUpService.cliente.clave;
     pass2Ctrl.text = signUpService.claveConfirmacion;
@@ -175,16 +180,37 @@ class Form2State extends State<Form2> {
           CustomButton(
               text: 'Finalizar Registro',
               onPressed: () async {
-                final authService =
-                    Provider.of<AuthService>(context, listen: false);
-                final String? errorMessage =
-                    await authService.createUser(emailCtrl.text, passCtrl.text);
-                if (errorMessage == null) {
+                final SignUpProvider signUp = new SignUpProvider();
+                final signUpService =
+                    Provider.of<SignUpServide>(context, listen: false);
+                signUpService.agregarPassword(passCtrl.text != ''
+                    ? passCtrl.text
+                    : signUpService.cliente.cedula);
+                signUpService.agregarCorreo(emailCtrl.text);
+
+                // Transformar el genero para ingresar a la base de datos
+                if (signUpService.cliente.genero == 'masculino') {
+                  signUpService.agregarGenero('M');
+                } else if (signUpService.cliente.genero == 'femenino') {
+                  signUpService.agregarGenero('F');
+                } else if (signUpService.cliente.genero == 'otro') {
+                  signUpService.agregarGenero('O');
+                }
+                print('genero: '+signUpService.cliente.genero);
+                final bool? exito =
+                    await signUp.createUser(signUpService.cliente);
+
+                if (exito == true) {
+                  signUpService.removerCliente();
+                  NotificationsService.showSnackbar(
+                      '¡Usuario creado exitosamente!');
+                  Navigator.pushReplacementNamed(context, 'login');
                 } else {
                   // mostrar error en pantalla
-                  print(errorMessage);
+                  NotificationsService.showSnackbar(
+                      'No se pudo registrar el usuario');
+                  BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
                 }
-                BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
               }),
           SizedBox(height: 15),
           CustomButton(

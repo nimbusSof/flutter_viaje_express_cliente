@@ -42,7 +42,7 @@ class SignUpServide with ChangeNotifier {
     this._cliente.genero = genero;
   }
 
-  void agregarFechaNacimiento(String fecha) {
+  void agregarFechaNacimiento(DateTime fecha) {
     this._cliente.fechaNacimiento = fecha;
   }
 

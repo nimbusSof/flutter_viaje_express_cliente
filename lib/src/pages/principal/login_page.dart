@@ -83,8 +83,8 @@ class __FormState extends State<_Form> {
                   await clienteService.datosCliente(
                       await authService.readIdPersonaRol(),
                       await authService.readToken());
-                  print('mensaje: ${clienteService.personaCliente.mensaje}');    
-                  print('cliente: ${clienteService.personaCliente.data?.apellido}');
+                  //print('mensaje: ${clienteService.personaCliente.mensaje}');    
+                  //print('cliente: ${clienteService.personaCliente.data?.apellido}');
                   Navigator.pushReplacementNamed(context, 'inicio');
                 } else {
                   // mostrar error en pantalla

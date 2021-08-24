@@ -11,27 +11,14 @@ class SignUpProvider {
 
   // si retornamos true entonces el cliente se registró con éxito
   Future<bool?> createUser(RegistroCliente registroCliente) async {
-    final Map<String, dynamic> registro = {
-      "nombre": registroCliente.nombre,
-      "apellido": registroCliente.nombre,
-      "fecha_nacimiento": registroCliente.fechaNacimiento!.toIso8601String(),
-      "genero": registroCliente.genero,
-      "telefono": registroCliente.telefono,
-      "correo": registroCliente.correo,
-      "clave": registroCliente.clave,
-      "path_foto": registroCliente.pathFoto,
-      "cedula": registroCliente.cedula
-    };
+  
 
     final url = Uri.http(
       _viajeExpressApi.baseUrl,
       '/CuentaCliente/registro_cliente',
     );
 
-    /* final resp = await http.post(url, body: json.encode(registro), headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    }); */
+    
 
     final resp = await http
         .post(url, body: registroClienteToJson(registroCliente), 

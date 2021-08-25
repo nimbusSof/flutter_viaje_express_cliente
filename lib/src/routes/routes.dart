@@ -8,6 +8,9 @@ import 'package:flutter_viaje_express_cliente/src/pages/historialViajes/historia
 import 'package:flutter_viaje_express_cliente/src/pages/historialViajes/viajesCancelados_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/historialViajes/viajesConcluidos_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/inicio/inicio_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/mapas/acceso_gps_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/mapas/loading_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/mapas/mapa_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/metodoPago_inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/pagoEfectivo_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/pagoTarjeta_page.dart';
@@ -45,4 +48,12 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'visualizarRutas'              :  (_) => VisualizarRutasPage(),
   'pagoTarjeta'                  :  (_) => PagoTarjetaPage(),
   'pagoEfectivo'                 :  (_) => PagoEfectivoPage(),
+
+
+  //mapas
+  'acceso_gps'                   :  (_) => AccesoGpsPage(),
+  'loadingMapa'                  :  (_) => LoadingPage(),
+  'mapa_page'                    :  (_) => MapaPage(),
+
+
 };

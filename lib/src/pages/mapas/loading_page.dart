@@ -67,7 +67,7 @@ class _LoadingPageState extends State<LoadingPage> with WidgetsBindingObserver {
           context, navegarFadeIn(context, AccesoGpsPage()));
       return 'Es necesario el permiso del GPS';
     } else {
-      return 'Porfavor Activo el GPS';
+      return 'Porfavor Activa el GPS';
     }
 
     //await Future.delayed(Duration(milliseconds: 100));

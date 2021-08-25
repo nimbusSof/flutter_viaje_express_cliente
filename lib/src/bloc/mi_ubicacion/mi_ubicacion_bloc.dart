@@ -18,7 +18,8 @@ class MiUbicacionBloc extends Bloc<MiUbicacionEvent, MiUbicacionState> {
             desiredAccuracy: Geolocator.LocationAccuracy.high,
             distanceFilter: 10)
         .listen((Geolocator.Position position) {
-      print(position);
+      final nuevaUbicacion = new LatLng(position.latitude, position.longitude);
+      add(OnUbicacionCambio(nuevaUbicacion));
     });
   }
 
@@ -30,6 +31,9 @@ class MiUbicacionBloc extends Bloc<MiUbicacionEvent, MiUbicacionState> {
   Stream<MiUbicacionState> mapEventToState(
     MiUbicacionEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    print(event);
+    if (event is OnUbicacionCambio) {
+      yield state.copyWith(existeUbicacion: true, ubicacion: event.ubicacion);
+    }
   }
 }

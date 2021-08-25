@@ -18,6 +18,8 @@
    <application
         android:label="flutter_viaje_express_cliente"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAxMfqn0Pocnr-qG8COsdPgkgRdOA3P23c"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

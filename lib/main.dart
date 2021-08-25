@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Viaje Express',
-      initialRoute: 'checking',
+      initialRoute: 'loadingMapa', //ruta inicial debe ser el checking
       routes: appRoutes,
       scaffoldMessengerKey: NotificationsService.messengerKey,
     );

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -8,7 +6,29 @@ class AccesoGpsPage extends StatefulWidget {
   _AccesoGpsPageState createState() => _AccesoGpsPageState();
 }
 
-class _AccesoGpsPageState extends State<AccesoGpsPage> {
+class _AccesoGpsPageState extends State<AccesoGpsPage>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    WidgetsBinding.instance!.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
+    if (state == AppLifecycleState.resumed) {
+      if (await Permission.location.isGranted) {
+        Navigator.pushReplacementNamed(context, 'loadingMapa');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,11 +56,12 @@ class _AccesoGpsPageState extends State<AccesoGpsPage> {
   }
 
   void accesoGPS(PermissionStatus status) {
+    print(status);
     switch (status) {
       case PermissionStatus.granted:
         Navigator.pushReplacementNamed(context, 'mapa_page');
         break;
-      case PermissionStatus.limited:  
+      case PermissionStatus.limited:
       case PermissionStatus.restricted:
       case PermissionStatus.denied:
       case PermissionStatus.permanentlyDenied:

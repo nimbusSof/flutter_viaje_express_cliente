@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_mi_ruta.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_seguir_ubicacion.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_ubicacion.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -31,7 +32,7 @@ class _MapaPageState extends State<MapaPage> {
           builder: (_, state) => crearMapa(state)),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: [BtnUbicacion(), BtnMiRuta()],
+        children: [BtnUbicacion(), BtnSeguirUbicacion(), BtnMiRuta()],
       ),
     );
   }

@@ -4,12 +4,18 @@ import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class BtnMiRuta extends StatelessWidget {
+class BtnSeguirUbicacion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final mapaBloc = BlocProvider.of<MapaBloc>(context);
-
     
+
+    return BlocBuilder<MapaBloc, MapaState>(
+      builder: (context, state) => this._crearBoton(context, state)
+    );
+  }
+
+  Widget _crearBoton(BuildContext context,MapaState state){
+    final mapaBloc = BlocProvider.of<MapaBloc>(context);
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       child: CircleAvatar(
@@ -17,11 +23,13 @@ class BtnMiRuta extends StatelessWidget {
         maxRadius: 25,
         child: IconButton(
           icon: Icon(
-            Icons.more_horiz,
+            state.seguirUbicacion
+             ? Icons.directions_run
+             : Icons.accessibility_new,
             color: Colors.black87,
           ),
           onPressed: () {
-            mapaBloc.add(OnMarcarRecorrido());
+            mapaBloc.add(OnSeguirUbicacion());
           },
         ),
       ),

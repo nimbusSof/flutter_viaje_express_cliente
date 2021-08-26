@@ -18,9 +18,7 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
 
   // Polyline
   Polyline _miRuta = new Polyline(
-    polylineId: PolylineId('mi_ruta'), 
-    width: 4,
-    color: Colors.black87);
+      polylineId: PolylineId('mi_ruta'), width: 4, color: Colors.black87);
 
   void initMapa(GoogleMapController controller) {
     if (!state.mapaListo) {
@@ -42,32 +40,43 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
   Stream<MapaState> mapEventToState(
     MapaEvent event,
   ) async* {
+    
     if (event is OnMapaListo) {
       print('mapa listo');
       yield state.copyWith(mapaListo: true);
+
     } else if (event is OnNuevaUbicacion) {
-      List<LatLng> points = [...this._miRuta.points, event.ubicacion];
-      this._miRuta = this._miRuta.copyWith(pointsParam: points);
+      yield* this._onNuevaUbicacion(
+          event); // yield* no regresa el stream completo , solo la emisión es decir, el yiel del método
 
-      final currentPolylines = state.polylines;
-      currentPolylines['mi_ruta'] = this._miRuta;
-
-      yield state.copyWith(polylines: currentPolylines);
     } else if (event is OnMarcarRecorrido) {
-
-      if (!state.dibujarRecorrido) {
-        this._miRuta = this._miRuta.copyWith(colorParam: Colors.black87);
-      }else{
-        this._miRuta = this._miRuta.copyWith(colorParam: Colors.transparent);
-      }
-
-      final currentPolylines = state.polylines;
-      currentPolylines['mi_ruta'] = this._miRuta;
-
-      yield state.copyWith(
-        dibujarRecorrido: !state.dibujarRecorrido,
-        polylines: currentPolylines);
-
+      yield* this._onMarcarRecorrido(event);
     }
+  }
+
+  Stream<MapaState> _onNuevaUbicacion(OnNuevaUbicacion event) async* {
+    //async* función generadora
+    List<LatLng> points = [...this._miRuta.points, event.ubicacion];
+    this._miRuta = this._miRuta.copyWith(pointsParam: points);
+
+    final currentPolylines = state.polylines;
+    currentPolylines['mi_ruta'] = this._miRuta;
+
+    yield state.copyWith(polylines: currentPolylines);
+  }
+
+  Stream<MapaState> _onMarcarRecorrido(OnMarcarRecorrido event) async* {
+    //async* función generadora
+    if (!state.dibujarRecorrido) {
+      this._miRuta = this._miRuta.copyWith(colorParam: Colors.black87);
+    } else {
+      this._miRuta = this._miRuta.copyWith(colorParam: Colors.transparent);
+    }
+
+    final currentPolylines = state.polylines;
+    currentPolylines['mi_ruta'] = this._miRuta;
+
+    yield state.copyWith(
+        dibujarRecorrido: !state.dibujarRecorrido, polylines: currentPolylines);
   }
 }

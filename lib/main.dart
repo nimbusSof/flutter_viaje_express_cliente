@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/routes/routes.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => MiUbicacionBloc()),
+        BlocProvider(create: (_) => MapaBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

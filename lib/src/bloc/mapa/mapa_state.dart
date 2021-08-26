@@ -1,11 +1,26 @@
 part of 'mapa_bloc.dart';
 
 @immutable
-class MapaState{
+class MapaState {
   final bool mapaListo;
+  final bool dibujarRecorrido;
 
-  MapaState({this.mapaListo = false});
+  //Polylines
+  final Map<String, Polyline> polylines;
 
-  MapaState copyWith({bool? mapaListo}) =>
-      new MapaState(mapaListo: mapaListo ?? this.mapaListo);
+  MapaState({
+    this.mapaListo = false, 
+    this.dibujarRecorrido = true,
+    Map<String, Polyline>? polylines
+    }): this.polylines = polylines ?? new Map();
+
+  MapaState copyWith({
+    bool? mapaListo,
+    bool? dibujarRecorrido,
+    Map<String,Polyline>? polylines
+    }) =>
+      new MapaState(
+        mapaListo: mapaListo ?? this.mapaListo,
+        polylines: polylines ?? this.polylines,
+        dibujarRecorrido: dibujarRecorrido ?? this.dibujarRecorrido);
 }

@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/themes/uber_map_themes.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meta/meta.dart';
 
@@ -15,9 +17,17 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
   void initMapa(GoogleMapController controller) {
     if (!state.mapaListo) {
       this._mapController = controller;
-      
+      this
+          ._mapController
+          ?.setMapStyle(jsonEncode(uberMapTheme)); // cambia el estilo del mapa
+
       add(OnMapaListo());
     }
+  }
+
+  void moverCamara(LatLng destino) {
+    final cameraUpdate = CameraUpdate.newLatLng(destino);
+    this._mapController?.animateCamera(cameraUpdate);
   }
 
   @override

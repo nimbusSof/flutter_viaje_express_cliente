@@ -63,7 +63,7 @@ class _LoadingPageState extends State<LoadingPage> with WidgetsBindingObserver {
       Navigator.pushReplacement(context, navegarFadeIn(context, MapaPage()));
       return '';
     } else if (!permisoGps) {
-      Navigator.pushReplacementNamed(
+      Navigator.pushReplacement(
           context, navegarFadeIn(context, AccesoGpsPage()));
       return 'Es necesario el permiso del GPS';
     } else {

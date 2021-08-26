@@ -6,25 +6,29 @@ class MapaState {
   final bool dibujarRecorrido;
   final bool seguirUbicacion;
 
+  final LatLng? ubicacionCentral;
+
   //Polylines
   final Map<String, Polyline> polylines;
 
-  MapaState({
-    this.mapaListo = false, 
-    this.dibujarRecorrido = true,
-    this.seguirUbicacion = false,
-    Map<String, Polyline>? polylines
-    }): this.polylines = polylines ?? new Map();
+  MapaState(
+      {this.mapaListo = false,
+      this.dibujarRecorrido = false,
+      this.seguirUbicacion = false,
+      this.ubicacionCentral,
+      Map<String, Polyline>? polylines})
+      : this.polylines = polylines ?? new Map();
 
-  MapaState copyWith({
-    bool? mapaListo,
-    bool? dibujarRecorrido,
-    bool? seguirUbicacion,
-    Map<String,Polyline>? polylines
-    }) =>
+  MapaState copyWith(
+          {bool? mapaListo,
+          bool? dibujarRecorrido,
+          bool? seguirUbicacion,
+          final LatLng? ubicacionCentral,
+          Map<String, Polyline>? polylines}) =>
       new MapaState(
-        mapaListo: mapaListo ?? this.mapaListo,
-        polylines: polylines ?? this.polylines,
-        seguirUbicacion: seguirUbicacion ?? this.seguirUbicacion,
-        dibujarRecorrido: dibujarRecorrido ?? this.dibujarRecorrido);
+          mapaListo: mapaListo ?? this.mapaListo,
+          polylines: polylines ?? this.polylines,
+          ubicacionCentral: ubicacionCentral ?? this.ubicacionCentral,
+          seguirUbicacion: seguirUbicacion ?? this.seguirUbicacion,
+          dibujarRecorrido: dibujarRecorrido ?? this.dibujarRecorrido);
 }

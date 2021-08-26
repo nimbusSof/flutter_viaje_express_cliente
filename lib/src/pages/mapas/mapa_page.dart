@@ -42,7 +42,7 @@ class _MapaPageState extends State<MapaPage> {
     if (!state.existeUbicacion) return Center(child: Text('Ubicando...'));
     final mapaBloc = BlocProvider.of<MapaBloc>(context);
 
-    mapaBloc.add(OnNuevaUbicacion(state.ubicacion??ubicacionDefecto));
+    mapaBloc.add(OnNuevaUbicacion(state.ubicacion ?? ubicacionDefecto));
 
     final cameraPosition = new CameraPosition(
         target: state.ubicacion ??
@@ -50,12 +50,18 @@ class _MapaPageState extends State<MapaPage> {
         zoom: 15);
 
     return GoogleMap(
-      initialCameraPosition: cameraPosition,
-      myLocationEnabled: true,
-      myLocationButtonEnabled: false,
-      zoomControlsEnabled: false,
-      onMapCreated: mapaBloc.initMapa, // el primer argumento de onMapCreated se asignara al mapaBloc.initMap
-      polylines: mapaBloc.state.polylines.values.toSet(),
-    );
+        initialCameraPosition: cameraPosition,
+        myLocationEnabled: true,
+        myLocationButtonEnabled: false,
+        zoomControlsEnabled: false,
+        onMapCreated: mapaBloc
+            .initMapa, // el primer argumento de onMapCreated se asignara al mapaBloc.initMap
+        polylines: mapaBloc.state.polylines.values.toSet(),
+        onCameraMove: (cameraPosition) {
+          // cameraPosition.target = LatLng central del mapa
+          mapaBloc.add(OnMovioMapa(cameraPosition.target));
+        },
+
+        );
   }
 }

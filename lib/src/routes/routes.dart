@@ -8,9 +8,7 @@ import 'package:flutter_viaje_express_cliente/src/pages/historialViajes/historia
 import 'package:flutter_viaje_express_cliente/src/pages/historialViajes/viajesCancelados_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/historialViajes/viajesConcluidos_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/inicio/inicio_page.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/mapas/acceso_gps_page.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/mapas/loading_page.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/mapas/mapa_page.dart';
+
 import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/metodoPago_inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/pagoEfectivo_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/pagoTarjeta_page.dart';
@@ -23,7 +21,10 @@ import 'package:flutter_viaje_express_cliente/src/pages/principal/signIn_page.da
 import 'package:flutter_viaje_express_cliente/src/pages/principal/splash_screen_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/rutasGuardadas/rutasGuardadas_inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/rutasGuardadas/visualizarRutas_page.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/viajeNuevo_inicio_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/acceso_gps_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/loading_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/mapa_page.dart';
+
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
   '/'                            :  (_) => SplashScreen(),
@@ -36,7 +37,7 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   'configuraciones_inicio'       :  (_) => ConfiguracionesInicioPage(),
   'rutasGuardadas_inicio'        :  (_) => RutasGuardadasInicioPage(),
   'perfil_inicio'                :  (_) => PerfilInicioPage(),
-  'viajeNuevo_inicio'            :  (_) => ViajeNuevoInicioPage(),
+  
   'configuracionPerfil'          :  (_) => ConfiguracionPerfilPage(),
   'clasificaciónPerfil'          :  (_) => ClasificacionPerfilPage(),
   'cambiarNumero'                :  (_) => CambiarNumeroPage(),

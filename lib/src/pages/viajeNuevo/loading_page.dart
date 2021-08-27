@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/helpers/helpers.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/mapas/acceso_gps_page.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/mapas/mapa_page.dart';
+
+import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/acceso_gps_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/mapa_page.dart';
 import 'package:geolocator/geolocator.dart' as Geolocator;
 import 'package:permission_handler/permission_handler.dart';
 

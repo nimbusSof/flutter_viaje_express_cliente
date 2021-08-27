@@ -69,7 +69,7 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.map),
           title: Text('Viaje Nuevo'),
           onTap: () {
-            Navigator.popAndPushNamed(context, 'viajeNuevo_inicio');
+            Navigator.popAndPushNamed(context, 'loadingMapa');
           },
         ),
         ListTile(

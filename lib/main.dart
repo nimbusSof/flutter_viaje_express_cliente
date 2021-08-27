@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Viaje Express',
-        initialRoute: 'loadingMapa', //ruta inicial debe ser el checking
+        initialRoute: 'checking', //ruta inicial debe ser el checking - loadingMapa
         routes: appRoutes,
         scaffoldMessengerKey: NotificationsService.messengerKey,
       ),

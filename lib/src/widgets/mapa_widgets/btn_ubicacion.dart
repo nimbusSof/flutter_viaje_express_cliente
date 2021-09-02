@@ -22,7 +22,8 @@ class BtnUbicacion extends StatelessWidget {
           ),
           onPressed: () {
             final destino = miUbicacionBloc.state.ubicacion;
-            mapaBloc.moverCamara(destino??ubicacionDefecto);
+            print('btnUbicacion $destino');
+            mapaBloc.moverCamara(destino ?? ubicacionDefecto);
           },
         ),
       ),

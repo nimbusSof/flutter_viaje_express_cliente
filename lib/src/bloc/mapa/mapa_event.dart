@@ -5,6 +5,8 @@ abstract class MapaEvent {}
 
 class OnMapaListo extends MapaEvent {}
 
+class OnMapaCerrado extends MapaEvent {}
+
 class OnMarcarRecorrido extends MapaEvent {}
 
 class OnSeguirUbicacion extends MapaEvent {}

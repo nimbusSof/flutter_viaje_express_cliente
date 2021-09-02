@@ -24,15 +24,16 @@ class _LoadingPageState extends State<LoadingPage> with WidgetsBindingObserver {
     super.dispose();
   }
 
-   @override
+  @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.resumed) {
-      if (await Geolocator.Geolocator.isLocationServiceEnabled()) { // verifica que el servicio GPS este habilitado
+      print('estamos en didChangeAppLifecycleState');
+      if (await Geolocator.Geolocator.isLocationServiceEnabled()) {
+        // verifica que el servicio GPS este habilitado
         Navigator.pushReplacement(context, navegarFadeIn(context, MapaPage()));
       }
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +62,7 @@ class _LoadingPageState extends State<LoadingPage> with WidgetsBindingObserver {
     final gpsActivo = await Geolocator.Geolocator.isLocationServiceEnabled();
 
     if (permisoGps && gpsActivo) {
+      print('estamos en checkGpsLocation');
       Navigator.pushReplacement(context, navegarFadeIn(context, MapaPage()));
       return '';
     } else if (!permisoGps) {

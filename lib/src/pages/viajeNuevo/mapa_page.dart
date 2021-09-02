@@ -32,7 +32,7 @@ class _MapaPageState extends State<MapaPage> {
 
   @override
   void dispose() {
-    BlocProvider.of<MiUbicacionBloc>(context).cancelarSeguimiento();
+    //BlocProvider.of<MiUbicacionBloc>(context).cancelarSeguimiento();
     super.dispose();
   }
 
@@ -118,8 +118,7 @@ class _MapaPageState extends State<MapaPage> {
         myLocationEnabled: true,
         myLocationButtonEnabled: false,
         zoomControlsEnabled: false,
-        onMapCreated: mapaBloc
-            .initMapa, // el primer argumento de onMapCreated se asignara al mapaBloc.initMap
+        onMapCreated: mapaBloc.initMapa, // el primer argumento de onMapCreated se asignara al mapaBloc.initMap
         polylines: mapaBloc.state.polylines.values.toSet(),
         onCameraMove: (cameraPosition) {
           // cameraPosition.target = LatLng central del mapa

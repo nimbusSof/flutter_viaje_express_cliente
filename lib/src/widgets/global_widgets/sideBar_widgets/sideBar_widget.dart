@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/services/auth_service.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
@@ -12,6 +14,7 @@ class SideBar extends StatefulWidget {
 class _SideBarState extends State<SideBar> {
   @override
   Widget build(BuildContext context) {
+    final mapaBloc = BlocProvider.of<MapaBloc>(context);
     final authService = Provider.of<AuthService>(context, listen: false);
     final clienteService =
         Provider.of<ObtenerClienteService>(context, listen: false);
@@ -19,6 +22,7 @@ class _SideBarState extends State<SideBar> {
       child: ListView(padding: EdgeInsets.zero, children: <Widget>[
         GestureDetector(
           onTap: () {
+            mapaBloc.add(OnMapaCerrado());
             Navigator.popAndPushNamed(context, 'perfil_inicio');
           },
           child: DrawerHeader(
@@ -62,6 +66,7 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.home),
           title: Text('Inicio'),
           onTap: () {
+            mapaBloc.add(OnMapaCerrado());
             Navigator.popAndPushNamed(context, 'inicio');
           },
         ),
@@ -69,6 +74,7 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.map),
           title: Text('Viaje Nuevo'),
           onTap: () {
+            mapaBloc.add(OnMapaCerrado());
             Navigator.popAndPushNamed(context, 'loadingMapa');
           },
         ),
@@ -76,6 +82,7 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.save),
           title: Text('Rutas guardadas'),
           onTap: () {
+            mapaBloc.add(OnMapaCerrado());
             Navigator.popAndPushNamed(context, 'rutasGuardadas_inicio');
           },
         ),
@@ -83,6 +90,7 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.credit_card),
           title: Text('Payment'),
           onTap: () {
+            mapaBloc.add(OnMapaCerrado());
             Navigator.popAndPushNamed(context, 'metodoPago_inicio');
           },
         ),
@@ -90,6 +98,7 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.history),
           title: Text('Historial de viajes'),
           onTap: () {
+            mapaBloc.add(OnMapaCerrado());
             Navigator.popAndPushNamed(context, 'historialViajes_inicio');
           },
         ),
@@ -97,6 +106,7 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.settings),
           title: Text('Configuraciones'),
           onTap: () {
+            mapaBloc.add(OnMapaCerrado());
             Navigator.popAndPushNamed(context, 'configuraciones_inicio');
           },
         ),
@@ -104,8 +114,10 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.logout),
           title: Text('Salir'),
           onTap: () {
+            mapaBloc.add(OnMapaCerrado());
             authService.logout();
-            Navigator.pushReplacementNamed(context, 'login');
+            Navigator.pushNamedAndRemoveUntil(
+                context, 'login', (route) => false);
           },
         )
       ]),

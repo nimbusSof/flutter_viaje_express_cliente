@@ -20,13 +20,16 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
   Polyline _miRuta = new Polyline(
       polylineId: PolylineId('mi_ruta'), width: 4, color: Colors.transparent);
 
+  //SE INICIALIZA EL CONTROLADOR DEL MAPA (ESTE METODO PERMITE IMPLEMENTAR
+  //METODOS DE ANIMACION DE CAMARA COMO SEGUIMIENTO DE UBICACION)
   void initMapa(GoogleMapController controller) {
+    print('ESTAMOS EN INITMAPA: ${state.mapaListo}');
     if (!state.mapaListo) {
       this._mapController = controller;
       this
           ._mapController
           ?.setMapStyle(jsonEncode(uberMapTheme)); // cambia el estilo del mapa
-
+      print('SE CARGO EL TEMA DEL MAPA');
       add(OnMapaListo());
     }
   }
@@ -41,7 +44,7 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     MapaEvent event,
   ) async* {
     if (event is OnMapaListo) {
-      print('mapa listo');
+      print('MAPA LISTO AMIGOS');
       yield state.copyWith(mapaListo: true);
     } else if (event is OnNuevaUbicacion) {
       yield* this._onNuevaUbicacion(
@@ -54,6 +57,9 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     } else if (event is OnMovioMapa) {
       print(event.centroMapa);
       yield state.copyWith(ubicacionCentral: event.centroMapa);
+    }else if(event is OnMapaCerrado){
+      print('MAPA CERRADO AMIGOS');
+      yield state.copyWith(mapaListo: false);
     }
   }
 

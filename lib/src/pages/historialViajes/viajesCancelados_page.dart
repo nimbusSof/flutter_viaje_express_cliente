@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
+import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 
 class ViajesCanceladosPage extends StatelessWidget {
-  
+  final prefs = new PreferenciasUsuario();
 
   @override
   Widget build(BuildContext context) {
+    prefs.ultimaPagina = 'viajesCancelados';
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
+        leading: GestureDetector(
+            child: Icon(Icons.arrow_back, size: 30,color: grisOscuroColor,),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, 'historialViajes_inicio');
+            }),
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(

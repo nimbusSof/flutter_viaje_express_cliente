@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
+import 'package:provider/provider.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -44,7 +46,13 @@ class BtnSimple extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: size.width * 0.01),
       child: MaterialButton(
         onPressed: this.ruta!=null?() {
-          Navigator.pushNamed(context, this.ruta!);
+          if(this.ruta=='login'){
+            final authService = Provider.of<AuthService>(context, listen: false);
+            authService.logout();
+            Navigator.pushNamedAndRemoveUntil(
+                context, 'login', (route) => false);
+          }
+          Navigator.pushReplacementNamed(context, this.ruta!);
         }:(){},
         child: Container(
             padding: EdgeInsets.fromLTRB(
@@ -78,7 +86,7 @@ class BtnSimpleIcon extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: size.width * 0.01),
       child: MaterialButton(
         onPressed: this.ruta!=null?() {
-          Navigator.pushNamed(context, this.ruta!);
+          Navigator.pushReplacementNamed(context, this.ruta!);
         }:(){},
         child: Container(
           // aquí se define las longitudes del botón

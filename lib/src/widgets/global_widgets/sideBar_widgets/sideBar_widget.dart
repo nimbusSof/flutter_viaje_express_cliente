@@ -12,18 +12,18 @@ class SideBar extends StatefulWidget {
 }
 
 class _SideBarState extends State<SideBar> {
+ 
   @override
   Widget build(BuildContext context) {
     final mapaBloc = BlocProvider.of<MapaBloc>(context);
     final authService = Provider.of<AuthService>(context, listen: false);
-    final clienteService =
-        Provider.of<ObtenerClienteService>(context, listen: false);
+
     return Drawer(
       child: ListView(padding: EdgeInsets.zero, children: <Widget>[
         GestureDetector(
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
-            Navigator.popAndPushNamed(context, 'perfil_inicio');
+            Navigator.pushReplacementNamed(context, 'perfil_inicio');
           },
           child: DrawerHeader(
             child: Container(
@@ -41,7 +41,7 @@ class _SideBarState extends State<SideBar> {
                     child: Container(
                       margin: EdgeInsets.only(top: 15, bottom: 5),
                       child: Text(
-                        '${clienteService.personaCliente.data?.nombre} ${clienteService.personaCliente.data?.apellido}',
+                        '${authService.personaCliente.data?.nombre} ${authService.personaCliente.data?.apellido}',
                         style: TextStyle(fontSize: 19),
                       ),
                     ),
@@ -50,7 +50,7 @@ class _SideBarState extends State<SideBar> {
                     alignment: Alignment.centerLeft,
                     child: Container(
                       child: Text(
-                        '${clienteService.personaCliente.data?.correo}',
+                        '${authService.personaCliente.data?.correo}',
                         style: TextStyle(
                             fontSize: 17, fontWeight: FontWeight.w300),
                       ),
@@ -67,7 +67,7 @@ class _SideBarState extends State<SideBar> {
           title: Text('Inicio'),
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
-            Navigator.popAndPushNamed(context, 'inicio');
+            Navigator.pushReplacementNamed(context, 'inicio');
           },
         ),
         ListTile(
@@ -75,7 +75,7 @@ class _SideBarState extends State<SideBar> {
           title: Text('Viaje Nuevo'),
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
-            Navigator.popAndPushNamed(context, 'loadingMapa');
+            Navigator.pushReplacementNamed(context, 'loadingMapa');
           },
         ),
         ListTile(
@@ -83,7 +83,7 @@ class _SideBarState extends State<SideBar> {
           title: Text('Rutas guardadas'),
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
-            Navigator.popAndPushNamed(context, 'rutasGuardadas_inicio');
+            Navigator.pushReplacementNamed(context, 'rutasGuardadas_inicio');
           },
         ),
         ListTile(
@@ -91,7 +91,7 @@ class _SideBarState extends State<SideBar> {
           title: Text('Payment'),
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
-            Navigator.popAndPushNamed(context, 'metodoPago_inicio');
+            Navigator.pushReplacementNamed(context, 'metodoPago_inicio');
           },
         ),
         ListTile(
@@ -99,7 +99,7 @@ class _SideBarState extends State<SideBar> {
           title: Text('Historial de viajes'),
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
-            Navigator.popAndPushNamed(context, 'historialViajes_inicio');
+            Navigator.pushReplacementNamed(context, 'historialViajes_inicio');
           },
         ),
         ListTile(
@@ -107,7 +107,7 @@ class _SideBarState extends State<SideBar> {
           title: Text('Configuraciones'),
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
-            Navigator.popAndPushNamed(context, 'configuraciones_inicio');
+            Navigator.pushReplacementNamed(context, 'configuraciones_inicio');
           },
         ),
         ListTile(

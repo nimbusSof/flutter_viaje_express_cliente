@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/cabecera_widgets/cabecera_widget.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar_widgets/sideBar_widget.dart';
-
-
 
 class MetodoPagoInicioPage extends StatefulWidget {
   @override
@@ -12,10 +11,12 @@ class MetodoPagoInicioPage extends StatefulWidget {
 
 class _MetodoPagoInicioPageState extends State<MetodoPagoInicioPage> {
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey<ScaffoldState>();
+  final prefs = new PreferenciasUsuario();
   @override
   Widget build(BuildContext context) {
+    prefs.ultimaPagina = 'metodoPago_inicio';
     return Scaffold(
-      key: _scafoldKey,
+        key: _scafoldKey,
         drawer: SideBar(),
         body: SafeArea(
             child: SingleChildScrollView(
@@ -29,8 +30,7 @@ class _MetodoPagoInicioPageState extends State<MetodoPagoInicioPage> {
               ],
             ),
           ],
-        )))
-    );
+        ))));
   }
 
   Widget _buttonDrawer() {
@@ -48,18 +48,24 @@ class _MetodoPagoInicioPageState extends State<MetodoPagoInicioPage> {
   }
 }
 
-
 class _EstructuraPage extends StatelessWidget {
-  
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Cabecera(
-            titulo: 'Método de Pago', subtitulo: 'Viaje Express'),
-        BtnSimpleIcon(texto: 'Tarjeta de crédito o débito', icono: Icons.credit_card, color: Colors.blue, ruta: 'pagoTarjeta',),
-        BtnSimpleIcon(texto: 'Dinero en efectivo', icono: Icons.attach_money, color: Colors.green, ruta: 'pagoEfectivo',),
+        Cabecera(titulo: 'Método de Pago', subtitulo: 'Viaje Express'),
+        BtnSimpleIcon(
+          texto: 'Tarjeta de crédito o débito',
+          icono: Icons.credit_card,
+          color: Colors.blue,
+          ruta: 'pagoTarjeta',
+        ),
+        BtnSimpleIcon(
+          texto: 'Dinero en efectivo',
+          icono: Icons.attach_money,
+          color: Colors.green,
+          ruta: 'pagoEfectivo',
+        ),
       ],
     );
   }

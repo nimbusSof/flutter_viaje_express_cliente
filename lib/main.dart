@@ -4,9 +4,15 @@ import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/routes/routes.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
+import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(AppState());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = new PreferenciasUsuario();
+  await prefs.initPrefs();
+  runApp(AppState());
+}
 
 class AppState extends StatelessWidget {
   @override
@@ -16,7 +22,6 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => new SignUpServide()),
         ChangeNotifierProvider(create: (_) => new AuthService()),
         ChangeNotifierProvider(create: (_) => new CustomIputService()),
-        ChangeNotifierProvider(create: (_) => new ObtenerClienteService()),
       ],
       child: MyApp(),
     );
@@ -34,7 +39,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Viaje Express',
-        initialRoute: 'checking', //ruta inicial debe ser el checking - loadingMapa
+        initialRoute:
+            'checking', //ruta inicial debe ser el checking - loadingMapa
         routes: appRoutes,
         scaffoldMessengerKey: NotificationsService.messengerKey,
       ),

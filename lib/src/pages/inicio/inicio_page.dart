@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar_widgets/sideBar_widget.dart';
 
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/cabecera_widgets/cabecera_widget.dart';
@@ -13,9 +14,11 @@ class InicioPage extends StatefulWidget {
 
 class _InicioPageState extends State<InicioPage> {
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey<ScaffoldState>();
+  final prefs = new PreferenciasUsuario();
 
   @override
   Widget build(BuildContext context) {
+    prefs.ultimaPagina = 'inicio';
     return Scaffold(
         key: _scafoldKey,
         drawer: SideBar(),

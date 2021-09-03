@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class AccesoGpsPage extends StatefulWidget {
@@ -8,6 +9,7 @@ class AccesoGpsPage extends StatefulWidget {
 
 class _AccesoGpsPageState extends State<AccesoGpsPage>
     with WidgetsBindingObserver {
+      final prefs = new PreferenciasUsuario();
   @override
   void initState() {
     WidgetsBinding.instance!.addObserver(this);
@@ -31,6 +33,7 @@ class _AccesoGpsPageState extends State<AccesoGpsPage>
 
   @override
   Widget build(BuildContext context) {
+    prefs.ultimaPagina = 'loadingMapa';
     return Scaffold(
       body: Center(
           child: Column(

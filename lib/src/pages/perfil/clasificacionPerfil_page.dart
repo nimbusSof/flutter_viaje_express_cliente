@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/perfil_widgets/comentarios_widget.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/perfil_widgets/ratingBar_widget.dart';
 
 class ClasificacionPerfilPage extends StatelessWidget {
+  final prefs = new PreferenciasUsuario();
   @override
   Widget build(BuildContext context) {
+    prefs.ultimaPagina = 'clasificaciónPerfil';
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),

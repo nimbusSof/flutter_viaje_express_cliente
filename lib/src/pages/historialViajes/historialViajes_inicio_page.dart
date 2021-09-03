@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/cabecera_widgets/cabecera_widget.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar_widgets/sideBar_widget.dart';
 
 class HistorialViajesInicioPage extends StatefulWidget {
-
   @override
-  _HistorialViajesInicioPageState createState() => _HistorialViajesInicioPageState();
+  _HistorialViajesInicioPageState createState() =>
+      _HistorialViajesInicioPageState();
 }
 
 class _HistorialViajesInicioPageState extends State<HistorialViajesInicioPage> {
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey<ScaffoldState>();
+  final prefs = new PreferenciasUsuario();
   @override
   Widget build(BuildContext context) {
+    prefs.ultimaPagina = 'historialViajes_inicio';
     return Scaffold(
-      key: _scafoldKey,
+        key: _scafoldKey,
         drawer: SideBar(),
         body: SafeArea(
             child: SingleChildScrollView(
@@ -28,8 +31,7 @@ class _HistorialViajesInicioPageState extends State<HistorialViajesInicioPage> {
               ],
             ),
           ],
-        )))
-    );
+        ))));
   }
 
   Widget _buttonDrawer() {
@@ -48,16 +50,23 @@ class _HistorialViajesInicioPageState extends State<HistorialViajesInicioPage> {
 }
 
 class _EstructuraPage extends StatelessWidget {
-  
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Cabecera(
-            titulo: 'Historial de viajes', subtitulo: 'Viaje Express'),
-        BtnSimpleIcon(texto: 'Viajes concluidos', icono: Icons.check_circle, color: Colors.green, ruta: 'viajesConcluidos',),
-        BtnSimpleIcon(texto: 'Viajes cancelados', icono: Icons.cancel, color: Colors.red, ruta: 'viajesCancelados',),
+        Cabecera(titulo: 'Historial de viajes', subtitulo: 'Viaje Express'),
+        BtnSimpleIcon(
+          texto: 'Viajes concluidos',
+          icono: Icons.check_circle,
+          color: Colors.green,
+          ruta: 'viajesConcluidos',
+        ),
+        BtnSimpleIcon(
+          texto: 'Viajes cancelados',
+          icono: Icons.cancel,
+          color: Colors.red,
+          ruta: 'viajesCancelados',
+        ),
       ],
     );
   }

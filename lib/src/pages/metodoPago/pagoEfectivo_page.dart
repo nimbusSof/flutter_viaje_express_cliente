@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
+import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 
 class PagoEfectivoPage extends StatelessWidget {
-  const PagoEfectivoPage({Key? key}) : super(key: key);
+  final prefs = new PreferenciasUsuario();
 
   @override
   Widget build(BuildContext context) {
+    prefs.ultimaPagina = 'pagoEfectivo';
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
+        leading: GestureDetector(
+            child: Icon(Icons.arrow_back, size: 30,color: grisOscuroColor,),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, 'metodoPago_inicio');
+            }),
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(

@@ -3,6 +3,7 @@ import 'package:flutter_viaje_express_cliente/src/helpers/helpers.dart';
 
 import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/acceso_gps_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/mapa_page.dart';
+
 import 'package:geolocator/geolocator.dart' as Geolocator;
 import 'package:permission_handler/permission_handler.dart';
 
@@ -12,6 +13,7 @@ class LoadingPage extends StatefulWidget {
 }
 
 class _LoadingPageState extends State<LoadingPage> with WidgetsBindingObserver {
+   
   @override
   void initState() {
     WidgetsBinding.instance!.addObserver(this);
@@ -27,7 +29,7 @@ class _LoadingPageState extends State<LoadingPage> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.resumed) {
-      print('estamos en didChangeAppLifecycleState');
+      
       if (await Geolocator.Geolocator.isLocationServiceEnabled()) {
         // verifica que el servicio GPS este habilitado
         Navigator.pushReplacement(context, navegarFadeIn(context, MapaPage()));

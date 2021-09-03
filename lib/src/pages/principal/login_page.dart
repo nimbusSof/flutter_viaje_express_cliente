@@ -69,24 +69,16 @@ class __FormState extends State<_Form> {
           CustomButton(
               text: 'Ingresar',
               onPressed: () async {
-                print('estoy ingresando');
+                //print('estoy ingresando');
                 //instancia provider
                 final authService =
                     Provider.of<AuthService>(context, listen: false);
-                final clienteService =
-                    Provider.of<ObtenerClienteService>(context, listen: false);
+                
 
                 final bool? exito =
                     await authService.login(emailCtrl.text, passCtrl.text);
-                if(emailCtrl.text=='edu'&& passCtrl.text=='edu'){
-                  Navigator.pushReplacementNamed(context, 'inicio');
-                }
+                
                 if (exito == true) {
-                  await clienteService.datosCliente(
-                      await authService.readIdPersonaRol(),
-                      await authService.readToken());
-                  //print('mensaje: ${clienteService.personaCliente.mensaje}');    
-                  //print('cliente: ${clienteService.personaCliente.data?.apellido}');
                   Navigator.pushReplacementNamed(context, 'inicio');
                 } else {
                   // mostrar error en pantalla

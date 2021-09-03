@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
+import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_input.dart';
 
 class CambiarNumeroPage extends StatelessWidget {
+  final prefs = new PreferenciasUsuario();
   @override
   Widget build(BuildContext context) {
+    prefs.ultimaPagina = 'cambiarNumero';
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: GestureDetector(
+            child: Icon(Icons.arrow_back, size: 30,color: grisOscuroColor,),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, 'configuraciones_inicio');
+            }),
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           title: Text(

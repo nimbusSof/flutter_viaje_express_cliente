@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_viaje_express_cliente/src/models/personaCliente.dart';
 import 'package:flutter_viaje_express_cliente/src/services/viajeExpressApi_service.dart';
+import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService extends ChangeNotifier {
@@ -13,6 +14,7 @@ class AuthService extends ChangeNotifier {
   ViajeExpressApi _viajeExpressApi = new ViajeExpressApi();
   PersonaCliente _personaCliente = new PersonaCliente();
   final storage = new FlutterSecureStorage();
+  final prefs = new PreferenciasUsuario();
 
   String nombres = '';
 
@@ -30,13 +32,9 @@ class AuthService extends ChangeNotifier {
     //final decodedData = json.decode(resp.body);
     this._personaCliente = personaClienteFromJson(resp.body);
     //se guarda los nombres y apellidos en el storage
-    print('guardando ${this._personaCliente.data?.nombre}');
-    await storage.write(
-        key: 'nombresCli', value: this._personaCliente.data?.nombre);
-    await storage.write(
-        key: 'apellidosCli', value: this._personaCliente.data?.apellido);
-
-    print('${this._personaCliente.data?.nombre}');
+    prefs.nombreUsuario = personaCliente.data?.nombre??'null';
+    prefs.apellidoUsuario = personaCliente.data?.apellido??'null';
+    prefs.correoUsuario = personaCliente.data?.correo??'null';
     return personaCliente;
   }
 
@@ -100,6 +98,4 @@ class AuthService extends ChangeNotifier {
   Future<String> readIdPersonaRol() async {
     return await storage.read(key: 'id_persona_rol') ?? '';
   }
-
-  
 }

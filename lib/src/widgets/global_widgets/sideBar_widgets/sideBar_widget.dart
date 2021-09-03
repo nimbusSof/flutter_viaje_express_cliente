@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/services/auth_service.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
+import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,7 @@ class _SideBarState extends State<SideBar> {
   Widget build(BuildContext context) {
     final mapaBloc = BlocProvider.of<MapaBloc>(context);
     final authService = Provider.of<AuthService>(context, listen: false);
+    final prefs = new PreferenciasUsuario();
 
     return Drawer(
       child: ListView(padding: EdgeInsets.zero, children: <Widget>[
@@ -41,7 +43,7 @@ class _SideBarState extends State<SideBar> {
                     child: Container(
                       margin: EdgeInsets.only(top: 15, bottom: 5),
                       child: Text(
-                        '${authService.personaCliente.data?.nombre} ${authService.personaCliente.data?.apellido}',
+                        '${prefs.nombreUsuario} ${prefs.apellidoUsuario}',
                         style: TextStyle(fontSize: 19),
                       ),
                     ),
@@ -50,7 +52,7 @@ class _SideBarState extends State<SideBar> {
                     alignment: Alignment.centerLeft,
                     child: Container(
                       child: Text(
-                        '${authService.personaCliente.data?.correo}',
+                        '${prefs.correoUsuario}',
                         style: TextStyle(
                             fontSize: 17, fontWeight: FontWeight.w300),
                       ),

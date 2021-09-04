@@ -69,8 +69,8 @@ class AuthService extends ChangeNotifier {
 
     //se decodifica la respuesta del api
     final Map<String, dynamic> decodedResp = json.decode(resp.body);
-    //print(decodedResp);
-    if (decodedResp.containsKey('token')) {
+    print(decodedResp['token']);
+    if (decodedResp['token']!=null) {
       // El token se guarda en un lugar seguro
       await storage.write(key: 'token', value: decodedResp['token']);
       await storage.write(
@@ -79,9 +79,9 @@ class AuthService extends ChangeNotifier {
       //se traen los datos del cliente
       await datosCliente(
           decodedResp['id_persona_rol'].toString(), decodedResp['token']);
-
-      return decodedResp['exito'];
+      
     }
+    return decodedResp['exito'];
   }
 
   Future logout() async {

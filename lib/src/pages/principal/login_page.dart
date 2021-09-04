@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/signIn_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
@@ -24,7 +25,8 @@ class LoginPage extends StatelessWidget {
                 Logo(
                   titulo: 'Login',
                 ),
-                _Form(),
+                ChangeNotifierProvider(
+                    create: (_) => SignInFormProvider(), child: _Form()),
                 Labels(
                   ruta: 'signin',
                   titulo: '¿No tienes cuenta?',
@@ -47,46 +49,80 @@ class _Form extends StatefulWidget {
 class __FormState extends State<_Form> {
   final emailCtrl = TextEditingController();
   final passCtrl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final signInForm = Provider.of<SignInFormProvider>(context);
     return Container(
       margin: EdgeInsets.only(top: 30),
       padding: EdgeInsets.symmetric(horizontal: 50),
-      child: Column(
-        children: <Widget>[
-          CustomInput(
-            icon: Icons.mail_outline,
-            placeHolder: 'Correo',
-            keyboardType: TextInputType.emailAddress,
-            textController: emailCtrl,
-          ),
-          CustomInput(
-            icon: Icons.lock_outline,
-            placeHolder: 'Password',
-            isPassword: true,
-            textController: passCtrl,
-          ),
-          CustomButton(
-              text: 'Ingresar',
-              onPressed: () async {
-                //print('estoy ingresando');
-                //instancia provider
-                final authService =
-                    Provider.of<AuthService>(context, listen: false);
-                
-
-                final bool? exito =
-                    await authService.login(emailCtrl.text, passCtrl.text);
-                
-                if (exito == true) {
-                  Navigator.pushReplacementNamed(context, 'inicio');
+      child: Form(
+        key: signInForm.formkeylogin,
+        //autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: Column(
+          children: <Widget>[
+            CustomInput(
+              key: UniqueKey(),
+              icon: Icons.mail_outline,
+              placeHolder: 'Correo',
+              keyboardType: TextInputType.emailAddress,
+              textController: emailCtrl,
+              inputFormatter: [],
+              validator: (value) {
+                if (value != null && value.length > 0) {
+                  String pattern =
+                      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                  RegExp regExp = new RegExp(pattern);
+                  return regExp.hasMatch(value.trim())
+                      ? null
+                      : 'Sintaxis de correo es errónea';
                 } else {
-                  // mostrar error en pantalla
-                  //print(errorMessage);
-                  NotificationsService.showSnackbar('Credenciales erroneas');
+                  return 'Porfavor ingresa tu correo electrónico';
                 }
-              })
-        ],
+              },
+            ),
+
+
+            CustomInput(
+                key: UniqueKey(),
+                icon: Icons.lock_outline,
+                placeHolder: 'Password',
+                isPassword: true,
+                textController: passCtrl,
+                validator: (value) {
+                  if (value != null && value.length > 0) {
+                    return null;
+                  }else{
+                    return 'Porfavor ingresa tu clave de acceso';
+                  }
+                },
+                inputFormatter: []),
+            CustomButton(
+                text: 'Ingresar',
+                onPressed: () async {
+                  //cierra el teclado del telefono
+                  FocusScope.of(context).unfocus();
+                  //instancia provider
+
+                  if (signInForm.isValidFormLogin()) {
+                    final authService =
+                        Provider.of<AuthService>(context, listen: false);
+
+                    final bool? exito =
+                        await authService.login(emailCtrl.text, passCtrl.text);
+
+                    if (exito != null && exito == true) {
+                      Navigator.pushReplacementNamed(context, 'inicio');
+                    } else {
+                      // mostrar error en pantalla
+                      //print(errorMessage);
+                      NotificationsService.showSnackbar(
+                          'Credenciales erroneas');
+                    }
+                  }
+                })
+          ],
+        ),
       ),
     );
   }

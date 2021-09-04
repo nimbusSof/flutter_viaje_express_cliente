@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/signIn_provider.dart';
 
 import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/signIn_widget/forms.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/signIn_widget/logo_signin.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -46,13 +48,21 @@ class SiguientePanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SigninBloc, SigninState>(builder: (_, state) {
       if (state.opcion == 0) {
-        return Form0();
+        return ChangeNotifierProvider(
+          create: (_) => SignInFormProvider(),
+          child: Form0());
       } else if (state.opcion == 1) {
-        return Form1();
+        return ChangeNotifierProvider(
+          create: (_) => SignInFormProvider(),
+          child: Form1());
       } else if (state.opcion == 2) {
-        return Form2();
+        return ChangeNotifierProvider(
+          create: (_) => SignInFormProvider(),
+          child: Form2());
       } else {
-        return Form0();
+        return ChangeNotifierProvider(
+          create: (_) => SignInFormProvider(),
+          child: Form0());
       }
     });
   }

@@ -54,7 +54,10 @@ class FormState extends State<Form0> {
               keyboardType: TextInputType.number,
               textController: cedulaCtrl,
               validator: (value) {},
-              inputFormatter: [FilteringTextInputFormatter.digitsOnly],
+              inputFormatter: [
+                LengthLimitingTextInputFormatter(10),
+                FilteringTextInputFormatter.digitsOnly
+              ],
             ),
             CustomInput(
                 icon: Icons.perm_identity,
@@ -81,7 +84,7 @@ class FormState extends State<Form0> {
                 text: 'Siguiente',
                 onPressed: () {
                   //cierra el teclado del telefono
-                  FocusScope.of(context).unfocus();
+                  FocusManager.instance.primaryFocus?.unfocus();
                   signUpService.agregarCedula(cedulaCtrl.text);
                   signUpService.agregarNombres(nombresCtrl.text);
                   signUpService.agregarApellidos(apellidosCtrl.text);
@@ -153,6 +156,7 @@ class Form1State extends State<Form1> {
                 text: 'Siguiente',
                 onPressed: () async {
                   //cierra el teclado del telefono
+                  FocusManager.instance.primaryFocus?.unfocus();
                   //FocusScope.of(context).unfocus(); //activar esta linea provoca un bug en el teclado
                   //validacion del formulario
                   if (signInForm.isValidForm1()) {
@@ -263,9 +267,11 @@ class Form2State extends State<Form2> {
                 text: 'Finalizar Registro',
                 onPressed: () async {
                   //cierra el teclado del telefono
+                  FocusManager.instance.primaryFocus?.unfocus();
                   //FocusScope.of(context).unfocus(); //linea bug (cierra el teclado pero muestra el en los input el estado anterior)
                   //providers
-                  if (signInForm.isValidForm2()) { //ejecuta validaciones
+                  if (signInForm.isValidForm2()) {
+                    //ejecuta validaciones
                     final SignUpProvider signUp = new SignUpProvider();
                     final signUpService =
                         Provider.of<SignUpServide>(context, listen: false);
@@ -294,7 +300,6 @@ class Form2State extends State<Form2> {
                           '¡Usuario creado exitosamente!');
                       Navigator.pushReplacementNamed(context, 'login');
                     } else {
-                      
                       // mostrar error en pantalla
                       NotificationsService.showSnackbar(
                           'No se pudo registrar el usuario');

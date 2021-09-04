@@ -11,6 +11,11 @@ class ClasificacionPerfilPage extends StatelessWidget {
     prefs.ultimaPagina = 'clasificaciónPerfil';
     return Scaffold(
       appBar: AppBar(
+        leading: GestureDetector(
+            child: Icon(Icons.arrow_back, size: 30,color: grisOscuroColor,),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, 'perfil_inicio');
+            }),
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(

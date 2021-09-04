@@ -51,6 +51,8 @@ class _EstructuraPage extends StatelessWidget {
                 placeHolder: 'Número de tarjeta',
                 textController: tarjetaCtrl,
                 keyboardType: TextInputType.number,
+                inputFormatter: [],
+                    validator: (value){},
               ),
               CustomSelectDate(inputFieldDataController: fechaCtrl, texto: 'Fecha de vencimiento',),
               CustomInput(
@@ -58,6 +60,8 @@ class _EstructuraPage extends StatelessWidget {
                 placeHolder: 'Código de seguridad',
                 textController: cvvCtrl,
                 keyboardType: TextInputType.number,
+                inputFormatter: [],
+                    validator: (value){},
               )
             ],
           ),

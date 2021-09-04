@@ -58,11 +58,15 @@ class Estructura extends StatelessWidget {
                 CustomInput(
                     icon: Icons.location_on,
                     placeHolder: 'Mi ubicación',
-                    textController: ubicacionCtrl),
+                    textController: ubicacionCtrl,
+                    inputFormatter: [],
+                    validator: (value){},),
                 CustomInput(
                     icon: Icons.location_on,
                     placeHolder: 'Mi destino',
-                    textController: destinoCtrl),
+                    textController: destinoCtrl,
+                    inputFormatter: [],
+                    validator: (value){},),
                 BtnSelectRutas(texto: 'Seleccionar una ruta guardada'),
                 RbtnMetodoPago(),
                 CustomButton(text: 'Solicitar un auto', onPressed: () {})

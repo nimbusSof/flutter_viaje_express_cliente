@@ -18,7 +18,7 @@ class VisualizarRutasPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(
-          'Viajes Concluidos',
+          'Rutas Guardadas',
           style: TextStyle(
             fontSize: 20,
             color: Colors.black45,

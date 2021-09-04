@@ -13,10 +13,15 @@ class CambiarNumeroPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: GestureDetector(
-            child: Icon(Icons.arrow_back, size: 30,color: grisOscuroColor,),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, 'configuraciones_inicio');
-            }),
+              child: Icon(
+                Icons.arrow_back,
+                size: 30,
+                color: grisOscuroColor,
+              ),
+              onTap: () {
+                Navigator.pushReplacementNamed(
+                    context, 'configuraciones_inicio');
+              }),
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           title: Text(
@@ -42,11 +47,7 @@ class _EstructuraPage extends StatelessWidget {
         padding: EdgeInsets.all(size.height * 0.03),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            texto(),
-            telefono(),
-            boton()
-          ],
+          children: <Widget>[texto(), telefono(), boton()],
         ));
   }
 
@@ -68,6 +69,8 @@ class _EstructuraPage extends StatelessWidget {
       placeHolder: 'Su número de teléfono',
       textController: telefonoCtrl,
       keyboardType: TextInputType.phone,
+      inputFormatter: [],
+      validator: (value) {},
     );
   }
 

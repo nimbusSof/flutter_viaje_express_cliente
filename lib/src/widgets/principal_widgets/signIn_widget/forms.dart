@@ -32,7 +32,7 @@ class FormState extends State<Form0> {
   Widget build(BuildContext context) {
     final signInBloc = BlocProvider.of<SigninBloc>(context);
     final signUpService = Provider.of<SignUpServide>(context);
-    final signInForm = Provider.of<SignInFormProvider>(context);
+    //final signInForm = Provider.of<SignInFormProvider>(context);
 
     if (signUpService.cliente.fechaNacimiento == null) {
       signUpService.agregarFechaNacimiento(DateTime.parse('1935-08-12'));
@@ -145,7 +145,8 @@ class Form1State extends State<Form1> {
                   }
                 },
                 inputFormatter: [FilteringTextInputFormatter.digitsOnly]),
-            CustomDropDown(lista: listaGenero),
+            //dropdown tiene lista género en su clase    
+            CustomDropDown(genero: true),
             Container(
               margin:  EdgeInsets.only(bottom: 10),
               child: CustomSelectDate(inputFieldDataController: dateCtrl)),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 
 class CustomSelectDate extends StatefulWidget {
   final TextEditingController inputFieldDataController;
@@ -25,8 +26,9 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
       margin:  EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
           // define las caracteristicas visuales del container
+          border: Border.all(color: grisOscuroColor),
           color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(20),
           boxShadow: <BoxShadow>[
             BoxShadow(
                 color: Colors.black.withOpacity(0.05),

@@ -83,20 +83,23 @@ class __FormState extends State<_Form> {
             ),
 
 
-            CustomInput(
-                key: UniqueKey(),
-                icon: Icons.lock_outline,
-                placeHolder: 'Password',
-                isPassword: true,
-                textController: passCtrl,
-                validator: (value) {
-                  if (value != null && value.length > 0) {
-                    return null;
-                  }else{
-                    return 'Porfavor ingresa tu clave de acceso';
-                  }
-                },
-                inputFormatter: []),
+            Container(
+              margin:  EdgeInsets.only(bottom: 10),
+              child: CustomInput(
+                  key: UniqueKey(),
+                  icon: Icons.lock_outline,
+                  placeHolder: 'Password',
+                  isPassword: true,
+                  textController: passCtrl,
+                  validator: (value) {
+                    if (value != null && value.length > 0) {
+                      return null;
+                    }else{
+                      return 'Porfavor ingresa tu clave de acceso';
+                    }
+                  },
+                  inputFormatter: []),
+            ),
             CustomButton(
                 text: 'Ingresar',
                 onPressed: () async {

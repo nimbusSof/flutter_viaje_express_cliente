@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
+import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 import 'package:provider/provider.dart';
 
 class CustomDropDown extends StatefulWidget {
-  final List<String> lista;
+  final bool? genero;
   const CustomDropDown(
-      {required this.lista}); // constructor para traer la lista desde otro widget
+      {this.genero}); // constructor para traer la lista desde otro widget
 
   @override
-  _CustomDropDownState createState() => _CustomDropDownState(lista);
+  _CustomDropDownState createState() => _CustomDropDownState(genero);
 }
 
 class _CustomDropDownState extends State<CustomDropDown> {
-  final List<String> listaGenero;
-  _CustomDropDownState(this.listaGenero);
+  final bool? genero;
+  final List<String> listaGenero = ['masculino', 'femenino', 'otro'];
+  _CustomDropDownState(this.genero);
 
   String dropdownValue =
       'masculino'; //si este valor fuera diferente a los que hay en la lista, daría error
@@ -23,13 +25,16 @@ class _CustomDropDownState extends State<CustomDropDown> {
     final signUpService = Provider.of<SignUpServide>(context);
 
     //se valida que haya un genero seleccionado en el estado de signUpService
-    dropdownValue = signUpService.cliente.genero!=''?signUpService.cliente.genero:dropdownValue;
+    dropdownValue = signUpService.cliente.genero != ''
+        ? signUpService.cliente.genero
+        : dropdownValue;
 
     return Container(
       padding: EdgeInsets.only(top: 5, left: 40, bottom: 5, right: 20),
-      margin:  EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
           // define las caracteristicas visuales del container
+          border: Border.all(color: grisOscuroColor),
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           boxShadow: <BoxShadow>[
@@ -52,13 +57,15 @@ class _CustomDropDownState extends State<CustomDropDown> {
             signUpService.agregarGenero(dropdownValue);
           });
         },
-        items: getOpcionesDropdown(),
+        items: this.widget.genero==true&&this.widget.genero!=null 
+        ? getOpcionesGeneroDropdown()
+        : getOpcionesGeneroDropdown(),
       ),
     );
   }
 
 // esta función recorre la lista para crear los items del DropDown
-  List<DropdownMenuItem<String>> getOpcionesDropdown() {
+  List<DropdownMenuItem<String>> getOpcionesGeneroDropdown() {
     List<DropdownMenuItem<String>> lista = [];
     this.listaGenero.forEach((genero) {
       lista.add(DropdownMenuItem(

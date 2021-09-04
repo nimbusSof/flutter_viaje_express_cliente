@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 
 class BtnSeguirUbicacion extends StatelessWidget {
   @override

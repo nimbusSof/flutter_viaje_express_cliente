@@ -32,7 +32,7 @@ class FormState extends State<Form0> {
   Widget build(BuildContext context) {
     final signInBloc = BlocProvider.of<SigninBloc>(context);
     final signUpService = Provider.of<SignUpServide>(context);
-    //final signInForm = Provider.of<SignInFormProvider>(context);
+    final signInForm = Provider.of<SignInFormProvider>(context);
 
     if (signUpService.cliente.fechaNacimiento == null) {
       signUpService.agregarFechaNacimiento(DateTime.parse('1935-08-12'));
@@ -46,6 +46,7 @@ class FormState extends State<Form0> {
       margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.symmetric(horizontal: 50),
       child: Form(
+        key: signInForm.formkey0,
         child: Column(
           children: <Widget>[
             CustomInput(
@@ -53,7 +54,13 @@ class FormState extends State<Form0> {
               placeHolder: 'Cédula',
               keyboardType: TextInputType.number,
               textController: cedulaCtrl,
-              validator: (value) {},
+              validator: (value) {
+                if (value != null && value.length > 0) {
+                  return null;
+                } else {
+                  return 'Porfavor ingresa tu cédula';
+                }
+              },
               inputFormatter: [
                 LengthLimitingTextInputFormatter(10),
                 FilteringTextInputFormatter.digitsOnly
@@ -64,9 +71,16 @@ class FormState extends State<Form0> {
                 placeHolder: 'Nombres',
                 keyboardType: TextInputType.name,
                 textController: nombresCtrl,
-                validator: (value) {},
+                validator: (value) {
+                  if (value != null && value.length > 0) {
+                    return null;
+                  } else {
+                    return 'Porfavor ingresa tus nombres';
+                  }
+                },
                 inputFormatter: [
-                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]"))
+                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+                  LengthLimitingTextInputFormatter(50),
                 ]),
             Container(
               margin: EdgeInsets.only(bottom: 10),
@@ -75,9 +89,16 @@ class FormState extends State<Form0> {
                   placeHolder: 'Apellidos',
                   keyboardType: TextInputType.name,
                   textController: apellidosCtrl,
-                  validator: (value) {},
+                  validator: (value) {
+                    if (value != null && value.length > 0) {
+                      return null;
+                    } else {
+                      return 'Porfavor ingresa tus apellidos';
+                    }
+                  },
                   inputFormatter: [
-                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]"))
+                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+                    LengthLimitingTextInputFormatter(50),
                   ]),
             ),
             CustomButton(
@@ -85,10 +106,13 @@ class FormState extends State<Form0> {
                 onPressed: () {
                   //cierra el teclado del telefono
                   FocusManager.instance.primaryFocus?.unfocus();
-                  signUpService.agregarCedula(cedulaCtrl.text);
-                  signUpService.agregarNombres(nombresCtrl.text);
-                  signUpService.agregarApellidos(apellidosCtrl.text);
-                  signInBloc.add(CambiarPanel(1));
+                  //ejecuta validaciones
+                  if (signInForm.isValidForm0()) {
+                    signUpService.agregarCedula(cedulaCtrl.text);
+                    signUpService.agregarNombres(nombresCtrl.text);
+                    signUpService.agregarApellidos(apellidosCtrl.text);
+                    signInBloc.add(CambiarPanel(1));
+                  }
                 }),
             SizedBox(height: 35),
             Labels(

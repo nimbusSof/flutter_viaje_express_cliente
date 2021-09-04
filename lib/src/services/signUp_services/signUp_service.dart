@@ -13,6 +13,7 @@ class SignUpServide with ChangeNotifier {
   }
 
   String get claveConfirmacion => this._claveConfirmacion;
+  
   set claveConfirmacion(String claveConfirmacion) {
     this._claveConfirmacion = claveConfirmacion;
     notifyListeners();

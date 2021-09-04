@@ -66,7 +66,7 @@ class FormState extends State<Form0> {
                   FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]"))
                 ]),
             Container(
-              margin:  EdgeInsets.only(bottom: 10),
+              margin: EdgeInsets.only(bottom: 10),
               child: CustomInput(
                   icon: Icons.perm_identity,
                   placeHolder: 'Apellidos',
@@ -111,7 +111,6 @@ class Form1State extends State<Form1> {
   final telefonoCtrl = TextEditingController();
   final dateCtrl = TextEditingController();
 
-  List<String> listaGenero = ['masculino', 'femenino', 'otro'];
   @override
   Widget build(BuildContext context) {
     final signInBloc = BlocProvider.of<SigninBloc>(context);
@@ -145,11 +144,11 @@ class Form1State extends State<Form1> {
                   }
                 },
                 inputFormatter: [FilteringTextInputFormatter.digitsOnly]),
-            //dropdown tiene lista género en su clase    
+            //dropdown tiene lista género en su clase
             CustomDropDown(genero: true),
             Container(
-              margin:  EdgeInsets.only(bottom: 10),
-              child: CustomSelectDate(inputFieldDataController: dateCtrl)),
+                margin: EdgeInsets.only(bottom: 10),
+                child: CustomSelectDate(inputFieldDataController: dateCtrl)),
             CustomButton(
                 text: 'Siguiente',
                 onPressed: () async {
@@ -225,8 +224,11 @@ class Form2State extends State<Form2> {
             CustomInput(
               key: UniqueKey(),
               validator: (value) {
+                print(value.toString() + ' ' + pass2Ctrl.text);
                 if (value != null && value.length < 6) {
                   return 'La clave debe tener como mínimo 6 caracteres';
+                } else if (value.toString() != pass2Ctrl.text) {
+                  return 'Las claves no coinciden';
                 } else {
                   return null;
                 }
@@ -239,7 +241,7 @@ class Form2State extends State<Form2> {
               textController: passCtrl,
             ),
             Container(
-              margin:  EdgeInsets.only(bottom: 10),
+              margin: EdgeInsets.only(bottom: 10),
               child: CustomInput(
                 key: UniqueKey(),
                 validator: (value) {
@@ -261,12 +263,14 @@ class Form2State extends State<Form2> {
                 text: 'Finalizar Registro',
                 onPressed: () async {
                   //cierra el teclado del telefono
-                  FocusScope.of(context).unfocus();
+                  //FocusScope.of(context).unfocus(); //linea bug (cierra el teclado pero muestra el en los input el estado anterior)
                   //providers
-                  if (signInForm.isValidForm2()) {
+                  if (signInForm.isValidForm2()) { //ejecuta validaciones
                     final SignUpProvider signUp = new SignUpProvider();
                     final signUpService =
                         Provider.of<SignUpServide>(context, listen: false);
+
+                    signUpService.agregarConfirmacionPassword(pass2Ctrl.text);
                     signUpService.agregarPassword(passCtrl.text != ''
                         ? passCtrl.text
                         : signUpService.cliente.cedula);
@@ -290,6 +294,7 @@ class Form2State extends State<Form2> {
                           '¡Usuario creado exitosamente!');
                       Navigator.pushReplacementNamed(context, 'login');
                     } else {
+                      
                       // mostrar error en pantalla
                       NotificationsService.showSnackbar(
                           'No se pudo registrar el usuario');

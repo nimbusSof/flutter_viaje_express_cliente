@@ -22,7 +22,7 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: 5, left: 5, bottom: 5, right: 20),
-      margin: EdgeInsets.only(bottom: 20),
+      margin:  EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
           // define las caracteristicas visuales del container
           color: Colors.white,

@@ -65,15 +65,18 @@ class FormState extends State<Form0> {
                 inputFormatter: [
                   FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]"))
                 ]),
-            CustomInput(
-                icon: Icons.perm_identity,
-                placeHolder: 'Apellidos',
-                keyboardType: TextInputType.name,
-                textController: apellidosCtrl,
-                validator: (value) {},
-                inputFormatter: [
-                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]"))
-                ]),
+            Container(
+              margin:  EdgeInsets.only(bottom: 10),
+              child: CustomInput(
+                  icon: Icons.perm_identity,
+                  placeHolder: 'Apellidos',
+                  keyboardType: TextInputType.name,
+                  textController: apellidosCtrl,
+                  validator: (value) {},
+                  inputFormatter: [
+                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]"))
+                  ]),
+            ),
             CustomButton(
                 text: 'Siguiente',
                 onPressed: () {
@@ -143,7 +146,9 @@ class Form1State extends State<Form1> {
                 },
                 inputFormatter: [FilteringTextInputFormatter.digitsOnly]),
             CustomDropDown(lista: listaGenero),
-            CustomSelectDate(inputFieldDataController: dateCtrl),
+            Container(
+              margin:  EdgeInsets.only(bottom: 10),
+              child: CustomSelectDate(inputFieldDataController: dateCtrl)),
             CustomButton(
                 text: 'Siguiente',
                 onPressed: () async {
@@ -232,21 +237,24 @@ class Form2State extends State<Form2> {
               isPassword: true,
               textController: passCtrl,
             ),
-            CustomInput(
-              key: UniqueKey(),
-              validator: (value) {
-                if (value != null && value.length < 6) {
-                  return 'La clave debe tener como mínimo 6 caracteres';
-                } else {
-                  return null;
-                }
-              },
-              inputFormatter: [],
-              sufixIcon: Icons.visibility,
-              icon: Icons.lock_outline,
-              placeHolder: 'Confirmar Password',
-              isPassword: true,
-              textController: pass2Ctrl,
+            Container(
+              margin:  EdgeInsets.only(bottom: 10),
+              child: CustomInput(
+                key: UniqueKey(),
+                validator: (value) {
+                  if (value != null && value.length < 6) {
+                    return 'La clave debe tener como mínimo 6 caracteres';
+                  } else {
+                    return null;
+                  }
+                },
+                inputFormatter: [],
+                sufixIcon: Icons.visibility,
+                icon: Icons.lock_outline,
+                placeHolder: 'Confirmar Password',
+                isPassword: true,
+                textController: pass2Ctrl,
+              ),
             ),
             CustomButton(
                 text: 'Finalizar Registro',

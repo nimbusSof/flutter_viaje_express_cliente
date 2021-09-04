@@ -44,6 +44,7 @@ class _CustomInputState extends State<CustomInput> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
         // propiedades el tipo de input
         //autofocus: true,

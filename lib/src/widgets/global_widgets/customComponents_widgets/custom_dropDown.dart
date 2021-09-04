@@ -27,11 +27,11 @@ class _CustomDropDownState extends State<CustomDropDown> {
 
     return Container(
       padding: EdgeInsets.only(top: 5, left: 40, bottom: 5, right: 20),
-      margin: EdgeInsets.only(bottom: 20),
+      margin:  EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
           // define las caracteristicas visuales del container
           color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(20),
           boxShadow: <BoxShadow>[
             BoxShadow(
                 color: Colors.black.withOpacity(0.05),
@@ -44,7 +44,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
         icon: const Icon(Icons.arrow_downward),
         iconSize: 24,
         elevation: 16,
-        style: const TextStyle(color: Colors.deepPurple),
+        style: const TextStyle(color: Colors.deepPurple, fontSize: 17),
         underline: SizedBox(),
         onChanged: (String? newValue) {
           setState(() {

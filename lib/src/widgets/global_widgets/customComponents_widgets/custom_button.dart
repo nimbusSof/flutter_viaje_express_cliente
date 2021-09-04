@@ -12,23 +12,27 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          elevation: 2,
-          shape: StadiumBorder(),
-          primary: yellowColor,
-        ),
-        onPressed: this.onPressed,
-        child: Container(
-          width: double.infinity,
-          height: 55,
-          child: Center(
-            child: Text(
-              this.text,
-              style: TextStyle(fontSize: 20),
-            ),
+    return Container(
+      //margin:  EdgeInsets.symmetric(vertical: 10),
+      child: ElevatedButton(
+        
+          style: ElevatedButton.styleFrom(
+            elevation: 2,
+            shape: StadiumBorder(),
+            primary: yellowColor,
           ),
-        ));
+          onPressed: this.onPressed,
+          child: Container(
+            width: double.infinity,
+            height: 55,
+            child: Center(
+              child: Text(
+                this.text,
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          )),
+    );
   }
 }
 

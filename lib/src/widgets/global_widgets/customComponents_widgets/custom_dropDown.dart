@@ -22,7 +22,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
 
   @override
   Widget build(BuildContext context) {
-    final signUpService = Provider.of<SignUpServide>(context);
+    final signUpService = Provider.of<SignUpProvider>(context);
 
     //se valida que haya un genero seleccionado en el estado de signUpService
     dropdownValue = signUpService.cliente.genero != ''

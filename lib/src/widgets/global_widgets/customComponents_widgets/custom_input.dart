@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class CustomInput extends StatefulWidget {
   final IconData icon;
   final String placeHolder;
@@ -11,7 +10,7 @@ class CustomInput extends StatefulWidget {
   final IconData? sufixIcon;
   final FormFieldValidator<String>? validator;
   final List<TextInputFormatter>? inputFormatter;
-  
+
   const CustomInput(
       {Key? key,
       required this.icon,
@@ -22,7 +21,8 @@ class CustomInput extends StatefulWidget {
       this.keyboardType = TextInputType.text,
       this.isPassword = false,
       this.sufixIcon})
-      : this.validator = validator, this.inputFormatter=inputFormatter;
+      : this.validator = validator,
+        this.inputFormatter = inputFormatter;
 
   @override
   _CustomInputState createState() => _CustomInputState(icon, placeHolder,
@@ -39,18 +39,19 @@ class _CustomInputState extends State<CustomInput> {
       IconData? sufixIcon,
       void Function(String item) validator);
 
-  bool passwordVisible = true; //se modifica si el parametro isPassword==false //metodo _togglePasswordView()
+  bool passwordVisible =
+      true; //se modifica si el parametro isPassword==false //metodo _togglePasswordView()
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: 6),
       child: TextFormField(
         // propiedades el tipo de input
         //autofocus: true,
         key: this.widget.key,
         controller: this.widget.textController,
-        onChanged: (value)=>this.widget.textController,
+        onChanged: (value) => this.widget.textController.text,
         autocorrect: false,
         keyboardType: this.widget.keyboardType,
         obscureText: this.widget.isPassword == true
@@ -76,7 +77,9 @@ class _CustomInputState extends State<CustomInput> {
             hintText: this.widget.placeHolder),
 
         validator: this.widget.validator,
-        inputFormatters: this.widget.inputFormatter!.length>0?this.widget.inputFormatter:[],
+        inputFormatters: this.widget.inputFormatter!.length > 0
+            ? this.widget.inputFormatter
+            : [],
       ),
     );
   }

@@ -40,7 +40,7 @@ class _MapaPageState extends State<MapaPage> {
   Widget build(BuildContext context) {
     prefs.ultimaPagina = 'loadingMapa';
     final panelHeightOpen = MediaQuery.of(context).size.height * 0.6;
-    final panelHeightClosed = MediaQuery.of(context).size.height * 0.088;
+    final panelHeightClosed = MediaQuery.of(context).size.height * 0.070;
     return Scaffold(
       key: _scafoldKey,
       drawer: SideBar(),

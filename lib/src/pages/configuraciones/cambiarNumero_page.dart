@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_input.dart';
+import 'package:provider/provider.dart';
 
-class CambiarNumeroPage extends StatelessWidget {
+class CambiarNumeroPage extends StatefulWidget {
+  @override
+  _CambiarNumeroPageState createState() => _CambiarNumeroPageState();
+}
+
+class _CambiarNumeroPageState extends State<CambiarNumeroPage> {
   final prefs = new PreferenciasUsuario();
+
   @override
   Widget build(BuildContext context) {
     prefs.ultimaPagina = 'cambiarNumero';
@@ -32,22 +41,34 @@ class CambiarNumeroPage extends StatelessWidget {
             ),
           ),
         ),
-        body: _EstructuraPage(),
+        body: ChangeNotifierProvider(
+            create: (_) => FormsCliente(), child: _EstructuraPage()),
       ),
     );
   }
 }
 
-class _EstructuraPage extends StatelessWidget {
+class _EstructuraPage extends StatefulWidget {
+  @override
+  __EstructuraPageState createState() => __EstructuraPageState();
+}
+
+class __EstructuraPageState extends State<_EstructuraPage> {
   final telefonoCtrl = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final formsCliente = Provider.of<FormsCliente>(context);
+
     return Container(
         padding: EdgeInsets.all(size.height * 0.03),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[texto(), telefono(), boton()],
+        child: Form(
+          key: formsCliente.formkeyCambiarNumero,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[texto(), telefono(), boton()],
+          ),
         ));
   }
 
@@ -69,12 +90,35 @@ class _EstructuraPage extends StatelessWidget {
       placeHolder: 'Su número de teléfono',
       textController: telefonoCtrl,
       keyboardType: TextInputType.phone,
-      inputFormatter: [],
-      validator: (value) {},
+      inputFormatter: [
+        FilteringTextInputFormatter.digitsOnly,
+        LengthLimitingTextInputFormatter(10),
+      ],
+      validator: (value) {
+        if (value != null && value.length > 0) {
+          String pattern = r'(^09)[1-9]{8}$';
+          RegExp regExp = new RegExp(pattern);
+          return regExp.hasMatch(value.trim())
+              ? null
+              : 'número de teléfono inválido';
+        } else {
+          return 'Porfavor ingresa tu número de teléfono';
+        }
+      },
     );
   }
 
   boton() {
-    return CustomButton(text: 'Guardar', onPressed: () {});
+    final formsCliente = Provider.of<FormsCliente>(context);
+    return CustomButton(
+        text: 'Guardar',
+        onPressed: () {
+          
+          //cierra el teclado del telefono
+          FocusManager.instance.primaryFocus?.unfocus();
+          if (formsCliente.isValidFormCambiarNumero()) {
+           
+          }
+        });
   }
 }

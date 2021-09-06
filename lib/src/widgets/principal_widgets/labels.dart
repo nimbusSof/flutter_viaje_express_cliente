@@ -19,7 +19,7 @@ class Labels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final signUpService = Provider.of<SignUpServide>(context);
+    final signUpService = Provider.of<SignUpProvider>(context);
     return Container(
       child: Column(
         children: <Widget>[
@@ -53,7 +53,7 @@ class LabelCancelar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final signUpService = Provider.of<SignUpServide>(context);
+    final signUpService = Provider.of<SignUpProvider>(context);
     return Container(
       padding: EdgeInsets.only(top: 25),
       child: GestureDetector(

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/datosViajeNuevo_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
 import 'package:flutter_viaje_express_cliente/src/routes/routes.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:provider/provider.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = new PreferenciasUsuario();
   await prefs.initPrefs();
@@ -19,9 +21,11 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => new SignUpServide()),
+        ChangeNotifierProvider(create: (_) => new SignUpProvider()),
         ChangeNotifierProvider(create: (_) => new AuthService()),
         ChangeNotifierProvider(create: (_) => new CustomIputService()),
+        ChangeNotifierProvider(create: (_) => new FormsCliente()),
+        ChangeNotifierProvider(create: (_) => new DatosViajeNuevo()),
       ],
       child: MyApp(),
     );

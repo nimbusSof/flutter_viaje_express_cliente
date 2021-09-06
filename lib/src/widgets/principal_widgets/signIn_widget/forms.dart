@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/signIn_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/forms_signIn_signUp_provider.dart';
 
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
-import 'package:flutter_viaje_express_cliente/src/services/signUp_services/signUp_service.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/datosSignUp_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_dropDown.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_input.dart';
@@ -31,9 +31,10 @@ class FormState extends State<Form0> {
   @override
   Widget build(BuildContext context) {
     final signInBloc = BlocProvider.of<SigninBloc>(context);
-    final signUpService = Provider.of<SignUpServide>(context);
+    final signUpService = Provider.of<SignUpProvider>(context);
     final signInForm = Provider.of<SignInFormProvider>(context);
 
+  // se pone fecha por defecto al signUp
     if (signUpService.cliente.fechaNacimiento == null) {
       signUpService.agregarFechaNacimiento(DateTime.parse('1935-08-12'));
     }
@@ -141,7 +142,7 @@ class Form1State extends State<Form1> {
   @override
   Widget build(BuildContext context) {
     final signInBloc = BlocProvider.of<SigninBloc>(context);
-    final signUpService = Provider.of<SignUpServide>(context);
+    final signUpService = Provider.of<SignUpProvider>(context);
     final signInForm = Provider.of<SignInFormProvider>(context);
 
     telefonoCtrl.text = signUpService.cliente.telefono;
@@ -217,7 +218,7 @@ class Form2State extends State<Form2> {
   final pass2Ctrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final signUpService = Provider.of<SignUpServide>(context);
+    final signUpService = Provider.of<SignUpProvider>(context);
     final signInForm = Provider.of<SignInFormProvider>(context);
 
     emailCtrl.text = signUpService.cliente.correo;
@@ -296,9 +297,9 @@ class Form2State extends State<Form2> {
                   //providers
                   if (signInForm.isValidForm2()) {
                     //ejecuta validaciones
-                    final SignUpProvider signUp = new SignUpProvider();
+                    final SignUpService signUp = new SignUpService();
                     final signUpService =
-                        Provider.of<SignUpServide>(context, listen: false);
+                        Provider.of<SignUpProvider>(context, listen: false);
 
                     signUpService.agregarConfirmacionPassword(pass2Ctrl.text);
                     signUpService.agregarPassword(passCtrl.text != ''

@@ -1,71 +1,34 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
+
 import 'package:flutter_viaje_express_cliente/src/models/registroCliente.dart';
+import 'package:flutter_viaje_express_cliente/src/services/viajeExpressApi_service.dart';
+import 'package:http/http.dart' as http;
 
-class SignUpServide with ChangeNotifier {
-  RegistroCliente _cliente = new RegistroCliente();
-  String _claveConfirmacion = '';
+class SignUpService {
+  ViajeExpressApi _viajeExpressApi = new ViajeExpressApi();
 
-  RegistroCliente get cliente => this._cliente;
+  // REGISTRO DEL USUARIO CLIENTE
 
-  set cliente(RegistroCliente cliente) {
-    this._cliente = cliente;
-    notifyListeners();
-  }
-
-  String get claveConfirmacion => this._claveConfirmacion;
+  // si retornamos true entonces el cliente se registró con éxito
+  Future<bool?> createUser(RegistroCliente registroCliente) async {
   
-  set claveConfirmacion(String claveConfirmacion) {
-    this._claveConfirmacion = claveConfirmacion;
-    notifyListeners();
+
+    final url = Uri.http(
+      _viajeExpressApi.baseUrl,
+      '/CuentaCliente/registro_cliente',
+    );
+
+    
+
+    final resp = await http
+        .post(url, body: registroClienteToJson(registroCliente), 
+        headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    });
+
+    final Map<String, dynamic> decodedResp = json.decode(resp.body);
+    print('mensaje: ' + decodedResp['mensaje']);
+    return decodedResp['exito'];
   }
-
-  // DATOS DEL FORMULARIO 1
-  void agregarNombres(String nombres) {
-    this._cliente.nombre = nombres;
-    notifyListeners();
-  }
-
-  void agregarApellidos(String apellidos) {
-    this._cliente.apellido = apellidos;
-  }
-
-  void agregarCedula(String cedula) {
-    this._cliente.cedula = cedula;
-  }
-
-// DATOS DEL FORMULARIO 2
-
-  void agregarTelefono(String telefono) {
-    this._cliente.telefono = telefono;
-  }
-
-  void agregarGenero(String genero) {
-    this._cliente.genero = genero;
-  }
-
-  void agregarFechaNacimiento(DateTime fecha) {
-    this._cliente.fechaNacimiento = fecha;
-  }
-
-// DATOS DEL FORMULARIO 3
-
-  void agregarCorreo(String correo) {
-    this._cliente.correo = correo;
-  }
-
-  void agregarPassword(String password) {
-    this._cliente.clave = password;
-  }
-
-  void agregarConfirmacionPassword(String confirmacion) {
-    this._claveConfirmacion = confirmacion;
-  }
-
-  void removerCliente() {
-    RegistroCliente cliente = new RegistroCliente();
-    this._cliente = cliente;
-    this._claveConfirmacion = '';
-    notifyListeners();
-  }
-  
 }

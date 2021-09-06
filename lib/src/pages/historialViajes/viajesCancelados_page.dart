@@ -19,7 +19,7 @@ class ViajesCanceladosPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(
-          'Viajes Concluidos',
+          'Viajes Cancelados',
           style: TextStyle(
             fontSize: 20,
             color: Colors.black45,

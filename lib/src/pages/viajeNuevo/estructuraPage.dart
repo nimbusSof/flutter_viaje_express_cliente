@@ -56,7 +56,7 @@ class Estructura extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
-                children: [
+               children: [
                   SizedBox(
                     height: 20,
                   ),

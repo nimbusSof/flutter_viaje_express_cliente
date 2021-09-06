@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/datosConfPerfil_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/formsCliente_provider.dart';
 
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
@@ -35,20 +36,17 @@ class ConfiguracionPerfilPage extends StatelessWidget {
           ),
         ),
       ),
-      body: ChangeNotifierProvider(
-          create: (_) => FormsCliente(), child: _EstructuraPage()),
+      body: _EstructuraPage(),
     );
   }
 }
 
 class _EstructuraPage extends StatelessWidget {
-  final nombresCtrl = new TextEditingController();
-  final apellidosCtrl = new TextEditingController();
-  final emailCtrl = new TextEditingController();
-  final fechaCtrl = new TextEditingController();
+ 
   @override
   Widget build(BuildContext context) {
     final clienteForm = Provider.of<FormsCliente>(context);
+    final datosConfPerfil = Provider.of<DatosConfPerfil>(context);
     final size = MediaQuery.of(context).size;
 
     return SafeArea(
@@ -72,7 +70,7 @@ class _EstructuraPage extends StatelessWidget {
                 CustomInput(
                   icon: Icons.person,
                   placeHolder: 'Nombres',
-                  textController: nombresCtrl,
+                  textController: datosConfPerfil.nombresCtrl,
                   keyboardType: TextInputType.name,
                   inputFormatter: [
                     FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
@@ -80,7 +78,7 @@ class _EstructuraPage extends StatelessWidget {
                   ],
                   validator: (value) {
                     if (value.toString().length > 0 ||
-                        nombresCtrl.text.length > 0) {
+                        datosConfPerfil.nombresCtrl.text.length > 0) {
                       return null;
                     } else {
                       return 'Porfavor ingresa tus nombres';
@@ -90,7 +88,7 @@ class _EstructuraPage extends StatelessWidget {
                 CustomInput(
                   icon: Icons.person,
                   placeHolder: 'Apellidos',
-                  textController: apellidosCtrl,
+                  textController: datosConfPerfil.apellidosCtrl,
                   keyboardType: TextInputType.name,
                   inputFormatter: [
                     FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
@@ -98,18 +96,18 @@ class _EstructuraPage extends StatelessWidget {
                   ],
                   validator: (value) {
                     if (value.toString().length > 0 ||
-                        apellidosCtrl.text.length > 0) {
+                        datosConfPerfil.apellidosCtrl.text.length > 0) {
                       return null;
                     } else {
                       return 'Porfavor ingresa tus apellidos';
                     }
                   },
                 ),
-                CustomSelectDate(inputFieldDataController: fechaCtrl),
+                CustomSelectDate(inputFieldDataController: datosConfPerfil.fechaCtrl),
                 CustomInput(
                   icon: Icons.email,
                   placeHolder: 'Correo electrónico',
-                  textController: emailCtrl,
+                  textController: datosConfPerfil.emailCtrl,
                   keyboardType: TextInputType.emailAddress,
                   inputFormatter: [],
                   validator: (value) {

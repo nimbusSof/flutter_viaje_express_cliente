@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/datosConfPerfil_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosViajeNuevo_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
 import 'package:flutter_viaje_express_cliente/src/routes/routes.dart';
@@ -26,6 +27,7 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => new CustomIputService()),
         ChangeNotifierProvider(create: (_) => new FormsCliente()),
         ChangeNotifierProvider(create: (_) => new DatosViajeNuevo()),
+        ChangeNotifierProvider(create: (_) => new DatosConfPerfil()),
       ],
       child: MyApp(),
     );

@@ -4,21 +4,13 @@ class DatosViajeNuevo with ChangeNotifier {
   TextEditingController _ubicacionCtrl = new TextEditingController();
   TextEditingController _destinoCtrl = new TextEditingController();
 
-  // GETTERS Y SETTES DE UBICACION RECOJIDA
+  // GET UBICACION RECOJIDA
   TextEditingController get ubicacionCtrl => this._ubicacionCtrl;
 
-  String get ubicacionCtrlText => this._ubicacionCtrl.text;
-  set ubicacionCtrlText(String ubicacionCtrl) {
-    this._ubicacionCtrl.text = ubicacionCtrl;
-    notifyListeners();
-  }
-
-  // GETTERS Y SETTERS DE DESTINO VIAJE
+  
+  // GET DESTINO CTRL
   TextEditingController get destinoCtrl => this._destinoCtrl;
-  set destinoCtrl(TextEditingController destinoCtrl) {
-    this._destinoCtrl = destinoCtrl;
-    notifyListeners();
-  }
+  
 
 // METODOS
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
+
 
 class CustomSelectDate extends StatefulWidget {
   final TextEditingController inputFieldDataController;
@@ -22,28 +22,29 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 5, left: 5, bottom: 5, right: 20),
-      margin:  EdgeInsets.symmetric(vertical: 10),
-      decoration: BoxDecoration(
-          // define las caracteristicas visuales del container
-          border: Border.all(color: grisOscuroColor),
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                offset: Offset(0, 5),
-                blurRadius: 5)
-          ]),
-      child: TextField(
+      padding: EdgeInsets.symmetric(vertical: 6),
+    
+      child: TextFormField(
         enableInteractiveSelection: false,
         controller: inputFieldDataController,
+        validator: (value) {
+          if (value != null && value.length > 0) {
+            return null;
+          } else {
+            return 'Porfavor ingresa una fecha';
+          }
+        },
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.calendar_today),
-          focusedBorder: InputBorder.none,
-          border: InputBorder.none,
-          hintText: this.texto != null ? this.texto : 'Fecha de nacimiento',
-        ),
+            filled: true,
+            fillColor: Colors.white,
+            prefixIcon: Icon(Icons.calendar_today),
+            
+            //focusedBorder: InputBorder.none,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            hintText: this.texto != null ? this.texto : 'Fecha de nacimiento'),
+        
         onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());
           _selectDate(context);

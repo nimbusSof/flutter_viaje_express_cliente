@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/bloc/signUp_bloc/signUp_bloc.dart';
+
 import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/forms_signIn_signUp_provider.dart';
 
@@ -30,7 +31,7 @@ class FormState extends State<Form0> {
 
   @override
   Widget build(BuildContext context) {
-    final signInBloc = BlocProvider.of<SigninBloc>(context);
+    final signUpBloc = BlocProvider.of<SignUpBloc>(context);
     final signUpService = Provider.of<SignUpProvider>(context);
     final signInForm = Provider.of<SignInFormProvider>(context);
 
@@ -112,7 +113,7 @@ class FormState extends State<Form0> {
                     signUpService.agregarCedula(cedulaCtrl.text);
                     signUpService.agregarNombres(nombresCtrl.text);
                     signUpService.agregarApellidos(apellidosCtrl.text);
-                    signInBloc.add(CambiarPanel(1));
+                    signUpBloc.add(CambiarPanel(1));
                   }
                 }),
             SizedBox(height: 35),
@@ -141,7 +142,7 @@ class Form1State extends State<Form1> {
 
   @override
   Widget build(BuildContext context) {
-    final signInBloc = BlocProvider.of<SigninBloc>(context);
+    final signUpBloc = BlocProvider.of<SignUpBloc>(context);
     final signUpService = Provider.of<SignUpProvider>(context);
     final signInForm = Provider.of<SignInFormProvider>(context);
 
@@ -193,14 +194,14 @@ class Form1State extends State<Form1> {
                     signUpService.agregarTelefono(telefonoCtrl.text);
                     signUpService
                         .agregarFechaNacimiento(DateTime.parse(dateCtrl.text));
-                    signInBloc.add(CambiarPanel(2));
+                    signUpBloc.add(CambiarPanel(2));
                   }
                 }),
             SizedBox(height: 15),
             CustomButton(
                 text: 'Regresar',
                 onPressed: () {
-                  BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
+                  BlocProvider.of<SignUpBloc>(context).add(CambiarPanel(0));
                 }),
             LabelCancelar(subtitulo: 'Cancelar')
           ],
@@ -333,7 +334,7 @@ class Form2State extends State<Form2> {
                       // mostrar error en pantalla
                       NotificationsService.showSnackbar(
                           'No se pudo registrar el usuario');
-                      BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
+                      BlocProvider.of<SignUpBloc>(context).add(CambiarPanel(0));
                     }
                   }
                 }),
@@ -344,7 +345,7 @@ class Form2State extends State<Form2> {
                   signUpService.agregarCorreo(emailCtrl.text);
                   signUpService.agregarPassword(passCtrl.text);
                   signUpService.agregarConfirmacionPassword(pass2Ctrl.text);
-                  BlocProvider.of<SigninBloc>(context).add(CambiarPanel(1));
+                  BlocProvider.of<SignUpBloc>(context).add(CambiarPanel(1));
                 }),
             LabelCancelar(subtitulo: 'Cancelar')
           ],

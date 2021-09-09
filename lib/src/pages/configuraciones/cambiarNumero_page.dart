@@ -41,8 +41,7 @@ class _CambiarNumeroPageState extends State<CambiarNumeroPage> {
             ),
           ),
         ),
-        body: ChangeNotifierProvider(
-            create: (_) => FormsCliente(), child: _EstructuraPage()),
+        body: _EstructuraPage(),
       ),
     );
   }

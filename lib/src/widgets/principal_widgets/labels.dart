@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/bloc/signUp_bloc/signUp_bloc.dart';
+
 
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:provider/provider.dart';
@@ -64,7 +65,7 @@ class LabelCancelar extends StatelessWidget {
                 fontWeight: FontWeight.bold)),
         onTap: () {
           signUpService.removerCliente();
-          BlocProvider.of<SigninBloc>(context).add(CambiarPanel(0));
+          BlocProvider.of<SignUpBloc>(context).add(CambiarPanel(0));
         },
       ),
     );

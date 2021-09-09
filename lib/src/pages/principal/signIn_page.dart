@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/bloc/signUp_bloc/signUp_bloc.dart';
 
-import 'package:flutter_viaje_express_cliente/src/bloc/signIn_bloc/signin_bloc.dart';
+
 import 'package:flutter_viaje_express_cliente/src/providers/forms_signIn_signUp_provider.dart';
 
 import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/signIn_widget/forms.dart';
@@ -16,7 +17,7 @@ class SignInPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => SigninBloc(),
+          create: (_) => SignUpBloc(),
         )
       ],
       child: Scaffold(
@@ -46,7 +47,7 @@ class SignInPage extends StatelessWidget {
 class SiguientePanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SigninBloc, SigninState>(builder: (_, state) {
+    return BlocBuilder<SignUpBloc, SignUpState>(builder: (_, state) {
       if (state.opcion == 0) {
         return ChangeNotifierProvider(
           create: (_) => SignInFormProvider(),

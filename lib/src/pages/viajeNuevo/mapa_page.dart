@@ -9,6 +9,7 @@ import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar
 
 import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_seguir_ubicacion.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_ubicacion.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/marcador_manual_widget.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -47,7 +48,7 @@ class _MapaPageState extends State<MapaPage> {
       body: SafeArea(
         child: Stack(
           children: [
-            SlidingUpPanel(
+             /* SlidingUpPanel(
               controller: panelController,
               maxHeight: panelHeightOpen,
               minHeight: panelHeightClosed,
@@ -63,7 +64,11 @@ class _MapaPageState extends State<MapaPage> {
                     panelHeightOpen - panelHeightClosed;
                 fabHeight = position * panelMaxScrollExtent + fabHeightClosed;
               }),
-            ),
+            ), */
+
+            
+
+            MarcadorManual(),
             Positioned(
               top: 10,
               child: Row(

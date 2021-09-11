@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_viaje_express_cliente/src/models/search_result.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/search/search_destino.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosViajeNuevo_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/formsCliente_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
@@ -22,8 +24,7 @@ class EstructuraPage extends StatelessWidget {
         controller: controller,
         children: <Widget>[
           SizedBox(height: 36),
-          Estructura(
-              controller: controller, panelController: panelController),
+          Estructura(controller: controller, panelController: panelController),
           SizedBox(
             height: 24,
           )
@@ -44,7 +45,6 @@ class Estructura extends StatelessWidget {
     final formCliente = Provider.of<FormsCliente>(context);
     final datosViajeNuevo = Provider.of<DatosViajeNuevo>(context);
 
-
     return Container(
       child: Form(
         key: formCliente.formkeyViajeNuevo,
@@ -56,12 +56,11 @@ class Estructura extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
-               children: [
+                children: [
                   SizedBox(
                     height: 20,
                   ),
-                  
-                   CustomInput(
+                  CustomInput(
                     icon: Icons.location_on,
                     placeHolder: 'Mi ubicación',
                     textController: datosViajeNuevo.ubicacionCtrl,
@@ -74,18 +73,25 @@ class Estructura extends StatelessWidget {
                       }
                     },
                   ),
-                  CustomInput(
-                    icon: Icons.location_on,
-                    placeHolder: 'Mi destino',
-                    textController: datosViajeNuevo.destinoCtrl,
-                    inputFormatter: [],
-                    validator: (value) {
-                      if (value != null && value.length > 0) {
-                        return null;
-                      } else {
-                        return 'Porfavor ingresa tu destino de viaje';
-                      }
+                  GestureDetector(
+                    onTap: () async {
+                      final resultado = await showSearch(
+                          context: context, delegate: SearchDestino());
+                      retornoBusqueda(resultado!); 
                     },
+                    child: CustomInput(
+                      icon: Icons.location_on,
+                      placeHolder: 'Mi destino',
+                      textController: datosViajeNuevo.destinoCtrl,
+                      inputFormatter: [],
+                      validator: (value) {
+                        if (value != null && value.length > 0) {
+                          return null;
+                        } else {
+                          return 'Porfavor ingresa tu destino de viaje';
+                        }
+                      },
+                    ),
                   ),
                   BtnSelectRutas(texto: 'Seleccionar una ruta guardada'),
                   RbtnMetodoPago(),
@@ -123,4 +129,8 @@ class Estructura extends StatelessWidget {
   void togglePanel() => panelController.isPanelOpen
       ? panelController.close()
       : panelController.open();
+
+  void retornoBusqueda(SearchResult result) {
+    if (result.cancelo) return;
+  }
 }

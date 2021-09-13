@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/models/search_result.dart';
 
+
 class SearchDestino extends SearchDelegate<SearchResult> {
   @override
   final String searchFieldLabel;
@@ -34,7 +35,7 @@ class SearchDestino extends SearchDelegate<SearchResult> {
           leading: Icon(Icons.location_on),
           title: Text('Colocar ubicación manualmente'),
           onTap: () {
-            this.close(context, SearchResult(cancelo: false, manual: false));
+            this.close(context, SearchResult(cancelo: false, manual: true));
           },
         )
       ],

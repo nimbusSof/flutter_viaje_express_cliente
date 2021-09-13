@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosConfPerfil_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosViajeNuevo_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/slidingUpPanel_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/routes/routes.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
@@ -28,6 +30,7 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => new FormsCliente()),
         ChangeNotifierProvider(create: (_) => new DatosViajeNuevo()),
         ChangeNotifierProvider(create: (_) => new DatosConfPerfil()),
+        ChangeNotifierProvider(create: (_) => new SlidingUpPanelProvider()),
       ],
       child: MyApp(),
     );
@@ -41,6 +44,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => MiUbicacionBloc()),
         BlocProvider(create: (_) => MapaBloc()),
+        BlocProvider(create: (_) => BusquedaBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

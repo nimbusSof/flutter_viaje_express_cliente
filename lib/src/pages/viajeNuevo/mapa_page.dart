@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
-
 import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/estructuraPage.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/slidingUpPanel_provider.dart';
+
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar_widgets/sideBar_widget.dart';
 
 import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_seguir_ubicacion.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_ubicacion.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/customButtomDrawer.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/marcador_manual_widget.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/slidingPanel.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class MapaPage extends StatefulWidget {
@@ -21,12 +27,13 @@ class MapaPage extends StatefulWidget {
 class _MapaPageState extends State<MapaPage> {
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey<ScaffoldState>();
   static const double fabHeightClosed = 90.0;
-  double fabHeight = fabHeightClosed;
-  final panelController = new PanelController();
+  //double fabHeight = fabHeightClosed;
+
   final prefs = new PreferenciasUsuario();
 
   @override
   void initState() {
+    context.read<SlidingUpPanelProvider>().reiniciar();
     BlocProvider.of<MiUbicacionBloc>(context).iniciarSeguimiento();
     super.initState();
   }
@@ -40,68 +47,70 @@ class _MapaPageState extends State<MapaPage> {
   @override
   Widget build(BuildContext context) {
     prefs.ultimaPagina = 'loadingMapa';
-    final panelHeightOpen = MediaQuery.of(context).size.height * 0.6;
+    final panel = Provider.of<SlidingUpPanelProvider>(context);
+
+    //panel.fabHeight = fabHeightClosed;
+    /* final panelHeightOpen = MediaQuery.of(context).size.height * 0.6;
     final panelHeightClosed = MediaQuery.of(context).size.height * 0.070;
-    return Scaffold(
-      key: _scafoldKey,
-      drawer: SideBar(),
-      body: SafeArea(
-        child: Stack(
-          children: [
-             /* SlidingUpPanel(
-              controller: panelController,
-              maxHeight: panelHeightOpen,
-              minHeight: panelHeightClosed,
-              parallaxEnabled: true,
-              parallaxOffset: .5,
-              body: BlocBuilder<MiUbicacionBloc, MiUbicacionState>(
-                  builder: (_, state) => crearMapa(state)),
-              panelBuilder: (controller) => EstructuraPage(
-                  controller: controller, panelController: panelController),
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-              onPanelSlide: (position) => setState(() {
-                final panelMaxScrollExtent =
-                    panelHeightOpen - panelHeightClosed;
-                fabHeight = position * panelMaxScrollExtent + fabHeightClosed;
-              }),
-            ), */
+    final panelController = new PanelController(); */
 
-            
+    return BlocBuilder<BusquedaBloc, BusquedaState>(
+      builder: (BuildContext context, state) {
+        if (state.seleccionManual) {
+          panel.reiniciar();
+        }
 
-            MarcadorManual(),
-            Positioned(
-              top: 10,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  _buttonDrawer(),
-                ],
-              ),
+        return Scaffold(
+          key: _scafoldKey,
+          drawer: SideBar(),
+          body: SafeArea(
+            child: Stack(
+              children: [
+                BlocBuilder<MiUbicacionBloc, MiUbicacionState>(
+                    builder: (_, state) => crearMapa(state)),
+                MarcadorManual(),
+                CustomSlidingPanel(fabHeightClosed: fabHeightClosed),
+
+                /* SlidingUpPanel(
+        controller: panelController,
+        maxHeight: panelHeightOpen,
+        minHeight: panelHeightClosed,
+        parallaxEnabled: true,
+        parallaxOffset: .5,
+        //body:
+        panelBuilder: (controller) => EstructuraPage(
+            controller: controller, panelController: panelController),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        onPanelSlide: (position) => setState(() {
+          final panelMaxScrollExtent = panelHeightOpen - panelHeightClosed;
+          fabHeight = position * panelMaxScrollExtent + fabHeightClosed;
+        }),
+      ), */
+
+                Positioned(
+                  top: 10,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CustomButtonDrawer(scafoldKey: _scafoldKey),
+                    ],
+                  ),
+                ),
+                Positioned(
+                    right: 20, bottom: panel.fabHeight, child: BtnUbicacion()),
+                Positioned(
+                    right: 20,
+                    bottom: panel.fabHeight + 70,
+                    child: BtnSeguirUbicacion())
+              ],
             ),
-            Positioned(right: 20, bottom: fabHeight, child: BtnUbicacion()),
-            Positioned(
-                right: 20, bottom: fabHeight + 70, child: BtnSeguirUbicacion())
-          ],
-        ),
-      ),
-      /* floatingActionButton: Column(
+          ),
+          /* floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [BtnUbicacion(), BtnSeguirUbicacion(), BtnMiRuta()],
       ), */
-    );
-  }
-
-  Widget _buttonDrawer() {
-    return Container(
-      alignment: Alignment.centerLeft,
-      child: IconButton(
-        onPressed: () => _scafoldKey.currentState!.openDrawer(),
-        icon: Icon(
-          Icons.menu,
-          size: 35,
-          color: Colors.black,
-        ),
-      ),
+        );
+      },
     );
   }
 

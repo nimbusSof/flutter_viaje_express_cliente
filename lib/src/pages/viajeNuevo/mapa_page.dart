@@ -75,8 +75,8 @@ class _MapaPageState extends State<MapaPage> {
                 builder: (_, state) => crearMapa(state)),
             MarcadorManual(),
             FadeInUp(
-              duration: Duration(milliseconds: 250),
-              child: CustomSlidingPanel(fabHeightClosed: fabHeightClosed)),
+                duration: Duration(milliseconds: 250),
+                child: CustomSlidingPanel(fabHeightClosed: fabHeightClosed)),
             Positioned(
               top: 10,
               child: Row(
@@ -110,17 +110,21 @@ class _MapaPageState extends State<MapaPage> {
             ubicacionDefecto, // se mostrara una ubicación por defecto si no se encuentra ninguna
         zoom: 15);
 
-    return GoogleMap(
-      initialCameraPosition: cameraPosition,
-      myLocationEnabled: true,
-      myLocationButtonEnabled: false,
-      zoomControlsEnabled: false,
-      onMapCreated: mapaBloc
-          .initMapa, // el primer argumento de onMapCreated se asignara al mapaBloc.initMap
-      polylines: mapaBloc.state.polylines.values.toSet(),
-      onCameraMove: (cameraPosition) {
-        // cameraPosition.target = LatLng central del mapa
-        mapaBloc.add(OnMovioMapa(cameraPosition.target));
+    return BlocBuilder<MapaBloc, MapaState>(
+      builder: (BuildContext context, _) {
+        return GoogleMap(
+          initialCameraPosition: cameraPosition,
+          myLocationEnabled: true,
+          myLocationButtonEnabled: false,
+          zoomControlsEnabled: false,
+          onMapCreated: mapaBloc
+              .initMapa, // el primer argumento de onMapCreated se asignara al mapaBloc.initMap
+          polylines: mapaBloc.state.polylines.values.toSet(),
+          onCameraMove: (cameraPosition) {
+            // cameraPosition.target = LatLng central del mapa
+            mapaBloc.add(OnMovioMapa(cameraPosition.target));
+          },
+        );
       },
     );
   }

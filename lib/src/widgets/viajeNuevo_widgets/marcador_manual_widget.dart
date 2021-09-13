@@ -2,7 +2,13 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/slidingUpPanel_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/helpers/helpers.dart';
+
+import 'package:flutter_viaje_express_cliente/src/services/viajeNuevo/traffic_service.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:polyline_do/polyline_do.dart' as Poly;
 
 import 'package:provider/provider.dart';
 
@@ -38,7 +44,6 @@ class _BuildMarcadorManual extends StatelessWidget {
                 backgroundColor: Colors.white,
                 child: IconButton(
                     onPressed: () {
-                      //context.read<SlidingUpPanelProvider>().reiniciar();
                       context
                           .read<BusquedaBloc>()
                           .add(OnDesactivarMarcadorManual());
@@ -54,7 +59,7 @@ class _BuildMarcadorManual extends StatelessWidget {
           child: Transform.translate(
             offset: Offset(0, -12),
             child: BounceInDown(
-              from:100,
+              from: 100,
               child: Icon(
                 Icons.location_on,
                 size: 50,
@@ -77,9 +82,41 @@ class _BuildMarcadorManual extends StatelessWidget {
               shape: StadiumBorder(),
               elevation: 0,
               splashColor: Colors.transparent,
-              onPressed: () {},
+              onPressed: () {
+                this.calcularDestino(context);
+              },
             ))
       ],
     );
+  }
+
+  void calcularDestino(BuildContext context) async {
+    calculandoAlerta(context);
+
+    final trafficService = new TrafficService();
+    final mapaBloc = context.read<MapaBloc>();
+
+    final inicio = context.read<MiUbicacionBloc>().state.ubicacion;
+    final destino = mapaBloc.state.ubicacionCentral;
+    print('inicio $inicio');
+    print('destino $destino');
+    final trafficResponse = await trafficService.getCoordsInicioYDestino(
+        inicio!, destino!); //destino tiene null por defecto
+
+    final geometry = trafficResponse.routes[0].geometry;
+    final duracion = trafficResponse.routes[0].duration;
+    final distancia = trafficResponse.routes[0].distance;
+
+    //Decodificar los puntos geometry
+    final points = Poly.Polyline.Decode(encodedString: geometry, precision: 6)
+        .decodedCoords;
+    final List<LatLng> rutaCoordenadas =
+        points.map((point) => LatLng(point[0], point[1])).toList();
+
+    mapaBloc
+        .add(OnCrearRutaInicioDestino(rutaCoordenadas, distancia, duracion));
+
+    Navigator.of(context).pop();
+    context.read<BusquedaBloc>().add(OnDesactivarMarcadorManual());
   }
 }

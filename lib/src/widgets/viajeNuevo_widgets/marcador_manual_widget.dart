@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.dart';
@@ -30,28 +31,34 @@ class _BuildMarcadorManual extends StatelessWidget {
         Positioned(
             top: 30,
             left: 20,
-            child: CircleAvatar(
-              maxRadius: 25,
-              backgroundColor: Colors.white,
-              child: IconButton(
-                  onPressed: () {
-                    //context.read<SlidingUpPanelProvider>().reiniciar();
-                    context
-                        .read<BusquedaBloc>()
-                        .add(OnDesactivarMarcadorManual());
-                  },
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.black87,
-                  )),
+            child: FadeInLeft(
+              duration: Duration(milliseconds: 160),
+              child: CircleAvatar(
+                maxRadius: 25,
+                backgroundColor: Colors.white,
+                child: IconButton(
+                    onPressed: () {
+                      //context.read<SlidingUpPanelProvider>().reiniciar();
+                      context
+                          .read<BusquedaBloc>()
+                          .add(OnDesactivarMarcadorManual());
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.black87,
+                    )),
+              ),
             )),
 
         Center(
           child: Transform.translate(
             offset: Offset(0, -12),
-            child: Icon(
-              Icons.location_on,
-              size: 50,
+            child: BounceInDown(
+              from:100,
+              child: Icon(
+                Icons.location_on,
+                size: 50,
+              ),
             ),
           ),
         ),

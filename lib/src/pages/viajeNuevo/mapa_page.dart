@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -73,7 +74,9 @@ class _MapaPageState extends State<MapaPage> {
             BlocBuilder<MiUbicacionBloc, MiUbicacionState>(
                 builder: (_, state) => crearMapa(state)),
             MarcadorManual(),
-            CustomSlidingPanel(fabHeightClosed: fabHeightClosed),
+            FadeInUp(
+              duration: Duration(milliseconds: 250),
+              child: CustomSlidingPanel(fabHeightClosed: fabHeightClosed)),
             Positioned(
               top: 10,
               child: Row(

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.dart';
@@ -26,8 +24,10 @@ class CustomInputSearchDestino extends StatelessWidget {
         child: GestureDetector(
           onTap: () async {
             final proximidad = context.read<MiUbicacionBloc>().state.ubicacion;
+            final historial = context.read<BusquedaBloc>().state.historial;
+
             final resultado = await showSearch(
-                context: context, delegate: SearchDestino(proximidad!));
+                context: context, delegate: SearchDestino(proximidad!, historial!));
             this.retornoBusqueda(context, resultado!);
           },
           child: Container(
@@ -83,5 +83,9 @@ class CustomInputSearchDestino extends StatelessWidget {
         .add(OnCrearRutaInicioDestino(rutaCoordenadas, distancia, duracion));
 
     Navigator.of(context).pop();
+
+    //agregar al historial
+    final busquedaBloc = context.read<BusquedaBloc>();
+    busquedaBloc.add(OnAgregarHistorial(result));
   }
 }

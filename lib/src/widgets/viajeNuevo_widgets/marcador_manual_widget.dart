@@ -5,6 +5,7 @@ import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.da
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/helpers/helpers.dart';
+import 'package:flutter_viaje_express_cliente/src/models/reverse_query_response.dart';
 
 import 'package:flutter_viaje_express_cliente/src/services/viajeNuevo/traffic_service.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -98,14 +99,20 @@ class _BuildMarcadorManual extends StatelessWidget {
 
     final inicio = context.read<MiUbicacionBloc>().state.ubicacion;
     final destino = mapaBloc.state.ubicacionCentral;
+
+    //obtener informacion del destino
+    final reverseQueryResponse =
+        await trafficService.getCoordenadasInfo(destino!);
+
     print('inicio $inicio');
     print('destino $destino');
     final trafficResponse = await trafficService.getCoordsInicioYDestino(
-        inicio!, destino!); //destino tiene null por defecto
+        inicio!, destino); //destino tiene null por defecto
 
     final geometry = trafficResponse.routes[0].geometry;
     final duracion = trafficResponse.routes[0].duration;
     final distancia = trafficResponse.routes[0].distance;
+    final nombreDestino = reverseQueryResponse.features![0].text;
 
     //Decodificar los puntos geometry
     final points = Poly.Polyline.Decode(encodedString: geometry, precision: 6)
@@ -113,8 +120,8 @@ class _BuildMarcadorManual extends StatelessWidget {
     final List<LatLng> rutaCoordenadas =
         points.map((point) => LatLng(point[0], point[1])).toList();
 
-    mapaBloc
-        .add(OnCrearRutaInicioDestino(rutaCoordenadas, distancia, duracion));
+    mapaBloc.add(OnCrearRutaInicioDestino(
+        rutaCoordenadas, distancia, duracion, nombreDestino!));
 
     Navigator.of(context).pop();
     context.read<BusquedaBloc>().add(OnDesactivarMarcadorManual());

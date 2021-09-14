@@ -120,6 +120,7 @@ class _MapaPageState extends State<MapaPage> {
           onMapCreated: mapaBloc
               .initMapa, // el primer argumento de onMapCreated se asignara al mapaBloc.initMap
           polylines: mapaBloc.state.polylines.values.toSet(),
+          markers: mapaBloc.state.markers.values.toSet(),
           onCameraMove: (cameraPosition) {
             // cameraPosition.target = LatLng central del mapa
             mapaBloc.add(OnMovioMapa(cameraPosition.target));

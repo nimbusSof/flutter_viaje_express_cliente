@@ -116,9 +116,34 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     final currentPolylines = state.polylines;
     currentPolylines['mi_ruta_destino'] = this._miRutaDestino;
 
-    yield state.copyWith(
-      polylines: currentPolylines,
-      // TODO: Marcadores
-    );
+    //Marcadores
+    final markerInicio = new Marker(
+        markerId: MarkerId('inicio'),
+        position: event.rutaCoordenadas[0],
+        infoWindow: InfoWindow(
+            title: 'Mi Ubicación',
+            snippet:
+                'Duración de la ruta: ${(event.duracion / 60).floor()} minutos'));
+
+    double kilometros = event.distancia / 1000;
+    kilometros = (kilometros * 100).floorToDouble();
+    kilometros = kilometros / 100;
+
+    final markerDestino = new Marker(
+        markerId: MarkerId('destino'),
+        position: event.rutaCoordenadas[event.rutaCoordenadas.length - 1],
+        infoWindow: InfoWindow(
+            title: event.nombreDestino, snippet: 'Distancia: $kilometros Km'));
+
+    final newMarkers = {...state.markers};
+    newMarkers['inicio'] = markerInicio;
+    newMarkers['destino'] = markerDestino;
+
+    Future.delayed(Duration(milliseconds: 300)).then((value) {
+      //_mapController!.showMarkerInfoWindow(MarkerId('inicio'));
+      _mapController!.showMarkerInfoWindow(MarkerId('destino'));
+    });
+
+    yield state.copyWith(polylines: currentPolylines, markers: newMarkers);
   }
 }

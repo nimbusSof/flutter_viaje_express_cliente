@@ -8,6 +8,7 @@ import 'package:flutter_viaje_express_cliente/src/providers/forms_signIn_signUp_
 
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosSignUp_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/utils/Validaciones/validaciones.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_dropDown.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_input.dart';
@@ -35,7 +36,7 @@ class FormState extends State<Form0> {
     final signUpService = Provider.of<SignUpProvider>(context);
     final signInForm = Provider.of<SignInFormProvider>(context);
 
-  // se pone fecha por defecto al signUp
+    // se pone fecha por defecto al signUp
     /* if (signUpService.cliente.fechaNacimiento == null) {
       signUpService.agregarFechaNacimiento(DateTime.parse('1935-08-12'));
     } */
@@ -58,7 +59,11 @@ class FormState extends State<Form0> {
               textController: cedulaCtrl,
               validator: (value) {
                 if (value != null && value.length > 0) {
-                  return null;
+                  if (cedulaEcuatorianaValida(value)) {
+                    return null;
+                  } else {
+                    return 'Cédula no válida';
+                  }
                 } else {
                   return 'Porfavor ingresa tu cédula';
                 }
@@ -149,10 +154,9 @@ class Form1State extends State<Form1> {
     telefonoCtrl.text = signUpService.cliente.telefono;
 
     // agrega la fecha fuardada en el estado provider
-    if(signUpService.cliente.fechaNacimiento!=null){
+    if (signUpService.cliente.fechaNacimiento != null) {
       dateCtrl.text = signUpService.cliente.fechaNacimiento.toString();
     }
-    
 
     return Container(
       margin: EdgeInsets.only(top: 20),

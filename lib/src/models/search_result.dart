@@ -4,11 +4,13 @@ class SearchResult {
   final bool cancelo;
   final bool? manual;
   final LatLng? position;
+  final String? nombreDestino;
   final String? descripcion;
 
   SearchResult(
       {required this.cancelo, 
       this.manual, 
-      this.position, 
+      this.position,
+      this.nombreDestino, 
       this.descripcion});
 }

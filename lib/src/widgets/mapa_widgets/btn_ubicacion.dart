@@ -21,9 +21,8 @@ class BtnUbicacion extends StatelessWidget {
             color: Colors.black87,
           ),
           onPressed: () {
-            final destino = miUbicacionBloc.state.ubicacion;
-            print('btnUbicacion $destino');
-            mapaBloc.moverCamara(destino ?? ubicacionDefecto);
+            final ubicacionActual = miUbicacionBloc.state.ubicacion;
+            mapaBloc.moverCamara(ubicacionActual ?? ubicacionDefecto);
           },
         ),
       ),

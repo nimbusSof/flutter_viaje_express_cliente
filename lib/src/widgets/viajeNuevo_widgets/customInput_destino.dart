@@ -66,12 +66,16 @@ class CustomInputSearchDestino extends StatelessWidget {
 
     final trafficService = TrafficService();
     final mapaBloc = context.read<MapaBloc>();
-
+    final recogida = mapaBloc.state.ubicacionRecogida;
     final inicio = context.read<MiUbicacionBloc>().state.ubicacion;
     final destino = result.position;
 
+    //si hay un lugarRecogida definido previamente, entonces se crea la ruta tomando en 
+    //cuenta ese lugarRecogida, sino existe este lugarRecogida entonces se crea la ruta
+    //en base a la ubicacionActual y el destino que se buscó
+
     final drivingResponse =
-        await trafficService.getCoordsInicioYDestino(inicio!, destino!);
+        await trafficService.getCoordsInicioYDestino(recogida!=null?recogida:inicio!, destino!);
 
     final geometry = drivingResponse.routes[0].geometry;
     final duracion = drivingResponse.routes[0].duration;
@@ -86,6 +90,7 @@ class CustomInputSearchDestino extends StatelessWidget {
     mapaBloc
         .add(OnCrearRutaInicioDestino(rutaCoordenadas, distancia, duracion, nombreDestino!));
 
+    mapaBloc.moverCamara(destino);
     Navigator.of(context).pop();
 
     //agregar al historial

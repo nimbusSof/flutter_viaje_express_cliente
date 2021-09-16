@@ -111,8 +111,8 @@ class _MapaPageState extends State<MapaPage> {
     mapaBloc.add(OnNuevaUbicacion(state.ubicacion ?? ubicacionDefecto));
 
     final cameraPosition = new CameraPosition(
-        target: state.ubicacion ??
-            ubicacionDefecto, // se mostrara una ubicación por defecto si no se encuentra ninguna
+        target: mapaBloc.state.ubicacionRecogida ??
+            state.ubicacion!, // se mostrara una ubicación por defecto si no se encuentra ninguna
         zoom: 15);
 
     return BlocBuilder<MapaBloc, MapaState>(

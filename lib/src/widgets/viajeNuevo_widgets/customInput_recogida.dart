@@ -33,7 +33,6 @@ class CustomInputSearchRecogida extends StatelessWidget {
             this.retornoBusqueda(context, resultado!);
           },
           child: Container(
-            
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             width: double.infinity,
             child: Text('Lugar de recogida',
@@ -67,14 +66,30 @@ class CustomInputSearchRecogida extends StatelessWidget {
 
     // calcular la ruta en base al valor: Result
 
-    final trafficService = TrafficService();
+    //final trafficService = TrafficService();
     final mapaBloc = context.read<MapaBloc>();
 
-    final inicio = context.read<MiUbicacionBloc>().state.ubicacion;
-    final destino = result.position;
+    final recogida = result.position;
+    final destinoSeleccionado = mapaBloc.state.ubicacionDestino;
 
+    if (destinoSeleccionado != null) {
+      _crearRutaInicioDestino(context, recogida!, destinoSeleccionado, result);
+    } else {
+      mapaBloc.add(OnCrearMarcadorInicio(
+          coordenadasMarker: recogida!, nombreUbicacion: 'Lugar de recogida'));
+      final busquedaBloc = context.read<BusquedaBloc>();
+      mapaBloc.moverCamara(recogida);
+      Navigator.of(context).pop();
+      busquedaBloc.add(OnAgregarHistorial(result));
+    }
+  }
+
+  void _crearRutaInicioDestino(BuildContext context, LatLng inicio,
+      LatLng destino, SearchResult result) async {
+    final trafficService = TrafficService();
+    final mapaBloc = context.read<MapaBloc>();
     final drivingResponse =
-        await trafficService.getCoordsInicioYDestino(inicio!, destino!);
+        await trafficService.getCoordsInicioYDestino(inicio, destino);
 
     final geometry = drivingResponse.routes[0].geometry;
     final duracion = drivingResponse.routes[0].duration;
@@ -86,8 +101,8 @@ class CustomInputSearchRecogida extends StatelessWidget {
         .map((point) => LatLng(point[0], point[1]))
         .toList();
 
-    mapaBloc
-        .add(OnCrearRutaInicioDestino(rutaCoordenadas, distancia, duracion, nombreDestino!));
+    mapaBloc.add(OnCrearRutaInicioDestino(
+        rutaCoordenadas, distancia, duracion, nombreDestino!));
 
     Navigator.of(context).pop();
 

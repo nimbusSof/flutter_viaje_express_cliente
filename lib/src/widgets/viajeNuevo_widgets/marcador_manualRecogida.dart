@@ -100,10 +100,14 @@ class _BuildMarcadorRecogida extends StatelessWidget {
       _calcularDestino(context, recogida!=null?recogida:inicio, destino);
 
     } else {
-
+      final trafficService = new TrafficService();
+      //obtener informacion del lugar de recogida  
+    final reverseQueryResponseInicio =
+        await trafficService.getCoordenadasInfo(recogida!); 
+        final nombreInicio = reverseQueryResponseInicio.features![0].text; 
       mapaBloc.add(OnCrearMarcadorInicio(
-        coordenadasMarker: recogida!, 
-        nombreUbicacion: 'Lugar de recogida'));
+        coordenadasMarker: recogida, 
+        nombreUbicacion: nombreInicio!));
       context.read<BusquedaBloc>().add(OnDesactivarMarcadorManualRecogida());
     }
   }
@@ -117,8 +121,12 @@ class _BuildMarcadorRecogida extends StatelessWidget {
 
 
     //obtener informacion del destino
-    final reverseQueryResponse =
+    final reverseQueryResponseDestino =
         await trafficService.getCoordenadasInfo(destino);
+
+    //obtener informacion del lugar de recogida  
+    final reverseQueryResponseInicio =
+        await trafficService.getCoordenadasInfo(inicio);  
 
    
     final trafficResponse = await trafficService.getCoordsInicioYDestino(
@@ -127,7 +135,8 @@ class _BuildMarcadorRecogida extends StatelessWidget {
     final geometry = trafficResponse.routes[0].geometry;
     final duracion = trafficResponse.routes[0].duration;
     final distancia = trafficResponse.routes[0].distance;
-    final nombreDestino = reverseQueryResponse.features![0].text;
+    final nombreDestino = reverseQueryResponseDestino.features![0].text;
+    final nombreInicio = reverseQueryResponseInicio.features![0].text;
 
     //Decodificar los puntos geometry
     final points = Poly.Polyline.Decode(encodedString: geometry, precision: 6)
@@ -136,7 +145,7 @@ class _BuildMarcadorRecogida extends StatelessWidget {
         points.map((point) => LatLng(point[0], point[1])).toList();
 
     mapaBloc.add(OnCrearRutaInicioDestino(
-        rutaCoordenadas, distancia, duracion, nombreDestino!));
+        rutaCoordenadas, distancia, duracion, nombreDestino!, nombreInicio: nombreInicio));
 
     Navigator.of(context).pop();
     context.read<BusquedaBloc>().add(OnDesactivarMarcadorManualRecogida());

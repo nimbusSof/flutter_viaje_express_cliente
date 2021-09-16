@@ -124,7 +124,7 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
         markerId: MarkerId('inicio'),
         position: event.rutaCoordenadas[0], //ubicación actual del cliente
         infoWindow: InfoWindow(
-            title: 'Mi Ubicación',
+            title: 'Lugar de recogida: ${event.nombreInicio}',
             snippet:
                 'Duración de la ruta: ${(event.duracion / 60).floor()} minutos'));
 
@@ -170,7 +170,7 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
         markerId: MarkerId(
             'inicio'), //sobre escribe al marcador que tenga este markerId
         position: event.coordenadasMarker, //lugar de recogida del cliente
-        infoWindow: InfoWindow(title: 'Lugar de Recogida'));
+        infoWindow: InfoWindow(title: 'Lugar de Recogida: ${event.nombreUbicacion}'));
 
     final newMarkers = {...state.markers};
     newMarkers['inicio'] = markerInicio;

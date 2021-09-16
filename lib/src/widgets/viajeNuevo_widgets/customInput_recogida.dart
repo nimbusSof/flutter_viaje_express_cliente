@@ -75,10 +75,21 @@ class CustomInputSearchRecogida extends StatelessWidget {
     if (destinoSeleccionado != null) {
       _crearRutaInicioDestino(context, recogida!, destinoSeleccionado, result);
     } else {
+      final trafficService = new TrafficService();
+      //obtener informacion del lugar de recogida  
+    final reverseQueryResponseInicio =
+        await trafficService.getCoordenadasInfo(recogida!); 
+
+        final nombreInicio = reverseQueryResponseInicio.features![0].text; 
+
       mapaBloc.add(OnCrearMarcadorInicio(
-          coordenadasMarker: recogida!, nombreUbicacion: 'Lugar de recogida'));
+          coordenadasMarker: recogida, nombreUbicacion: nombreInicio!));
+
       final busquedaBloc = context.read<BusquedaBloc>();
+      
+      //se mueve la posicion de la pantalla hacia el lugar de recogida
       mapaBloc.moverCamara(recogida);
+
       Navigator.of(context).pop();
       busquedaBloc.add(OnAgregarHistorial(result));
     }
@@ -90,6 +101,11 @@ class CustomInputSearchRecogida extends StatelessWidget {
     final mapaBloc = context.read<MapaBloc>();
     final drivingResponse =
         await trafficService.getCoordsInicioYDestino(inicio, destino);
+   
+      //obtener informacion del lugar de recogida  
+    final reverseQueryResponseInicio =
+        await trafficService.getCoordenadasInfo(inicio); 
+        final nombreInicio = reverseQueryResponseInicio.features![0].text;     
 
     final geometry = drivingResponse.routes[0].geometry;
     final duracion = drivingResponse.routes[0].duration;
@@ -102,7 +118,7 @@ class CustomInputSearchRecogida extends StatelessWidget {
         .toList();
 
     mapaBloc.add(OnCrearRutaInicioDestino(
-        rutaCoordenadas, distancia, duracion, nombreDestino!));
+        rutaCoordenadas, distancia, duracion, nombreDestino!, nombreInicio: nombreInicio));
 
     Navigator.of(context).pop();
 

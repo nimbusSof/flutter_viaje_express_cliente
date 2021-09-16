@@ -77,6 +77,11 @@ class CustomInputSearchDestino extends StatelessWidget {
     final drivingResponse =
         await trafficService.getCoordsInicioYDestino(recogida!=null?recogida:inicio!, destino!);
 
+    final reverseQueryResponseInicio =
+        await trafficService.getCoordenadasInfo(recogida!=null?recogida:inicio!); 
+
+        final nombreInicio = reverseQueryResponseInicio.features![0].text;     
+
     final geometry = drivingResponse.routes[0].geometry;
     final duracion = drivingResponse.routes[0].duration;
     final distancia = drivingResponse.routes[0].distance;
@@ -88,7 +93,7 @@ class CustomInputSearchDestino extends StatelessWidget {
         .toList();
 
     mapaBloc
-        .add(OnCrearRutaInicioDestino(rutaCoordenadas, distancia, duracion, nombreDestino!));
+        .add(OnCrearRutaInicioDestino(rutaCoordenadas, distancia, duracion, nombreDestino!, nombreInicio: nombreInicio));
 
     mapaBloc.moverCamara(destino);
     Navigator.of(context).pop();

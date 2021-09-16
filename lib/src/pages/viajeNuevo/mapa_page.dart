@@ -1,11 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/estructuraPage.dart';
+
 import 'package:flutter_viaje_express_cliente/src/providers/slidingUpPanel_provider.dart';
 
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
@@ -14,11 +14,12 @@ import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar
 import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_seguir_ubicacion.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_ubicacion.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/customButtomDrawer.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/marcador_manual_widget.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/marcador_manualDestino.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/marcador_manualRecogida.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/slidingPanel.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
+
 
 class MapaPage extends StatefulWidget {
   @override
@@ -55,7 +56,10 @@ class _MapaPageState extends State<MapaPage> {
         if (state.seleccionManual) {
           panel.reiniciar();
           return _estructuraPage();
-        } else {
+        } else if(state.seleccionManualRecogida){
+          panel.reiniciar();
+          return _estructuraPage();
+        }else{
           return _estructuraPage();
         }
       },
@@ -74,6 +78,7 @@ class _MapaPageState extends State<MapaPage> {
             BlocBuilder<MiUbicacionBloc, MiUbicacionState>(
                 builder: (_, state) => crearMapa(state)),
             MarcadorManual(),
+            MarcadorManualRecogida(),
             FadeInUp(
                 duration: Duration(milliseconds: 250),
                 child: CustomSlidingPanel(fabHeightClosed: fabHeightClosed)),
@@ -111,7 +116,7 @@ class _MapaPageState extends State<MapaPage> {
         zoom: 15);
 
     return BlocBuilder<MapaBloc, MapaState>(
-      builder: (BuildContext context, _) {
+      builder: (BuildContext context, state) {
         return GoogleMap(
           initialCameraPosition: cameraPosition,
           myLocationEnabled: true,
@@ -119,8 +124,8 @@ class _MapaPageState extends State<MapaPage> {
           zoomControlsEnabled: false,
           onMapCreated: mapaBloc
               .initMapa, // el primer argumento de onMapCreated se asignara al mapaBloc.initMap
-          polylines: mapaBloc.state.polylines.values.toSet(),
-          markers: mapaBloc.state.markers.values.toSet(),
+          polylines: state.polylines.values.toSet(),
+          markers: state.markers.values.toSet(),
           onCameraMove: (cameraPosition) {
             // cameraPosition.target = LatLng central del mapa
             mapaBloc.add(OnMovioMapa(cameraPosition.target));

@@ -7,6 +7,9 @@ class MapaState {
   final bool seguirUbicacion;
 
   final LatLng? ubicacionCentral;
+  final LatLng? ubicacionRecogida;
+  final LatLng? ubicacionDestino;
+  
 
   //Polylines
   final Map<String, Polyline> polylines;
@@ -17,6 +20,8 @@ class MapaState {
       this.dibujarRecorrido = false,
       this.seguirUbicacion = false,
       this.ubicacionCentral,
+      this.ubicacionRecogida,
+      this.ubicacionDestino,
       Map<String, Polyline>? polylines,
       Map<String, Marker>? markers})
       : this.polylines = polylines ?? new Map(),
@@ -27,6 +32,8 @@ class MapaState {
           bool? dibujarRecorrido,
           bool? seguirUbicacion,
           final LatLng? ubicacionCentral,
+          LatLng? ubicacionRecogida,
+          LatLng? ubicacionDestino,
           Map<String, Polyline>? polylines,
           Map<String, Marker>? markers}) =>
       new MapaState(
@@ -34,6 +41,8 @@ class MapaState {
           polylines: polylines ?? this.polylines,
           markers: markers ?? this.markers,
           ubicacionCentral: ubicacionCentral ?? this.ubicacionCentral,
+          ubicacionRecogida: ubicacionRecogida ?? this.ubicacionRecogida,
+          ubicacionDestino: ubicacionDestino ?? this.ubicacionDestino,
           seguirUbicacion: seguirUbicacion ?? this.seguirUbicacion,
           dibujarRecorrido: dibujarRecorrido ?? this.dibujarRecorrido);
 }

@@ -5,7 +5,6 @@ import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.da
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/helpers/helpers.dart';
-import 'package:flutter_viaje_express_cliente/src/models/reverse_query_response.dart';
 
 import 'package:flutter_viaje_express_cliente/src/services/viajeNuevo/traffic_service.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -13,13 +12,13 @@ import 'package:polyline_do/polyline_do.dart' as Poly;
 
 import 'package:provider/provider.dart';
 
-class MarcadorManual extends StatelessWidget {
+class MarcadorManualRecogida extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BusquedaBloc, BusquedaState>(
       builder: (context, state) {
-        if (state.seleccionManual) {
-          return _BuildMarcadorManual();
+        if (state.seleccionManualRecogida) {
+          return _BuildMarcadorRecogida();
         } else {
           return Container();
         }
@@ -28,7 +27,7 @@ class MarcadorManual extends StatelessWidget {
   }
 }
 
-class _BuildMarcadorManual extends StatelessWidget {
+class _BuildMarcadorRecogida extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -47,7 +46,7 @@ class _BuildMarcadorManual extends StatelessWidget {
                     onPressed: () {
                       context
                           .read<BusquedaBloc>()
-                          .add(OnDesactivarMarcadorManual());
+                          .add(OnDesactivarMarcadorManualRecogida());
                     },
                     icon: Icon(
                       Icons.arrow_back,
@@ -76,38 +75,54 @@ class _BuildMarcadorManual extends StatelessWidget {
             child: MaterialButton(
               minWidth: width - 120,
               child: Text(
-                'Confirmar destino',
-                style: TextStyle(color: Colors.white),
+                'Hecho',
+                style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               color: Colors.black,
               shape: StadiumBorder(),
               elevation: 0,
               splashColor: Colors.transparent,
               onPressed: () {
-                this.calcularDestino(context);
+                this._colocarMarcadorRecogida(context);
               },
             ))
       ],
     );
   }
 
-  void calcularDestino(BuildContext context) async {
+  void _colocarMarcadorRecogida(BuildContext context) async {
+    final mapaBloc = context.read<MapaBloc>();
+    final recogida = mapaBloc.state.ubicacionCentral;
+    final inicio = context.read<MiUbicacionBloc>().state.ubicacion!;
+    final destino = mapaBloc.state.ubicacionDestino;
+
+    if (destino != null) {
+      _calcularDestino(context, recogida!=null?recogida:inicio, destino);
+
+    } else {
+
+      mapaBloc.add(OnCrearMarcadorInicio(
+        coordenadasMarker: recogida!, 
+        nombreUbicacion: 'Lugar de recogida'));
+      context.read<BusquedaBloc>().add(OnDesactivarMarcadorManualRecogida());
+    }
+  }
+
+  void _calcularDestino(
+      BuildContext context, LatLng inicio, LatLng destino) async {
     calculandoAlerta(context);
 
     final trafficService = new TrafficService();
     final mapaBloc = context.read<MapaBloc>();
 
-    final inicio = context.read<MiUbicacionBloc>().state.ubicacion;
-    final destino = mapaBloc.state.ubicacionCentral;
 
     //obtener informacion del destino
     final reverseQueryResponse =
-        await trafficService.getCoordenadasInfo(destino!);
+        await trafficService.getCoordenadasInfo(destino);
 
-    print('inicio $inicio');
-    print('destino $destino');
+   
     final trafficResponse = await trafficService.getCoordsInicioYDestino(
-        inicio!, destino); //destino tiene null por defecto
+        inicio, destino); 
 
     final geometry = trafficResponse.routes[0].geometry;
     final duracion = trafficResponse.routes[0].duration;
@@ -124,6 +139,6 @@ class _BuildMarcadorManual extends StatelessWidget {
         rutaCoordenadas, distancia, duracion, nombreDestino!));
 
     Navigator.of(context).pop();
-    context.read<BusquedaBloc>().add(OnDesactivarMarcadorManual());
+    context.read<BusquedaBloc>().add(OnDesactivarMarcadorManualRecogida());
   }
 }

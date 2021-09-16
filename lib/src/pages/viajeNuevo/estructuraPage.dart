@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.dart';
-import 'package:flutter_viaje_express_cliente/src/models/search_result.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/search/search_destino.dart';
+
 import 'package:flutter_viaje_express_cliente/src/providers/datosViajeNuevo_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/formsCliente_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_input.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/customButton_viajeNuevo_widget.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/customInput_destino.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/customInput_recogida.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/radioButtons_viajeNuevo_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -62,7 +61,7 @@ class Estructura extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  CustomInput(
+                  /* CustomInput(
                     icon: Icons.location_on,
                     placeHolder: 'Mi ubicación',
                     textController: datosViajeNuevo.ubicacionCtrl,
@@ -74,7 +73,9 @@ class Estructura extends StatelessWidget {
                         return 'Porfavor ingresa tu ubicación de viaje';
                       }
                     },
-                  ),
+                  ), */
+
+                  CustomInputSearchRecogida(),
                   
                     //aqui va el input
                   CustomInputSearchDestino(),

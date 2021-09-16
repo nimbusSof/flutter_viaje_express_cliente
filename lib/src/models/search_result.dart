@@ -3,14 +3,18 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' show LatLng;
 class SearchResult {
   final bool cancelo;
   final bool? manual;
+  final bool? lugarRecogida;
+  final bool? lugardestino;
   final LatLng? position;
-  final String? nombreDestino;
+  final String? nombreLugar;
   final String? descripcion;
 
-  SearchResult(
-      {required this.cancelo, 
+  SearchResult( 
+      {required this.cancelo,
+      this.lugarRecogida, 
+      this.lugardestino, 
       this.manual, 
       this.position,
-      this.nombreDestino, 
+      this.nombreLugar, 
       this.descripcion});
 }

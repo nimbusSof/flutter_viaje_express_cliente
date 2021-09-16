@@ -49,7 +49,6 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     MapaEvent event,
   ) async* {
     if (event is OnMapaListo) {
-      print('MAPA LISTO AMIGOS');
       yield state.copyWith(mapaListo: true);
     } else if (event is OnNuevaUbicacion) {
       yield* this._onNuevaUbicacion(
@@ -63,10 +62,11 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
       //print(event.centroMapa);
       yield state.copyWith(ubicacionCentral: event.centroMapa);
     } else if (event is OnMapaCerrado) {
-      print('MAPA CERRADO AMIGOS');
       yield state.copyWith(mapaListo: false);
     } else if (event is OnCrearRutaInicioDestino) {
       yield* _onCrearRutaInicioDestino(event);
+    } else if (event is OnCrearMarcadorInicio) {
+      yield* _onCrearMarcadorInicio(event);
     }
   }
 
@@ -110,16 +110,19 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
 
   Stream<MapaState> _onCrearRutaInicioDestino(
       OnCrearRutaInicioDestino event) async* {
+    //coloca en la polyline la lista de latitudes y longitudes de la ruta inicioDestino
     this._miRutaDestino =
         this._miRutaDestino.copyWith(pointsParam: event.rutaCoordenadas);
 
+    //coloca en la variable currentPolylines la polyline con la lista de latitudes y longitudes
     final currentPolylines = state.polylines;
     currentPolylines['mi_ruta_destino'] = this._miRutaDestino;
 
     //Marcadores
+    //Marcador de la ubicacion de inicio
     final markerInicio = new Marker(
         markerId: MarkerId('inicio'),
-        position: event.rutaCoordenadas[0],
+        position: event.rutaCoordenadas[0], //ubicación actual del cliente
         infoWindow: InfoWindow(
             title: 'Mi Ubicación',
             snippet:
@@ -129,12 +132,15 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     kilometros = (kilometros * 100).floorToDouble();
     kilometros = kilometros / 100;
 
+    //Marcador de la ubicación destino
     final markerDestino = new Marker(
         markerId: MarkerId('destino'),
-        position: event.rutaCoordenadas[event.rutaCoordenadas.length - 1],
+        position: event.rutaCoordenadas[
+            event.rutaCoordenadas.length - 1], //destino del cliente
         infoWindow: InfoWindow(
             title: event.nombreDestino, snippet: 'Distancia: $kilometros Km'));
 
+    //se actualizan los marcadores con la ruta establecida
     final newMarkers = {...state.markers};
     newMarkers['inicio'] = markerInicio;
     newMarkers['destino'] = markerDestino;
@@ -144,6 +150,37 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
       _mapController!.showMarkerInfoWindow(MarkerId('destino'));
     });
 
-    yield state.copyWith(polylines: currentPolylines, markers: newMarkers);
+    //almaceno las coordenadas del destino
+    final ubicacionDestino =
+        event.rutaCoordenadas[event.rutaCoordenadas.length - 1];
+    //almaceno las coordenadas del lugar de recogida
+    final ubicacionRecogida = event.rutaCoordenadas[0];
+
+    //se guardan los polylines de la ruta establecida y los marcadores actualizados
+    yield state.copyWith(
+        polylines: currentPolylines,
+        markers: newMarkers,
+        ubicacionDestino: ubicacionDestino,
+        ubicacionRecogida: ubicacionRecogida);
+  }
+
+  Stream<MapaState> _onCrearMarcadorInicio(OnCrearMarcadorInicio event) async* {
+    //cuando no tenga definido el destino del viaje, entonces solo se mostrará el marcador de inicio
+    final markerInicio = new Marker(
+        markerId: MarkerId(
+            'inicio'), //sobre escribe al marcador que tenga este markerId
+        position: event.coordenadasMarker, //lugar de recogida del cliente
+        infoWindow: InfoWindow(title: 'Lugar de Recogida'));
+
+    final newMarkers = {...state.markers};
+    newMarkers['inicio'] = markerInicio;
+
+    print('hola marcador inicio ${event.coordenadasMarker}');
+
+    final ubicacionRecogida = event.coordenadasMarker;
+
+    //se guardan los polylines de la ruta establecida y los marcadores actualizados
+    yield state.copyWith(
+        markers: newMarkers, ubicacionRecogida: ubicacionRecogida);
   }
 }

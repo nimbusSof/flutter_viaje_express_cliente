@@ -26,7 +26,9 @@ class _CustomSlidingPanelState extends State<CustomSlidingPanel> {
       builder: (BuildContext context, state) {
         if (state.seleccionManual) {
           return Container();
-        } else {
+        } else if(state.seleccionManualRecogida){
+           return Container();
+        }else{
           return _buildSlidingUpPanel();
         }
       },
@@ -54,7 +56,7 @@ class _CustomSlidingPanelState extends State<CustomSlidingPanel> {
           final panelMaxScrollExtent = panelHeightOpen - panelHeightClosed;
           panel.fabHeight =
               position * panelMaxScrollExtent + this.widget.fabHeightClosed;
-          print('alto del panel ${panel.fabHeight}');
+          //print('alto del panel ${panel.fabHeight}');
         }),
       ),
     ]);

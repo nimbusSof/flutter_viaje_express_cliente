@@ -21,13 +21,17 @@ class BusquedaBloc extends Bloc<BusquedaEvent, BusquedaState> {
     } else if (event is OnAgregarHistorial) {
       final existe = state.historial
           ?.where(
-              (result) => result.nombreDestino == event.result.nombreDestino)
+              (result) => result.nombreLugar == event.result.nombreLugar)
           .length;
 
       if (existe == 0) {
         final newHistorial = [...state.historial!, event.result];
         yield state.copyWith(historial: newHistorial);
       }
+    }else if (event is OnActivarMarcadorManualRecogida) {
+      yield state.copyWith(seleccionManualRecogida: true);
+    }else if (event is OnDesactivarMarcadorManualRecogida) {
+      yield state.copyWith(seleccionManualRecogida: false);
     }
   }
 }

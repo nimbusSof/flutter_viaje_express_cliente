@@ -5,14 +5,15 @@ import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/helpers/helpers.dart';
 import 'package:flutter_viaje_express_cliente/src/models/search_result.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/search/search_destino.dart';
+
+import 'package:flutter_viaje_express_cliente/src/pages/search/search_recogida.dart';
 import 'package:flutter_viaje_express_cliente/src/services/viajeNuevo/traffic_service.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:polyline_do/polyline_do.dart' as Poly;
 
 import 'package:provider/provider.dart';
 
-class CustomInputSearchDestino extends StatelessWidget {
+class CustomInputSearchRecogida extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -28,14 +29,14 @@ class CustomInputSearchDestino extends StatelessWidget {
 
             final resultado = await showSearch(
                 context: context,
-                delegate: SearchDestino(proximidad!, historial!));
+                delegate: SearchRecogida(proximidad!, historial!));
             this.retornoBusqueda(context, resultado!);
           },
           child: Container(
             
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             width: double.infinity,
-            child: Text('Escoje tu destino',
+            child: Text('Lugar de recogida',
                 style: TextStyle(color: Colors.black87)),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -53,10 +54,12 @@ class CustomInputSearchDestino extends StatelessWidget {
   }
 
   void retornoBusqueda(BuildContext context, SearchResult result) async {
+    //si se cancela la busqueda del lugar de recogida entonces retorna null
     if (result.cancelo) return;
 
+    // si el marcador manual esta desactivado entonces activalo
     if (result.manual!) {
-      context.read<BusquedaBloc>().add(OnActivarMarcadorManual());
+      context.read<BusquedaBloc>().add(OnActivarMarcadorManualRecogida());
       return;
     }
 

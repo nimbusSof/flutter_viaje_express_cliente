@@ -17,7 +17,16 @@ class OnCrearRutaInicioDestino extends MapaEvent {
   final double duracion;
   final String nombreDestino;
 
-  OnCrearRutaInicioDestino(this.rutaCoordenadas, this.distancia, this.duracion, this.nombreDestino);
+  OnCrearRutaInicioDestino(
+      this.rutaCoordenadas, this.distancia, this.duracion, this.nombreDestino);
+}
+
+class OnCrearMarcadorInicio extends MapaEvent {
+  final List<LatLng>? rutaCoordenadas;
+  final LatLng coordenadasMarker;
+  final String nombreUbicacion;
+  OnCrearMarcadorInicio(
+      {required this.coordenadasMarker, required this.nombreUbicacion, this.rutaCoordenadas});
 }
 
 class OnMovioMapa extends MapaEvent {

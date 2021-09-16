@@ -19,7 +19,9 @@ class _CustomButtonDrawerState extends State<CustomButtonDrawer> {
       builder: (BuildContext context, state) {
         if (state.seleccionManual) {
           return Container();
-        } else {
+        } else if(state.seleccionManualRecogida){
+          return Container();
+        }else{
           return _buildButtonDrawer();
         }
       },

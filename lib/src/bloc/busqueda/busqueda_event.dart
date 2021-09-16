@@ -4,8 +4,10 @@ part of 'busqueda_bloc.dart';
 abstract class BusquedaEvent {}
 
 class OnActivarMarcadorManual extends BusquedaEvent {}
+class OnActivarMarcadorManualRecogida extends BusquedaEvent {}
 
 class OnDesactivarMarcadorManual extends BusquedaEvent {}
+class OnDesactivarMarcadorManualRecogida extends BusquedaEvent {}
 
 class OnAgregarHistorial extends BusquedaEvent {
   final SearchResult result;

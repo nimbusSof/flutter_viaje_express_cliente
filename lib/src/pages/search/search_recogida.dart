@@ -4,14 +4,14 @@ import 'package:flutter_viaje_express_cliente/src/models/search_result.dart';
 import 'package:flutter_viaje_express_cliente/src/services/viajeNuevo/traffic_service.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' show LatLng;
 
-class SearchDestino extends SearchDelegate<SearchResult> {
+class SearchRecogida extends SearchDelegate<SearchResult> {
   @override
   final String searchFieldLabel;
   final TrafficService _trafficService;
   final LatLng proximidad;
-  final List<SearchResult> historial;
+  final List<SearchResult>? historial;
 
-  SearchDestino(this.proximidad, this.historial)
+  SearchRecogida(this.proximidad, this.historial)
       : this.searchFieldLabel = 'Buscar',
         this._trafficService = new TrafficService();
 
@@ -43,12 +43,16 @@ class SearchDestino extends SearchDelegate<SearchResult> {
         children: [
           ListTile(
             leading: Icon(Icons.location_on),
-            title: Text('Colocar ubicación manualmente'),
+            title: Text('Colocar lugar de recogida manualmente'),
             onTap: () {
-              this.close(context, SearchResult(cancelo: false, manual: true));
+              this.close(context, SearchResult(
+                cancelo: false, 
+                manual: true, 
+                lugarRecogida: true,
+                lugardestino: false));
             },
           ),
-          ...this.historial.map(
+          ...this.historial!.map(
             (result) => ListTile(
               leading: Icon(Icons.history),
               title: Text(result.nombreLugar??''),

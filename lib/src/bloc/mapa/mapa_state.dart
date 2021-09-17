@@ -9,7 +9,10 @@ class MapaState {
   final LatLng? ubicacionCentral;
   final LatLng? ubicacionRecogida;
   final LatLng? ubicacionDestino;
-  
+
+  final String? nombrePuntoInicial; 
+  final String? nombreInicio;
+  final String? nombreDestino;
 
   //Polylines
   final Map<String, Polyline> polylines;
@@ -22,10 +25,13 @@ class MapaState {
       this.ubicacionCentral,
       this.ubicacionRecogida,
       this.ubicacionDestino,
+      this.nombrePuntoInicial='',
+      this.nombreInicio='',
+      this.nombreDestino,
       Map<String, Polyline>? polylines,
       Map<String, Marker>? markers})
       : this.polylines = polylines ?? new Map(),
-      this.markers = markers?? new Map();
+        this.markers = markers ?? new Map();
 
   MapaState copyWith(
           {bool? mapaListo,
@@ -34,6 +40,9 @@ class MapaState {
           final LatLng? ubicacionCentral,
           LatLng? ubicacionRecogida,
           LatLng? ubicacionDestino,
+          String? nombrePuntoInicial,
+          String? nombreInicio,
+          String? nombreDestino,
           Map<String, Polyline>? polylines,
           Map<String, Marker>? markers}) =>
       new MapaState(
@@ -43,6 +52,9 @@ class MapaState {
           ubicacionCentral: ubicacionCentral ?? this.ubicacionCentral,
           ubicacionRecogida: ubicacionRecogida ?? this.ubicacionRecogida,
           ubicacionDestino: ubicacionDestino ?? this.ubicacionDestino,
+          nombrePuntoInicial: nombrePuntoInicial ?? this.nombrePuntoInicial,
+          nombreDestino: nombreDestino ?? this.nombreDestino,
+          nombreInicio: nombreInicio ?? this.nombreInicio,
           seguirUbicacion: seguirUbicacion ?? this.seguirUbicacion,
           dibujarRecorrido: dibujarRecorrido ?? this.dibujarRecorrido);
 }

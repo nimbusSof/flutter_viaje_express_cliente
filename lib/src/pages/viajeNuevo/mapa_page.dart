@@ -20,7 +20,6 @@ import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/sli
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
-
 class MapaPage extends StatefulWidget {
   @override
   _MapaPageState createState() => _MapaPageState();
@@ -53,13 +52,10 @@ class _MapaPageState extends State<MapaPage> {
 
     return BlocBuilder<BusquedaBloc, BusquedaState>(
       builder: (BuildContext context, state) {
-        if (state.seleccionManual) {
+        if (state.seleccionManual || state.seleccionManualRecogida) {
           panel.reiniciar();
           return _estructuraPage();
-        } else if(state.seleccionManualRecogida){
-          panel.reiniciar();
-          return _estructuraPage();
-        }else{
+        } else {
           return _estructuraPage();
         }
       },
@@ -109,6 +105,8 @@ class _MapaPageState extends State<MapaPage> {
     final mapaBloc = BlocProvider.of<MapaBloc>(context);
 
     mapaBloc.add(OnNuevaUbicacion(state.ubicacion ?? ubicacionDefecto));
+    print('recarga mapa');
+    
 
     final cameraPosition = new CameraPosition(
         target: mapaBloc.state.ubicacionRecogida ??
@@ -134,4 +132,6 @@ class _MapaPageState extends State<MapaPage> {
       },
     );
   }
+
+  
 }

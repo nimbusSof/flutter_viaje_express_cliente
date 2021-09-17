@@ -97,6 +97,22 @@ class TrafficService {
 
     return data;
   }
+  
+  Future<ReverseQueryResponse> getCoordenadasInfoInicial(Future<LatLng> destinoCoors) async {
+    
+    final url =
+        '${this._baseGeo}/mapbox.places/${destinoCoors.then((value) => value.longitude)},${destinoCoors.then((value) => value.latitude)}.json';
+
+    final resp = await this._dio.get(url, queryParameters: {
+      'access_token': this._apiKey,
+      'language': 'es',
+    });
+
+    final data = reverseQueryResponseFromJson(resp.data);
+
+    return data;
+  }
+
 
   void close() {
     _sugerenciasStreamController.close();

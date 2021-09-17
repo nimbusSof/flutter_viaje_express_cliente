@@ -145,7 +145,11 @@ class _BuildMarcadorRecogida extends StatelessWidget {
         points.map((point) => LatLng(point[0], point[1])).toList();
 
     mapaBloc.add(OnCrearRutaInicioDestino(
-        rutaCoordenadas, distancia, duracion, nombreDestino!, nombreInicio: nombreInicio));
+        rutaCoordenadas: rutaCoordenadas, 
+        distancia: distancia, 
+        duracion: duracion, 
+        nombreDestino: nombreDestino!, 
+        nombreInicio: nombreInicio));
 
     Navigator.of(context).pop();
     context.read<BusquedaBloc>().add(OnDesactivarMarcadorManualRecogida());

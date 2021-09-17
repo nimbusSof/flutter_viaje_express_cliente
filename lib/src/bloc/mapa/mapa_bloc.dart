@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart' show Colors;
+import 'package:flutter_viaje_express_cliente/src/services/viajeNuevo/traffic_service.dart';
 import 'package:flutter_viaje_express_cliente/src/themes/uber_map_themes.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meta/meta.dart';
@@ -36,6 +37,7 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
           ?.setMapStyle(jsonEncode(uberMapTheme)); // cambia el estilo del mapa
       print('SE CARGO EL TEMA DEL MAPA');
       add(OnMapaListo());
+      
     }
   }
 
@@ -67,6 +69,8 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
       yield* _onCrearRutaInicioDestino(event);
     } else if (event is OnCrearMarcadorInicio) {
       yield* _onCrearMarcadorInicio(event);
+    } else if (event is OnCrearUbicacionInicial) {
+      yield* _onCrearNombreUbicacionInicial(event);
     }
   }
 
@@ -161,7 +165,9 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
         polylines: currentPolylines,
         markers: newMarkers,
         ubicacionDestino: ubicacionDestino,
-        ubicacionRecogida: ubicacionRecogida);
+        ubicacionRecogida: ubicacionRecogida,
+        nombreInicio: event.nombreInicio,
+        nombreDestino: event.nombreDestino);
   }
 
   Stream<MapaState> _onCrearMarcadorInicio(OnCrearMarcadorInicio event) async* {
@@ -170,17 +176,27 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
         markerId: MarkerId(
             'inicio'), //sobre escribe al marcador que tenga este markerId
         position: event.coordenadasMarker, //lugar de recogida del cliente
-        infoWindow: InfoWindow(title: 'Lugar de Recogida: ${event.nombreUbicacion}'));
+        infoWindow:
+            InfoWindow(title: 'Lugar de Recogida: ${event.nombreUbicacion}'));
 
     final newMarkers = {...state.markers};
     newMarkers['inicio'] = markerInicio;
-
-    print('hola marcador inicio ${event.coordenadasMarker}');
 
     final ubicacionRecogida = event.coordenadasMarker;
 
     //se guardan los polylines de la ruta establecida y los marcadores actualizados
     yield state.copyWith(
-        markers: newMarkers, ubicacionRecogida: ubicacionRecogida);
+        markers: newMarkers,
+        ubicacionRecogida: ubicacionRecogida,
+        nombreInicio: event.nombreUbicacion);
+  }
+
+  Stream<MapaState> _onCrearNombreUbicacionInicial(
+      OnCrearUbicacionInicial event) async* {
+    final trafficService = TrafficService();
+    final reverseQueryResponseInicio =
+        await trafficService.getCoordenadasInfo(event.coordenadas!);
+    final nombreInicio = reverseQueryResponseInicio.features![0].text;
+    yield state.copyWith(nombrePuntoInicial: nombreInicio);
   }
 }

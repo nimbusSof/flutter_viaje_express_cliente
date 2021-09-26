@@ -4,6 +4,7 @@ import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.da
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosConfPerfil_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/datosConfiguraciones_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosViajeNuevo_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/slidingUpPanel_provider.dart';
@@ -11,6 +12,8 @@ import 'package:flutter_viaje_express_cliente/src/routes/routes.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:provider/provider.dart';
+
+import 'src/services/perfil_services/updateCliente_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +34,9 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => new DatosViajeNuevo()),
         ChangeNotifierProvider(create: (_) => new DatosConfPerfil()),
         ChangeNotifierProvider(create: (_) => new SlidingUpPanelProvider()),
+        ChangeNotifierProvider(create: (_) => new UpdateClienteService()),
+        ChangeNotifierProvider(create: (_) => new PreferenciasUsuario()),
+        ChangeNotifierProvider(create: (_) => new DatosConfiguraciones()),
       ],
       child: MyApp(),
     );

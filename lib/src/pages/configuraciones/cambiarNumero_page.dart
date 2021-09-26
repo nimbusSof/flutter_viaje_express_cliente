@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:flutter_viaje_express_cliente/src/providers/datosConfiguraciones_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
+import 'package:flutter_viaje_express_cliente/src/services/perfil_services/updateCliente_service.dart';
+import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
@@ -53,12 +57,18 @@ class _EstructuraPage extends StatefulWidget {
 }
 
 class __EstructuraPageState extends State<_EstructuraPage> {
-  final telefonoCtrl = new TextEditingController();
+  //final telefonoCtrl = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final datosConf = Provider.of<DatosConfiguraciones>(context);
+    final prefs = Provider.of<PreferenciasUsuario>(context);
+
     final size = MediaQuery.of(context).size;
     final formsCliente = Provider.of<FormsCliente>(context);
+
+    //inicializar datos del constructor
+    datosConf.numeroCtrl.text = prefs.telefono;
 
     return Container(
         padding: EdgeInsets.all(size.height * 0.03),
@@ -66,7 +76,11 @@ class __EstructuraPageState extends State<_EstructuraPage> {
           key: formsCliente.formkeyCambiarNumero,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[texto(), telefono(), boton()],
+            children: <Widget>[
+              texto(),
+              telefono(datosConf.numeroCtrl),
+              boton(datosConf.numeroCtrl)
+            ],
           ),
         ));
   }
@@ -83,7 +97,7 @@ class __EstructuraPageState extends State<_EstructuraPage> {
     );
   }
 
-  telefono() {
+  telefono(TextEditingController telefonoCtrl) {
     return CustomInput(
       icon: Icons.phone,
       placeHolder: 'Su número de teléfono',
@@ -107,16 +121,38 @@ class __EstructuraPageState extends State<_EstructuraPage> {
     );
   }
 
-  boton() {
+  boton(TextEditingController telefonoCtrl) {
     final formsCliente = Provider.of<FormsCliente>(context);
     return CustomButton(
         text: 'Guardar',
-        onPressed: () {
-          
+        onPressed: () async {
           //cierra el teclado del telefono
           FocusManager.instance.primaryFocus?.unfocus();
+
           if (formsCliente.isValidFormCambiarNumero()) {
-           
+
+            final authService =
+                Provider.of<AuthService>(context, listen: false);
+
+            final updateClienteService =
+                Provider.of<UpdateClienteService>(context, listen: false);    
+
+            String token = await authService.readToken();
+            String idPersona_rol = await authService.readIdPersonaRol();
+
+            
+
+            updateClienteService.updateTelefono = telefonoCtrl.text;
+
+            final bool? exito = await updateClienteService.updateClienteService(
+                idPersona_rol, token);
+
+            if (exito == true) {
+              NotificationsService.showSnackbar('¡Teléfono actualizado!');
+            } else {
+              NotificationsService.showSnackbar(
+                  'Actualización de teléfono fallida');
+            }
           }
         });
   }

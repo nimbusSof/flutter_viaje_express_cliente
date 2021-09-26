@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PreferenciasUsuario {
-
-  static final PreferenciasUsuario _instancia = new PreferenciasUsuario._internal();
+class PreferenciasUsuario extends ChangeNotifier {
+  static final PreferenciasUsuario _instancia =
+      new PreferenciasUsuario._internal();
 
   factory PreferenciasUsuario() {
     return _instancia;
@@ -17,34 +18,33 @@ class PreferenciasUsuario {
   }
 
   // GET y SET del Genero
-  int get genero {
-    return _prefs.getInt('genero') ?? 1;
+  String get genero {
+    return _prefs.getString('genero') ?? '';
   }
 
-  set genero( int value ) {
-    _prefs.setInt('genero', value);
+  set genero(String value) {
+    _prefs.setString('genero', value);
+    notifyListeners();
   }
-
- 
-
 
   // GET y SET del nombreUsuario
   String get nombreUsuario {
     return _prefs.getString('nombreUsuario') ?? '';
   }
 
-  set nombreUsuario( String value ) {
+  set nombreUsuario(String value) {
     _prefs.setString('nombreUsuario', value);
+    notifyListeners();
   }
-
 
 // GET y SET del apellidoUsuario
   String get apellidoUsuario {
     return _prefs.getString('apellidoUsuario') ?? '';
   }
 
-  set apellidoUsuario( String value ) {
+  set apellidoUsuario(String value) {
     _prefs.setString('apellidoUsuario', value);
+    notifyListeners();
   }
 
   // GET y SET del correoUsuario
@@ -52,19 +52,59 @@ class PreferenciasUsuario {
     return _prefs.getString('correoUsuario') ?? '';
   }
 
-  set correoUsuario( String value ) {
+  set correoUsuario(String value) {
     _prefs.setString('correoUsuario', value);
+    notifyListeners();
   }
 
-    // GET y SET de la última página
+  // GET y SET del correoUsuario
+  String get fechaNacimiento {
+    return _prefs.getString('fechaNacimiento') ?? '';
+  }
+
+  set fechaNacimiento(String value) {
+    _prefs.setString('fechaNacimiento', value);
+    notifyListeners();
+  }
+
+  // GET y SET del clave
+  String get clave {
+    return _prefs.getString('clave') ?? '';
+  }
+
+  set clave(String value) {
+    _prefs.setString('clave', value);
+    notifyListeners();
+  }
+
+// GET y SET del clave
+  String get telefono {
+    return _prefs.getString('telefono') ?? '';
+  }
+
+  set telefono(String value) {
+    _prefs.setString('telefono', value);
+    notifyListeners();
+  }
+
+// GET y SET del clave
+  String get pathFoto {
+    return _prefs.getString('pathFoto') ?? '';
+  }
+
+  set pathFoto(String value) {
+    _prefs.setString('pathFoto', value);
+    notifyListeners();
+  }
+
+ 
+
+  // GET y SET de la última página
   String get ultimaPagina {
     return _prefs.getString('ultimaPagina') ?? '';
   }
 
-  set ultimaPagina( String value ) {
+  set ultimaPagina(String value) {
     _prefs.setString('ultimaPagina', value);
   }
-
 }
-
-

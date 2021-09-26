@@ -32,9 +32,17 @@ class AuthService extends ChangeNotifier {
     //final decodedData = json.decode(resp.body);
     this._personaCliente = personaClienteFromJson(resp.body);
     //se guarda los nombres y apellidos en el storage
-    prefs.nombreUsuario = personaCliente.data?.nombre??'null';
-    prefs.apellidoUsuario = personaCliente.data?.apellido??'null';
-    prefs.correoUsuario = personaCliente.data?.correo??'null';
+    prefs.nombreUsuario     = personaCliente.data?.nombre??'null';
+    prefs.apellidoUsuario   = personaCliente.data?.apellido??'null';
+    prefs.correoUsuario     = personaCliente.data?.correo??'null';
+    prefs.fechaNacimiento   = personaCliente.data?.fechaNacimiento??'null';
+    prefs.clave             = personaCliente.data?.clave??'null';
+    prefs.genero            = personaCliente.data?.genero??'null';
+    prefs.telefono          = personaCliente.data?.telefono??'null';
+    prefs.pathFoto          = personaCliente.data?.pathFoto??'null';
+   
+
+
     return personaCliente;
   }
 

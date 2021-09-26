@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosConfPerfil_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/formsCliente_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/services/perfil_services/updateCliente_service.dart';
+import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
@@ -42,18 +44,28 @@ class ConfiguracionPerfilPage extends StatelessWidget {
 }
 
 class _EstructuraPage extends StatelessWidget {
- 
   @override
   Widget build(BuildContext context) {
     final clienteForm = Provider.of<FormsCliente>(context);
+    //referencia donde se encuentran los controladores de los inputs
     final datosConfPerfil = Provider.of<DatosConfPerfil>(context);
+    final updateClienteService = Provider.of<UpdateClienteService>(context);
+    final prefs = Provider.of<PreferenciasUsuario>(context);
     final size = MediaQuery.of(context).size;
+
+    /*traer los datos guardados en preferencias de usuario*/
+    datosConfPerfil.nombresCtrl.text = prefs.nombreUsuario;
+    datosConfPerfil.apellidosCtrl.text = prefs.apellidoUsuario;
+    datosConfPerfil.emailCtrl.text = prefs.correoUsuario;
+    datosConfPerfil.fechaCtrl.text = prefs.fechaNacimiento;
+    datosConfPerfil.claveCtrl.text = prefs.clave;
 
     return SafeArea(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
         child: SingleChildScrollView(
-          child: Form( // formulario unico
+          child: Form(
+            // formulario unico
             key: clienteForm.formkeyConfPerfil,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -103,7 +115,8 @@ class _EstructuraPage extends StatelessWidget {
                     }
                   },
                 ),
-                CustomSelectDate(inputFieldDataController: datosConfPerfil.fechaCtrl),
+                CustomSelectDate(
+                    inputFieldDataController: datosConfPerfil.fechaCtrl),
                 CustomInput(
                   icon: Icons.email,
                   placeHolder: 'Correo electrónico',
@@ -123,14 +136,71 @@ class _EstructuraPage extends StatelessWidget {
                     }
                   },
                 ),
+                CustomInput(
+                  key: UniqueKey(),
+                  validator: (value) {
+                    print(value.toString() +
+                        ' ' +
+                        datosConfPerfil.claveCtrl.text);
+                    if (value != null && value.length < 6) {
+                      return 'La clave debe tener como mínimo 6 caracteres';
+                    } else {
+                      return null;
+                    }
+                  },
+                  inputFormatter: [],
+                  sufixIcon: Icons.visibility,
+                  icon: Icons.lock_outline,
+                  placeHolder: 'Password',
+                  isPassword: true,
+                  textController: datosConfPerfil.claveCtrl,
+                ),
                 Container(
                     margin: EdgeInsets.only(top: 10),
                     child: CustomButton(
                         text: 'Guardar',
-                        onPressed: () {
+                        onPressed: () async {
                           FocusManager.instance.primaryFocus?.unfocus();
                           if (clienteForm.isValidFormConfPerfil()) {
-                            print('bien validado crack');
+                            final authService = Provider.of<AuthService>(
+                                context,
+                                listen: false);
+
+                            String token = await authService.readToken();
+                            String idPersona_rol =
+                                await authService.readIdPersonaRol();
+                            
+
+                            updateClienteService.updateNombre =
+                                datosConfPerfil.nombresCtrl.text;
+
+                            updateClienteService.updateApellido =
+                                datosConfPerfil.apellidosCtrl.text;
+
+                            updateClienteService.updateFechaNacimiento =
+                                datosConfPerfil.fechaCtrl.text;
+
+                            updateClienteService.updatecorreo =
+                                datosConfPerfil.emailCtrl.text;
+
+                            updateClienteService.updateClave =
+                                datosConfPerfil.claveCtrl.text;
+
+                            updateClienteService.updateModifiedBy =
+                                idPersona_rol;
+
+                           
+
+                            final bool? exito = await updateClienteService
+                                .updateClienteService(idPersona_rol, token);
+
+                            if (exito == true) {
+                              NotificationsService.showSnackbar(
+                                  '¡Datos actuactualizados correctamente!');
+                            } else {
+                              NotificationsService.showSnackbar(
+                                  'No se pudieron actualizar los datos');
+                            }
                           }
                         }))
               ],

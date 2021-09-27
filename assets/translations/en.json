@@ -1,0 +1,78 @@
+{
+    "inputsGlobals":{
+        "correo"            : "Email",
+        "password"          :  "Password",
+        "password2"         :  "Confirm password",
+        "cedula"            :  "identification card",
+        "nombres"           :  "Names",
+        "apellidos"         :  "Surname",
+        "telefono"          :  "Mobile phone",
+        "fechaNacimiento"   :  "Date of birth",
+        "ddGenero":{
+            "masculino"     : "Masculine",
+            "femenino"      : "Feminine",
+            "otro"          : "Other"
+        }
+    },
+
+    "buttonsGlobals":{
+        "ingresar"  : "Sign In",
+        "siguiente"     : "Next",
+        "regresar"      : "Back",
+        "finalizarReg"  : "Finish Sign Up"
+    },
+    
+    "alertsGlobals":{
+        "correo":{
+            "null":"Please enter your email",
+            "sintaxis": "Incorrect email syntax"
+        }, 
+        "password":{
+            "null": "Please enter your password",
+            "sintaxis"      : "The password must be at least 6 characters long",
+            "concidencia"   : "Keys do not match"
+        },
+        "cedula":{
+            "null":"Please enter your identity card",
+            "sintaxis": "Invalid ID"
+        },
+        "nombres":{
+            "null":"Please enter your names",
+            "sintaxis": ""
+        },
+        "apellidos":{
+            "null":"Please enter your surname",
+            "sintaxis": ""
+        },
+        "telefono":{
+            "null":"Please enter your phone number",
+            "sintaxis": "Invalid phone number"
+        },
+        "fechaNac":{
+            "null":"Please enter your date of birth",
+            "sintaxis": ""
+        } 
+    },
+
+    
+
+    "signIn"     :{
+        "frase"             :"Towards your destination",
+        "cuentaPregunta"    : "do not have an account yet?",
+        "crearCuenta"       : "¡Create one now!",
+        "mensaje":{
+            "credenciales"      : "Wrong credentials"
+        }   
+    },
+
+    "signUp"     :{
+        "subtitulo"         :  "Sign Up",
+        "cuentaPregunta"    : "do you already have an account?",
+        "cuentaIngresar"    : "¡Sign in now!",
+        "cancelar"          : "Cancel"
+
+    }
+
+    
+
+}

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 
@@ -31,7 +32,7 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
           if (value != null && value.length > 0) {
             return null;
           } else {
-            return 'Porfavor ingresa una fecha';
+            return 'alertsGlobals.fechaNac.null'.tr();
           }
         },
         decoration: InputDecoration(
@@ -43,7 +44,7 @@ class _CustomSelectDateState extends State<CustomSelectDate> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            hintText: this.texto != null ? this.texto : 'Fecha de nacimiento'),
+            hintText: this.texto != null ? this.texto : 'inputsGlobals.fechaNacimiento'.tr()),
         
         onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());

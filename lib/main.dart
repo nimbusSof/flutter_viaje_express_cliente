@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/localization/supported_locales.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosConfPerfil_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosConfiguraciones_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosViajeNuevo_provider.dart';
@@ -19,7 +21,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = new PreferenciasUsuario();
   await prefs.initPrefs();
-  runApp(AppState());
+  //instancias de easy localization
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
+  runApp(EasyLocalization(
+      path: 'assets/translations',
+      supportedLocales: supportedLocales,
+      fallbackLocale: english,
+      child: AppState()));
 }
 
 class AppState extends StatelessWidget {
@@ -53,6 +63,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => BusquedaBloc()),
       ],
       child: MaterialApp(
+        supportedLocales: context.supportedLocales,
+        localizationsDelegates: context.localizationDelegates,
+        locale: context.locale,
         debugShowCheckedModeBanner: false,
         title: 'Viaje Express',
         initialRoute:

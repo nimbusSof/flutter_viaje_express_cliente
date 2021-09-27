@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class LogoSignIn extends StatelessWidget {
@@ -21,7 +22,7 @@ class LogoSignIn extends StatelessWidget {
           top: 2,
         ),
         Titulo(
-          titulo: 'Registro',
+          titulo: 'signUp.subtitulo'.tr(),
           fontSize: 30.0,
           estilo: FontWeight.normal,
           paddingRight: size.width * 0.5,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,7 +55,7 @@ class FormState extends State<Form0> {
           children: <Widget>[
             CustomInput(
               icon: Icons.perm_identity,
-              placeHolder: 'Cédula',
+              placeHolder: 'inputsGlobals.cedula'.tr(),
               keyboardType: TextInputType.number,
               textController: cedulaCtrl,
               validator: (value) {
@@ -62,10 +63,10 @@ class FormState extends State<Form0> {
                   if (cedulaEcuatorianaValida(value)) {
                     return null;
                   } else {
-                    return 'Cédula no válida';
+                    return 'alertsGlobals.cedula.sintaxis'.tr();
                   }
                 } else {
-                  return 'Porfavor ingresa tu cédula';
+                  return 'alertsGlobals.cedula.null'.tr();
                 }
               },
               inputFormatter: [
@@ -75,14 +76,14 @@ class FormState extends State<Form0> {
             ),
             CustomInput(
                 icon: Icons.perm_identity,
-                placeHolder: 'Nombres',
+                placeHolder: 'inputsGlobals.nombres'.tr(),
                 keyboardType: TextInputType.name,
                 textController: nombresCtrl,
                 validator: (value) {
                   if (value != null && value.length > 0) {
                     return null;
                   } else {
-                    return 'Porfavor ingresa tus nombres';
+                    return 'alertsGlobals.nombres.null'.tr();
                   }
                 },
                 inputFormatter: [
@@ -93,14 +94,14 @@ class FormState extends State<Form0> {
               margin: EdgeInsets.only(bottom: 10),
               child: CustomInput(
                   icon: Icons.perm_identity,
-                  placeHolder: 'Apellidos',
+                  placeHolder: 'inputsGlobals.apellidos'.tr(),
                   keyboardType: TextInputType.name,
                   textController: apellidosCtrl,
                   validator: (value) {
                     if (value != null && value.length > 0) {
                       return null;
                     } else {
-                      return 'Porfavor ingresa tus apellidos';
+                      return 'alertsGlobals.apellidos.null'.tr();
                     }
                   },
                   inputFormatter: [
@@ -109,7 +110,7 @@ class FormState extends State<Form0> {
                   ]),
             ),
             CustomButton(
-                text: 'Siguiente',
+                text: 'buttonsGlobals.ingresar'.tr(),
                 onPressed: () {
                   //cierra el teclado del telefono
                   FocusManager.instance.primaryFocus?.unfocus();
@@ -123,9 +124,9 @@ class FormState extends State<Form0> {
                 }),
             SizedBox(height: 35),
             Labels(
-              ruta: 'login',
-              titulo: '¿Ya tienes cuenta?',
-              subtitulo: '¡Ingresa ahora!',
+              ruta      : 'login',
+              titulo    : 'signUp.cuentaPregunta'.tr(),
+              subtitulo : 'signUp.cuentaIngresar'.tr(),
             ),
           ],
         ),
@@ -167,7 +168,7 @@ class Form1State extends State<Form1> {
           children: <Widget>[
             CustomInput(
                 icon: Icons.perm_identity,
-                placeHolder: 'Teléfono',
+                placeHolder: 'inputsGlobals.telefono'.tr(),
                 keyboardType: TextInputType.phone,
                 textController: telefonoCtrl,
                 validator: (value) {
@@ -176,9 +177,9 @@ class Form1State extends State<Form1> {
                     RegExp regExp = new RegExp(pattern);
                     return regExp.hasMatch(value.trim())
                         ? null
-                        : 'número de teléfono inválido';
+                        : 'alertsGlobals.telefono.sintaxis'.tr();
                   } else {
-                    return 'Porfavor ingresa tu número de teléfono';
+                    return 'alertsGlobals.telefono.null'.tr();
                   }
                 },
                 inputFormatter: [FilteringTextInputFormatter.digitsOnly]),
@@ -188,7 +189,7 @@ class Form1State extends State<Form1> {
                 margin: EdgeInsets.only(bottom: 10),
                 child: CustomSelectDate(inputFieldDataController: dateCtrl)),
             CustomButton(
-                text: 'Siguiente',
+                text: 'buttonsGlobals.siguiente'.tr(),
                 onPressed: () async {
                   //cierra el teclado del telefono
                   FocusManager.instance.primaryFocus?.unfocus();
@@ -203,11 +204,11 @@ class Form1State extends State<Form1> {
                 }),
             SizedBox(height: 15),
             CustomButton(
-                text: 'Regresar',
+                text: 'buttonsGlobals.regresar'.tr(),
                 onPressed: () {
                   BlocProvider.of<SignUpBloc>(context).add(CambiarPanel(0));
                 }),
-            LabelCancelar(subtitulo: 'Cancelar')
+            LabelCancelar(subtitulo: 'signUp.cancelar'.tr())
           ],
         ),
       ),
@@ -243,7 +244,7 @@ class Form2State extends State<Form2> {
           children: <Widget>[
             CustomInput(
               icon: Icons.mail_outline,
-              placeHolder: 'Correo',
+              placeHolder: 'inputsGlobals.correo'.tr(),
               validator: (value) {
                 if (value != null && value.length > 0) {
                   String pattern =
@@ -251,23 +252,25 @@ class Form2State extends State<Form2> {
                   RegExp regExp = new RegExp(pattern);
                   return regExp.hasMatch(value)
                       ? null
-                      : 'Sintaxis de correo es errónea';
+                      : 'alertsGlobals.correo.sintaxis'.tr();
                 } else {
-                  return 'Porfavor ingresa tu correo electrónico';
+                  return 'alertsGlobals.correo.null'.tr();
                 }
               },
               inputFormatter: [],
               keyboardType: TextInputType.emailAddress,
               textController: emailCtrl,
             ),
+
+            //  PASSWORD 
             CustomInput(
               key: UniqueKey(),
               validator: (value) {
-                print(value.toString() + ' ' + pass2Ctrl.text);
+                //print(value.toString() + ' ' + pass2Ctrl.text);
                 if (value != null && value.length < 6) {
-                  return 'La clave debe tener como mínimo 6 caracteres';
+                  return 'alertsGlobals.password.sintaxis'.tr();
                 } else if (value.toString() != pass2Ctrl.text) {
-                  return 'Las claves no coinciden';
+                  return 'alertsGlobals.password.concidencia'.tr();
                 } else {
                   return null;
                 }
@@ -275,7 +278,7 @@ class Form2State extends State<Form2> {
               inputFormatter: [],
               sufixIcon: Icons.visibility,
               icon: Icons.lock_outline,
-              placeHolder: 'Password',
+              placeHolder: 'inputsGlobals.password'.tr(),
               isPassword: true,
               textController: passCtrl,
             ),
@@ -285,7 +288,7 @@ class Form2State extends State<Form2> {
                 key: UniqueKey(),
                 validator: (value) {
                   if (value != null && value.length < 6) {
-                    return 'La clave debe tener como mínimo 6 caracteres';
+                    return 'alertsGlobals.password.sintaxis'.tr();
                   } else {
                     return null;
                   }
@@ -293,13 +296,13 @@ class Form2State extends State<Form2> {
                 inputFormatter: [],
                 sufixIcon: Icons.visibility,
                 icon: Icons.lock_outline,
-                placeHolder: 'Confirmar Password',
+                placeHolder: 'inputsGlobals.password2'.tr(),
                 isPassword: true,
                 textController: pass2Ctrl,
               ),
             ),
             CustomButton(
-                text: 'Finalizar Registro',
+                text: 'buttonsGlobals.finalizarReg'.tr(),
                 onPressed: () async {
                   //cierra el teclado del telefono
                   FocusManager.instance.primaryFocus?.unfocus();
@@ -318,11 +321,11 @@ class Form2State extends State<Form2> {
                     signUpService.agregarCorreo(emailCtrl.text);
 
                     // Transformar el genero para ingresar a la base de datos
-                    if (signUpService.cliente.genero == 'masculino') {
+                    if (signUpService.cliente.genero == 'inputsGlobals.ddGenero.masculino'.tr()) {
                       signUpService.agregarGenero('M');
-                    } else if (signUpService.cliente.genero == 'femenino') {
+                    } else if (signUpService.cliente.genero == 'inputsGlobals.ddGenero.femenino'.tr()) {
                       signUpService.agregarGenero('F');
-                    } else if (signUpService.cliente.genero == 'otro') {
+                    } else if (signUpService.cliente.genero == 'inputsGlobals.ddGenero.otro'.tr()) {
                       signUpService.agregarGenero('O');
                     }
                     //print('genero: ' + signUpService.cliente.genero);
@@ -332,26 +335,26 @@ class Form2State extends State<Form2> {
                     if (exito == true) {
                       signUpService.removerCliente();
                       NotificationsService.showSnackbar(
-                          '¡Usuario creado exitosamente!');
+                          'signUp.mensaje.confirmacion'.tr());
                       Navigator.pushReplacementNamed(context, 'login');
                     } else {
                       // mostrar error en pantalla
                       NotificationsService.showSnackbar(
-                          'No se pudo registrar el usuario');
+                          'signUp.mensaje.error'.tr());
                       BlocProvider.of<SignUpBloc>(context).add(CambiarPanel(0));
                     }
                   }
                 }),
             SizedBox(height: 15),
             CustomButton(
-                text: 'Regresar',
+                text: 'buttonsGlobals.regresar'.tr(),
                 onPressed: () {
                   signUpService.agregarCorreo(emailCtrl.text);
                   signUpService.agregarPassword(passCtrl.text);
                   signUpService.agregarConfirmacionPassword(pass2Ctrl.text);
                   BlocProvider.of<SignUpBloc>(context).add(CambiarPanel(1));
                 }),
-            LabelCancelar(subtitulo: 'Cancelar')
+            LabelCancelar(subtitulo: 'signUp.cancelar'.tr())
           ],
         ),
       ),

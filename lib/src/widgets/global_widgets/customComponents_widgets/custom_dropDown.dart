@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
@@ -14,11 +15,15 @@ class CustomDropDown extends StatefulWidget {
 
 class _CustomDropDownState extends State<CustomDropDown> {
   final bool? genero;
-  final List<String> listaGenero = ['masculino', 'femenino', 'otro'];
+  final List<String> listaGenero = [
+    'inputsGlobals.ddGenero.masculino'.tr(), 
+    'inputsGlobals.ddGenero.femenino'.tr(), 
+    'inputsGlobals.ddGenero.otro'.tr()
+    ];
   _CustomDropDownState(this.genero);
 
   String dropdownValue =
-      'masculino'; //si este valor fuera diferente a los que hay en la lista, daría error
+      'inputsGlobals.ddGenero.masculino'.tr(); //si este valor fuera diferente a los que hay en la lista, daría error
 
   @override
   Widget build(BuildContext context) {

@@ -16,8 +16,8 @@ import 'package:flutter_viaje_express_cliente/src/pages/perfil/clasificacionPerf
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/configuracionPerfil_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/perfil_inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/principal/check_auth_screen.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/principal/login_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/principal/signIn_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/principal/signUp_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/principal/splash_screen_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/rutasGuardadas/rutasGuardadas_inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/rutasGuardadas/visualizarRutas_page.dart';

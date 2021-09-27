@@ -1,0 +1,81 @@
+{
+    "inputsGlobals":{
+        "correo"            : "Email",
+        "password"          :  "Password",
+        "password2"         :  "Confirmar password",
+        "cedula"            :  "Cédula",
+        "nombres"           :  "Nombres",
+        "apellidos"         :  "Apellidos",
+        "telefono"          :  "Teléfono móvil",
+        "fechaNacimiento"   :  "Fecha de nacimiento",
+        "ddGenero":{
+            "masculino"     : "Masculino",
+            "femenino"      : "Femenino",
+            "otro"          : "Otro"
+        }
+    },
+
+    "buttonsGlobals":{
+        "ingresar"      : "Ingresar",
+        "siguiente"     : "Siguiente",
+        "regresar"      : "Regresar",
+        "finalizarReg"  : "Finalizar Registro"
+    },
+    
+  
+    "alertsGlobals":{
+        "correo":{
+            "null"          :"Por favor ingresa tu correo electrónico",
+            "sintaxis"      : "Sintaxis de email incorrecta"
+        },
+        "password":{
+            "null"          : "Por favor ingresa tu clave de acceso",
+            "sintaxis"      : "El password debe tener como mínimo 6 caracteres",
+            "concidencia"   : "Las claves no coinciden"
+        },
+        "cedula":{
+            "null"          :"Por favor ingresa tu cédula",
+            "sintaxis"      : "Cédula inválida"
+        },
+        "nombres":{
+            "null"          :"Por favor ingresa tus nombres",
+            "sintaxis"      : ""
+        },
+        "apellidos":{
+            "null"          :"Por favor ingresa tus apellidos",
+            "sintaxis"      : ""
+        },
+        "telefono":{
+            "null"          :"Por favor ingresa tu número de teléfono",
+            "sintaxis"      : "Número de teléfono inválido"
+        },
+        "fechaNac":{
+            "null"          :"Por favor ingresa tu fecha de nacimiento",
+            "sintaxis"      : ""
+        }
+    },
+
+
+    "signIn"     :{
+        "frase"             :"Hacia tu destino",
+        "cuentaPregunta"    : "¿No tienes cuenta?",
+        "crearCuenta"       : "¡Crea una ahora!",
+        "mensaje":{
+            "credenciales"      : "Credenciales erroneas"
+        }  
+
+    },
+
+    "signUp"     :{
+        "subtitulo"         :  "Registro",
+        "cuentaPregunta"    : "¿Ya tienes cuenta?",
+        "cuentaIngresar"    : "¡Ingresa ahora!",
+        "cancelar"          : "Cancelar",
+        "mensaje":{
+            "confirmacion"  : "¡Usuario registrado exitosamente!",
+            "error"         : "No se pudo registrar el usuario"
+        }  
+
+    }
+
+}

@@ -97,6 +97,26 @@ class PreferenciasUsuario extends ChangeNotifier {
     notifyListeners();
   }
 
+
+
+
+  //DATOS DE CONFIGURACIONES
+
+  bool get idioma1 {
+    return _prefs.getBool('idioma1') ?? false;
+  }
+
+  set idioma1(bool value) {
+    _prefs.setBool('idioma1', value);
+  }
+
+bool get idioma2 {
+    return _prefs.getBool('idioma2') ?? false;
+  }
+
+  set idioma2(bool value) {
+    _prefs.setBool('idioma2', value);
+  }
  
 
   // GET y SET de la última página

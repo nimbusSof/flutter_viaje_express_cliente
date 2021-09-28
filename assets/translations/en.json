@@ -71,6 +71,12 @@
         "cuentaIngresar"    : "¡Sign in now!",
         "cancelar"          : "Cancel"
 
+    },
+
+    "configuraciones":{
+        "idiomas":{
+            "titulo": "Language"
+        }
     }
 
     

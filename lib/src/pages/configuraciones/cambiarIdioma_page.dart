@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosConfiguraciones_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
@@ -26,7 +27,7 @@ class CambiarIdiomaPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(
-          'Idioma',
+          'configuraciones.idiomas.titulo'.tr(),
           style: TextStyle(
             fontSize: 20,
             color: Colors.black45,
@@ -41,7 +42,7 @@ class CambiarIdiomaPage extends StatelessWidget {
 class _EstructuraPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final prefs = new PreferenciasUsuario();
+    
     final datosConfi = Provider.of<DatosConfiguraciones>(context);
     datosConfi.inicializar();
     /* datosConfi.idioma1 = prefs.idioma1;
@@ -67,13 +68,14 @@ class _EstructuraPage extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(top: 10, bottom: 11),
         child: GestureDetector(
-          onTap: () {
+          onTap: () async{
             if (numero == 1) {
               datosConfi.idioma1 = true;
               datosConfi.idioma2 = false;
               prefs.idioma1 = datosConfi.idioma1;
               prefs.idioma2 = datosConfi.idioma2;
               print(datosConfi.idioma1);
+              await context.setLocale(Locale('es'));
             }
             if (numero == 2) {
               datosConfi.idioma2 = true;
@@ -81,6 +83,7 @@ class _EstructuraPage extends StatelessWidget {
               prefs.idioma1 = datosConfi.idioma1;
               prefs.idioma2 = datosConfi.idioma2;
               print(datosConfi.idioma2);
+              await context.setLocale(Locale('en'));
             }
           },
           child: RichText(

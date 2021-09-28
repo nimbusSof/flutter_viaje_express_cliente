@@ -76,6 +76,12 @@
             "error"         : "No se pudo registrar el usuario"
         }  
 
+    },
+
+    "configuraciones":{
+        "idiomas":{
+            "titulo": "Idioma"
+        }
     }
 
 }

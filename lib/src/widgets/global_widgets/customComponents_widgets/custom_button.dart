@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
@@ -12,11 +13,9 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       //margin:  EdgeInsets.symmetric(vertical: 10),
       child: ElevatedButton(
-        
           style: ElevatedButton.styleFrom(
             elevation: 2,
             shape: StadiumBorder(),
@@ -50,15 +49,28 @@ class BtnSimple extends StatelessWidget {
       padding: EdgeInsets.only(top: size.height * 0.003),
       margin: EdgeInsets.symmetric(horizontal: size.width * 0.01),
       child: MaterialButton(
-        onPressed: this.ruta!=null?() {
-          if(this.ruta=='login'){
-            final authService = Provider.of<AuthService>(context, listen: false);
-            authService.logout();
-            Navigator.pushNamedAndRemoveUntil(
-                context, 'login', (route) => false);
-          }
-          Navigator.pushReplacementNamed(context, this.ruta!);
-        }:(){},
+        onPressed: this.ruta != null
+            ? () async {
+                if (this.ruta == 'login') {
+                  final authService =
+                      Provider.of<AuthService>(context, listen: false);
+                  authService.logout();
+                  //al salir se restablecerá la aplicación con el idioma que tenga configurado
+                  //el dispositivo, ya que el idioma es una preferencia de usuario
+                  String idiomaDispositivo =
+                      context.deviceLocale.toString().substring(0, 2);
+                  print(idiomaDispositivo);
+                  if (idiomaDispositivo == 'es' || idiomaDispositivo == 'en') {
+                    await context.setLocale(Locale(idiomaDispositivo));
+                  } else {
+                    context.setLocale(context.locale);
+                  }
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, 'login', (route) => false);
+                }
+                Navigator.pushReplacementNamed(context, this.ruta!);
+              }
+            : () {},
         child: Container(
             padding: EdgeInsets.fromLTRB(
                 0, size.height * 0.02, 0, size.height * 0.02),
@@ -90,9 +102,11 @@ class BtnSimpleIcon extends StatelessWidget {
       padding: EdgeInsets.only(top: size.height * 0.01),
       margin: EdgeInsets.symmetric(horizontal: size.width * 0.01),
       child: MaterialButton(
-        onPressed: this.ruta!=null?() {
-          Navigator.pushReplacementNamed(context, this.ruta!);
-        }:(){},
+        onPressed: this.ruta != null
+            ? () {
+                Navigator.pushReplacementNamed(context, this.ruta!);
+              }
+            : () {},
         child: Container(
           // aquí se define las longitudes del botón
           width: double.infinity,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
@@ -13,7 +14,6 @@ class SideBar extends StatefulWidget {
 }
 
 class _SideBarState extends State<SideBar> {
- 
   @override
   Widget build(BuildContext context) {
     final mapaBloc = BlocProvider.of<MapaBloc>(context);
@@ -115,9 +115,24 @@ class _SideBarState extends State<SideBar> {
         ListTile(
           leading: Icon(Icons.logout),
           title: Text('Salir'),
-          onTap: () {
+          onTap: () async{
+
+            //al salir se restablecerá la aplicación con el idioma que tenga configurado
+            //el dispositivo, ya que el idioma es una preferencia de usuario
+            String idiomaDispositivo =
+                          context.deviceLocale.toString().substring(0, 2);
+                      print(idiomaDispositivo);
+                      if(idiomaDispositivo=='es' || idiomaDispositivo=='en'){
+                        await context.setLocale(Locale(idiomaDispositivo));
+                      }else{
+                        context.setLocale(context.locale);
+                      }
+
             mapaBloc.add(OnMapaCerrado());
             authService.logout();
+            
+
+
             Navigator.pushNamedAndRemoveUntil(
                 context, 'login', (route) => false);
           },

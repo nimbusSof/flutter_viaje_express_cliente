@@ -167,6 +167,32 @@
             "titulo"        :"Rutas Guardadas",
             "vrGuardada"  :"Visualizar rutas guardadas"
         }
+    },
+
+    "viajeNuevo":{
+        "input":{
+            "recogida":{
+                "placeholder":"Lugar de recogida"
+            },
+            "destino":{
+                "placeholder": "Lugar de destino"
+            }
+        },
+        "button":{
+            "seleccionar":"Seleccionar una destino guardado",
+            "solicitar":"Solicitar un auto"
+        },
+        "radioButton":{
+            "titulo":"Forma de pago",
+            "tarjeta":"Tarjeta",
+            "efectivo":"Efectivo"
+        },
+        "search":{
+            "txtBuscar" :"Buscar",
+            "destino"   :"Colocar lugar de destino manualmente",
+            "recogida"  :"Colocar lugar de recogida manualmente",
+            "resultados":"No hay resultados con"
+        }
     }
 
 }

@@ -164,6 +164,33 @@
             "titulo"      : "Saved Routes",
             "vrGuardada": "View saved routes"
         }
+    },
+
+
+    "viajeNuevo":{
+        "input":{
+            "recogida":{
+                "placeholder":"Pickup location"
+            },
+            "destino":{
+                "placeholder": "Destination place"
+            }
+        },
+        "button":{
+            "seleccionar":"Select a saved destination",
+            "solicitar":"Request a car"
+        },
+        "radioButton":{
+            "titulo":"Payment method",
+            "tarjeta":"Card",
+            "efectivo":"Cash"
+        },
+        "search":{
+            "txtBuscar" :"Search",
+            "destino"   :"Set destination manually",
+            "recogida"  :"Set pickup location manually",
+            "resultados":"There are no results with"
+        }
     }
 
     

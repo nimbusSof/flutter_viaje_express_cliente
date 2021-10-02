@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/models/search_response.dart';
 import 'package:flutter_viaje_express_cliente/src/models/search_result.dart';
@@ -12,7 +13,7 @@ class SearchRecogida extends SearchDelegate<SearchResult> {
   final List<SearchResult>? historial;
 
   SearchRecogida(this.proximidad, this.historial)
-      : this.searchFieldLabel = 'Buscar',
+      : this.searchFieldLabel = 'viajeNuevo.search.txtBuscar'.tr(),
         this._trafficService = new TrafficService();
 
   @override
@@ -43,7 +44,7 @@ class SearchRecogida extends SearchDelegate<SearchResult> {
         children: [
           ListTile(
             leading: Icon(Icons.location_on),
-            title: Text('Colocar lugar de recogida manualmente'),
+            title: Text('viajeNuevo.search.recogida'.tr()),
             onTap: () {
               this.close(context, SearchResult(
                 cancelo: false, 
@@ -87,7 +88,7 @@ class SearchRecogida extends SearchDelegate<SearchResult> {
         final lugares = snapshot.data!.features;
 
         if (lugares!.length == 0) {
-          return ListTile(title: Text('No hay resultados con $query'));
+          return ListTile(title: Text('viajeNuevo.search.resultados'.tr() +' $query'));
         }
 
         return ListView.separated(

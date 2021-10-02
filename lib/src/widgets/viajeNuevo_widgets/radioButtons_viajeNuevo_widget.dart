@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class RbtnMetodoPago extends StatefulWidget {
@@ -24,7 +25,7 @@ class _RbtnMetodoPagoState extends State<RbtnMetodoPago> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Forma de pago',
+                'viajeNuevo.radioButton.titulo'.tr(),
                 style: TextStyle(fontSize: 16),
               ),
             ),
@@ -46,7 +47,7 @@ class _RbtnMetodoPagoState extends State<RbtnMetodoPago> {
                     ),
                     Icon(Icons.credit_card),
                     SizedBox(width: 10,),
-                    Text('Tarjeta'),
+                    Text('viajeNuevo.radioButton.tarjeta'.tr()),
                   ],
                 ),
                 Row(
@@ -60,7 +61,7 @@ class _RbtnMetodoPagoState extends State<RbtnMetodoPago> {
                     ),
                     Icon(Icons.paid),
                     SizedBox(width: 10,),
-                    Text('Efectivo'),
+                    Text('viajeNuevo.radioButton.efectivo'.tr()),
                   ],
                 ),
               ],

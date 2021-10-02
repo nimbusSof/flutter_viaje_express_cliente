@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.dart';
@@ -28,7 +29,7 @@ class CustomInputSearchDestino extends StatelessWidget {
                 final proximidad =
                     context.read<MiUbicacionBloc>().state.ubicacion;
                 final historial = context.read<BusquedaBloc>().state.historial;
-
+                
                 final resultado = await showSearch(
                     context: context,
                     delegate: SearchDestino(proximidad!, historial!));
@@ -37,7 +38,7 @@ class CustomInputSearchDestino extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 width: double.infinity,
-                child: Text(state.nombreDestino?? 'Lugar de destino',
+                child: Text(state.nombreDestino?? 'viajeNuevo.input.destino.placeholder'.tr(),
                     style: TextStyle(color: Colors.black87)),
                 decoration: BoxDecoration(
                     color: Colors.white,

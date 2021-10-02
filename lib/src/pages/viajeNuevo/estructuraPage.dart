@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_viaje_express_cliente/src/providers/datosViajeNuevo_provider.dart';
@@ -79,11 +80,11 @@ class Estructura extends StatelessWidget {
                   
                     //aqui va el input
                   CustomInputSearchDestino(),
-                    
-                  BtnSelectRutas(texto: 'Seleccionar una ruta guardada'),
+                  
+                  BtnSelectRutas(texto: 'viajeNuevo.button.seleccionar'.tr()),
                   RbtnMetodoPago(),
                   CustomButton(
-                      text: 'Solicitar un auto',
+                      text: 'viajeNuevo.button.solicitar'.tr(),
                       onPressed: () {
                         //cierra el teclado del teléfono
                         FocusManager.instance.primaryFocus?.unfocus();

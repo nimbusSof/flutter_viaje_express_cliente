@@ -66,7 +66,7 @@ class _SideBarState extends State<SideBar> {
         ),
         ListTile(
           leading: Icon(Icons.home),
-          title: Text('Inicio'),
+          title: Text('sideBar.inicio'.tr()),
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
             Navigator.pushReplacementNamed(context, 'inicio');
@@ -74,7 +74,7 @@ class _SideBarState extends State<SideBar> {
         ),
         ListTile(
           leading: Icon(Icons.map),
-          title: Text('Viaje Nuevo'),
+          title: Text('sideBar.viajeNuevo'.tr()),
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
             Navigator.pushReplacementNamed(context, 'loadingMapa');
@@ -82,7 +82,7 @@ class _SideBarState extends State<SideBar> {
         ),
         ListTile(
           leading: Icon(Icons.save),
-          title: Text('Rutas guardadas'),
+          title: Text('sideBar.destinosFav'.tr()),
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
             Navigator.pushReplacementNamed(context, 'rutasGuardadas_inicio');
@@ -90,7 +90,7 @@ class _SideBarState extends State<SideBar> {
         ),
         ListTile(
           leading: Icon(Icons.credit_card),
-          title: Text('Payment'),
+          title: Text('sideBar.metodoPago'.tr()),
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
             Navigator.pushReplacementNamed(context, 'metodoPago_inicio');
@@ -98,7 +98,7 @@ class _SideBarState extends State<SideBar> {
         ),
         ListTile(
           leading: Icon(Icons.history),
-          title: Text('Historial de viajes'),
+          title: Text('sideBar.historial'.tr()),
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
             Navigator.pushReplacementNamed(context, 'historialViajes_inicio');
@@ -106,7 +106,7 @@ class _SideBarState extends State<SideBar> {
         ),
         ListTile(
           leading: Icon(Icons.settings),
-          title: Text('Configuraciones'),
+          title: Text('sideBar.configuraciones'.tr()),
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
             Navigator.pushReplacementNamed(context, 'configuraciones_inicio');
@@ -114,7 +114,7 @@ class _SideBarState extends State<SideBar> {
         ),
         ListTile(
           leading: Icon(Icons.logout),
-          title: Text('Salir'),
+          title: Text('sideBar.salir'.tr()),
           onTap: () async{
 
             //al salir se restablecerá la aplicación con el idioma que tenga configurado

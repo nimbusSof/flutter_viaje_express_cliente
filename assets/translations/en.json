@@ -217,8 +217,18 @@
             "titulo":"Profile rating",
             "comentarios":"Comments"
         }
-    }
+    },
 
+
+    "sideBar":{
+        "inicio":"Home",
+        "viajeNuevo":"New trip",
+        "destinosFav":"Favorite destinations",
+        "metodoPago":"Payment",
+        "historial":"Travel history",
+        "configuraciones":"Settings",
+        "salir":"Log out"
+    }
 
     
 

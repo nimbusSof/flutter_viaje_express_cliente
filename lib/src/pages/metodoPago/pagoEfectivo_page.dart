@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
@@ -19,7 +20,7 @@ class PagoEfectivoPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(
-          'Efectivo',
+          'metodoPago.efectivo.titulo'.tr(),
           style: TextStyle(
             fontSize: 20,
             color: Colors.black45,
@@ -43,7 +44,7 @@ class _EstructuraPage extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Efectivo',
+                'metodoPago.efectivo.titulo'.tr(),
                 style: TextStyle(fontSize: 55, color: Colors.black),
               ),
             ),
@@ -51,7 +52,7 @@ class _EstructuraPage extends StatelessWidget {
           RichText(
               text: TextSpan(children: [
             TextSpan(
-              text: 'Paga tus viajes en efectivo\n',
+              text: 'metodoPago.efectivo.subtitulo'.tr()+'\n',
               style: TextStyle(
                   fontSize: 20,
                   color: Colors.black,
@@ -59,7 +60,7 @@ class _EstructuraPage extends StatelessWidget {
             ),
             TextSpan(
               text:
-                  'El teléfono de tu conductor te mostrará el monto a pagar al final del viaje.',
+                  'metodoPago.efectivo.texto'.tr(),
               style: TextStyle(fontSize: 20, color: Colors.black),
             ),
           ]))

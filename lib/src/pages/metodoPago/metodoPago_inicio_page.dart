@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/cabecera_widgets/cabecera_widget.dart';
@@ -53,15 +54,15 @@ class _EstructuraPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Cabecera(titulo: 'Método de Pago', subtitulo: 'Viaje Express'),
+        Cabecera(titulo: 'metodoPago.inicio.titulo'.tr(), subtitulo: 'Viaje Express'),
         BtnSimpleIcon(
-          texto: 'Tarjeta de crédito o débito',
+          texto: 'metodoPago.inicio.tarjeta'.tr(),
           icono: Icons.credit_card,
           color: Colors.blue,
           ruta: 'pagoTarjeta',
         ),
         BtnSimpleIcon(
-          texto: 'Dinero en efectivo',
+          texto: 'metodoPago.inicio.dinero'.tr(),
           icono: Icons.attach_money,
           color: Colors.green,
           ruta: 'pagoEfectivo',

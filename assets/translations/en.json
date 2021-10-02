@@ -119,8 +119,49 @@
             "vcancelados"   : "Trips canceled"
         }
        
+    },
+
+
+    "metodoPago":{
+        "inicio":{
+            "titulo"    : "Payment Method",
+            "tarjeta"   : "Credit or debit card",
+            "dinero"    : "Cash money"
+        },
+        "efectivo":{
+            "titulo"    : "Cash money",
+            "subtitulo" : "Pay for your trips in cash",
+            "texto"     : "Your driver's phone will show you the amount to pay at the end of the trip."
+        },
+
+
+        "tarjeta": {
+            "titulo": "Add Card",
+            "numTarjeta": {
+                "placeholder": "Card number",
+                "alerts": {
+                    "null": "Please enter your card number"
+                }
+            },
+            "fechaVence": {
+                "placeholder": "Expiration date",
+                "alerts": {
+                    "null": "Please enter the expiration date"
+                }
+            },
+            "codigoSeg": {
+                "placeholder": "Security code",
+                "alerts": {
+                    "null": "Please enter the security code of your card"
+                }
+            }
+        }    
+
+
+
     }
 
+   
 
     
 

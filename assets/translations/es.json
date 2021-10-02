@@ -122,8 +122,44 @@
             "titulo"        : "Historial de viajes",
             "vconcluidos"   : "Viajes concluidos",
             "vcancelados"   : "Viajes cancelados"
+        }  
+    },
+
+
+    "metodoPago":{
+        "inicio":{
+            "titulo"    : "Método de Pago",
+            "tarjeta"   : "Tarjeta de crédito o débito",
+            "dinero"    : "Dinero en efectivo"
+        },
+
+        "efectivo":{
+            "titulo"    : "Efectivo",
+            "subtitulo" : "Paga tus viajes en efectivo",
+            "texto"     : "El teléfono de tu conductor te mostrará el monto a pagar al final del viaje."
+        },
+
+        "tarjeta":{
+            "titulo"    :"Agregar Tarjeta",
+            "numTarjeta":{
+                "placeholder": "Número de tarjeta",
+                "alerts":{
+                    "null":"Por favor ingresa el número de tu tarjeta"
+                }
+            },
+            "fechaVence":{
+                "placeholder": "Fecha de vencimiento",
+                "alerts":{
+                    "null":"Por favor ingresa la fecha de vencimiento"
+                }
+            },
+            "codigoSeg" :{
+                "placeholder": "Código de seguridad",
+                "alerts":{
+                    "null": "Por favor ingresa el código de seguridad de tu tarjeta"
+                }
+            }
         }
-        
     }
 
 }

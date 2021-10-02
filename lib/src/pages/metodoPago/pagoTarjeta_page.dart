@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/formsCliente_provider.dart';
@@ -28,7 +29,7 @@ class PagoTarjetaPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(
-          'Agregar Tarjeta',
+          'metodoPago.tarjeta.titulo'.tr(),
           style: TextStyle(
             fontSize: 20,
             color: Colors.black45,
@@ -60,7 +61,7 @@ class _EstructuraPage extends StatelessWidget {
               children: [
                 CustomInput(
                   icon: Icons.credit_card,
-                  placeHolder: 'Número de tarjeta',
+                  placeHolder: 'metodoPago.tarjeta.numTarjeta.placeholder'.tr(),
                   textController: tarjetaCtrl,
                   keyboardType: TextInputType.number,
                   inputFormatter: [
@@ -71,17 +72,17 @@ class _EstructuraPage extends StatelessWidget {
                     if (value != null && value.length > 0) {
                       return null;
                     } else {
-                      return 'Porfavor ingresa el número de tu tarjeta';
+                      return 'metodoPago.tarjeta.numTarjeta.alerts.null'.tr();
                     }
                   },
                 ),
                 CustomSelectDate(
                   inputFieldDataController: fechaCtrl,
-                  texto: 'Fecha de vencimiento',
+                  texto: 'metodoPago.tarjeta.fechaVence.placeholder'.tr(),
                 ),
                 CustomInput(
                   icon: Icons.lock,
-                  placeHolder: 'Código de seguridad',
+                  placeHolder: 'metodoPago.tarjeta.codigoSeg.placeholder'.tr(),
                   textController: cvvCtrl,
                   keyboardType: TextInputType.number,
                   inputFormatter: [
@@ -92,7 +93,7 @@ class _EstructuraPage extends StatelessWidget {
                     if (value != null && value.length > 0) {
                       return null;
                     } else {
-                      return 'Porfavor ingresa el código de seguridad de tu tarjeta';
+                      return 'metodoPago.tarjeta.codigoSeg.alerts.null'.tr();
                     }
                   },
                 )
@@ -100,7 +101,7 @@ class _EstructuraPage extends StatelessWidget {
             ),
           ),
           CustomButton(
-              text: 'Guardar',
+              text: 'buttonsGlobals.guardar'.tr(),
               onPressed: () {
                 //cierra el teclado del telefono
                 FocusManager.instance.primaryFocus?.unfocus();

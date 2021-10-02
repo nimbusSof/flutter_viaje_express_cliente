@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/cabecera_widgets/cabecera_widget.dart';
@@ -54,15 +55,15 @@ class _EstructuraPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Cabecera(titulo: 'Historial de viajes', subtitulo: 'Viaje Express'),
+        Cabecera(titulo: 'historialViajes.inicio.titulo'.tr(), subtitulo: 'Viaje Express'),
         BtnSimpleIcon(
-          texto: 'Viajes concluidos',
+          texto: 'historialViajes.inicio.vconcluidos'.tr(),
           icono: Icons.check_circle,
           color: Colors.green,
           ruta: 'viajesConcluidos',
         ),
         BtnSimpleIcon(
-          texto: 'Viajes cancelados',
+          texto: 'historialViajes.inicio.vcancelados'.tr(),
           icono: Icons.cancel,
           color: Colors.red,
           ruta: 'viajesCancelados',

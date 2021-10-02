@@ -114,6 +114,16 @@
         "idiomas":{
             "titulo": "Idioma"
         }
+    },
+
+
+    "historialViajes":{
+        "inicio":{
+            "titulo"        : "Historial de viajes",
+            "vconcluidos"   : "Viajes concluidos",
+            "vcancelados"   : "Viajes cancelados"
+        }
+        
     }
 
 }

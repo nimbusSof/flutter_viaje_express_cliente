@@ -109,7 +109,18 @@
         "idiomas":{
             "titulo": "Language"
         }
+    },
+
+
+    "historialViajes": {
+        "inicio":{
+            "titulo"        : "Travel history",
+            "vconcluidos"   : "Trips concluded",
+            "vcancelados"   : "Trips canceled"
+        }
+       
     }
+
 
     
 

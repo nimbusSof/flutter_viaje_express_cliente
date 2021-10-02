@@ -191,7 +191,17 @@
             "recogida"  :"Set pickup location manually",
             "resultados":"There are no results with"
         }
+    },
+
+    "inicio":{
+        "titulo":"Ready for a new destination",
+        "button":{
+            "pregunta":"Where do you want to go?",
+            "seleccionar": "Select a saved route"
+        },
+        "contenedor": "Taxis around you"
     }
+
 
     
 

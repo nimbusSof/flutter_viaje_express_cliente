@@ -193,6 +193,18 @@
             "recogida"  :"Colocar lugar de recogida manualmente",
             "resultados":"No hay resultados con"
         }
+    },
+
+
+
+
+    "inicio":{
+        "titulo":"Listos para un nuevo destino",
+        "button":{
+            "pregunta":"¿A dónde deseas ir?",
+            "seleccionar": "Selecciona una ruta guardada"
+        },
+        "contenedor": "Taxis en tu zona"
     }
 
 }

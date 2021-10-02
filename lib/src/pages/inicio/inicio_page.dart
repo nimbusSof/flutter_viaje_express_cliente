@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar_widgets/sideBar_widget.dart';
@@ -58,9 +59,9 @@ class _EstructuraPage extends StatelessWidget {
     return Column(
       children: <Widget>[
         Cabecera(
-            titulo: 'Listos para un nuevo destino', subtitulo: 'Viaje Express'),
-        BtnViajar(texto: '¿A dónde deseas ir?'),
-        BtnRutasGuardadas(texto: 'Selecciona una ruta guardada'),
+            titulo: 'inicio.titulo'.tr(), subtitulo: 'Viaje Express'),
+        BtnViajar(texto: 'inicio.button.pregunta'.tr()),
+        BtnRutasGuardadas(texto: 'inicio.button.seleccionar'.tr()),
         SizedBox(height: 25),
         ContenedorMapa()
       ],

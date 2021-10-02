@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 
@@ -12,7 +13,7 @@ class ContenedorMapa extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Container(
-              child: Text('Taxis en tu zona', style: TextStyle(fontSize: 20),),
+              child: Text('inicio.contenedor'.tr(), style: TextStyle(fontSize: 20),),
             ),
           ),   
           SizedBox(height: 10),

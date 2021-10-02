@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
@@ -19,7 +20,7 @@ class ClasificacionPerfilPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(
-          'Clasificación de perfil',
+          'perfilUsuario.calificacion.titulo'.tr(),
           style: TextStyle(
             fontSize: 20,
             color: Colors.black45,
@@ -58,7 +59,7 @@ class _EstructuraPage extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: size.height*0.035),
               margin: EdgeInsets.only(bottom: size.height*0.02),
-              child: Text('Comentarios'),)),
+              child: Text('perfilUsuario.calificacion.comentarios'.tr()),)),
 
         Comentarios()
       ],

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosConfPerfil_provider.dart';
@@ -31,7 +32,7 @@ class ConfiguracionPerfilPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(
-          'Configuración de perfil',
+          'perfilUsuario.inicio.btnConfiguracion'.tr(),
           style: TextStyle(
             fontSize: 20,
             color: Colors.black45,
@@ -81,7 +82,7 @@ class _EstructuraPage extends StatelessWidget {
                 ),
                 CustomInput(
                   icon: Icons.person,
-                  placeHolder: 'Nombres',
+                  placeHolder: 'inputsGlobals.nombres'.tr(),
                   textController: datosConfPerfil.nombresCtrl,
                   keyboardType: TextInputType.name,
                   inputFormatter: [
@@ -93,13 +94,13 @@ class _EstructuraPage extends StatelessWidget {
                         datosConfPerfil.nombresCtrl.text.length > 0) {
                       return null;
                     } else {
-                      return 'Porfavor ingresa tus nombres';
+                      return 'alertsGlobals.nombres.null'.tr();
                     }
                   },
                 ),
                 CustomInput(
                   icon: Icons.person,
-                  placeHolder: 'Apellidos',
+                  placeHolder: 'inputsGlobals.apellidos'.tr(),
                   textController: datosConfPerfil.apellidosCtrl,
                   keyboardType: TextInputType.name,
                   inputFormatter: [
@@ -111,7 +112,7 @@ class _EstructuraPage extends StatelessWidget {
                         datosConfPerfil.apellidosCtrl.text.length > 0) {
                       return null;
                     } else {
-                      return 'Porfavor ingresa tus apellidos';
+                      return 'alertsGlobals.apellidos.null'.tr();
                     }
                   },
                 ),
@@ -119,7 +120,7 @@ class _EstructuraPage extends StatelessWidget {
                     inputFieldDataController: datosConfPerfil.fechaCtrl),
                 CustomInput(
                   icon: Icons.email,
-                  placeHolder: 'Correo electrónico',
+                  placeHolder: 'inputsGlobals.correo'.tr(),
                   textController: datosConfPerfil.emailCtrl,
                   keyboardType: TextInputType.emailAddress,
                   inputFormatter: [],
@@ -130,9 +131,9 @@ class _EstructuraPage extends StatelessWidget {
                       RegExp regExp = new RegExp(pattern);
                       return regExp.hasMatch(value)
                           ? null
-                          : 'Sintaxis de correo es errónea';
+                          : 'alertsGlobals.correo.sintaxis'.tr();
                     } else {
-                      return 'Porfavor ingresa tu correo electrónico';
+                      return 'alertsGlobals.correo.null'.tr();
                     }
                   },
                 ),
@@ -143,7 +144,7 @@ class _EstructuraPage extends StatelessWidget {
                         ' ' +
                         datosConfPerfil.claveCtrl.text);
                     if (value != null && value.length < 6) {
-                      return 'La clave debe tener como mínimo 6 caracteres';
+                      return 'alertsGlobals.password.sintaxis'.tr();
                     } else {
                       return null;
                     }
@@ -151,14 +152,14 @@ class _EstructuraPage extends StatelessWidget {
                   inputFormatter: [],
                   sufixIcon: Icons.visibility,
                   icon: Icons.lock_outline,
-                  placeHolder: 'Password',
+                  placeHolder: 'inputsGlobals.password'.tr(),
                   isPassword: true,
                   textController: datosConfPerfil.claveCtrl,
                 ),
                 Container(
                     margin: EdgeInsets.only(top: 10),
                     child: CustomButton(
-                        text: 'Guardar',
+                        text: 'buttonsGlobals.guardar'.tr(),
                         onPressed: () async {
                           FocusManager.instance.primaryFocus?.unfocus();
                           if (clienteForm.isValidFormConfPerfil()) {
@@ -167,7 +168,7 @@ class _EstructuraPage extends StatelessWidget {
                                 listen: false);
 
                             String token = await authService.readToken();
-                            String idPersona_rol =
+                            String idPersonarol =
                                 await authService.readIdPersonaRol();
                             
 
@@ -187,19 +188,19 @@ class _EstructuraPage extends StatelessWidget {
                                 datosConfPerfil.claveCtrl.text;
 
                             updateClienteService.updateModifiedBy =
-                                idPersona_rol;
+                                idPersonarol;
 
                            
 
                             final bool? exito = await updateClienteService
-                                .updateClienteService(idPersona_rol, token);
+                                .updateClienteService(idPersonarol, token);
 
                             if (exito == true) {
                               NotificationsService.showSnackbar(
-                                  '¡Datos actuactualizados correctamente!');
+                                  'perfilUsuario.configuracion.confirmacion'.tr());
                             } else {
                               NotificationsService.showSnackbar(
-                                  'No se pudieron actualizar los datos');
+                                  'perfilUsuario.configuracion.error'.tr());
                             }
                           }
                         }))

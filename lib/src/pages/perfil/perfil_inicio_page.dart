@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
@@ -54,15 +55,15 @@ class _EstructuraPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Cabecera(titulo: 'Perfil de usuario', subtitulo: 'Viaje Express'),
+        Cabecera(titulo: 'perfilUsuario.inicio.titulo'.tr(), subtitulo: 'Viaje Express'),
         BtnSimpleIcon(
-          texto: 'Configuración de perfil',
+          texto: 'perfilUsuario.inicio.btnConfiguracion'.tr(),
           icono: Icons.person,
           color: grisOscuroColor,
           ruta: 'configuracionPerfil',
         ),
         BtnSimpleIcon(
-          texto: 'Mi calificación',
+          texto: 'perfilUsuario.inicio.btnCalificacion'.tr(),
           icono: Icons.star,
           color: grisOscuroColor,
           ruta: 'clasificaciónPerfil',

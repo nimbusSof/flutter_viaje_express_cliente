@@ -205,6 +205,29 @@
             "seleccionar": "Selecciona una ruta guardada"
         },
         "contenedor": "Taxis en tu zona"
+    },
+
+
+    "perfilUsuario":{
+        "inicio":{
+            "titulo":"Perfil de usuario",
+            "btnConfiguracion":"Configuración de perfil",
+            "btnCalificacion":"Mi calificación"
+        },
+
+        "configuracion":{
+            "confirmacion":"¡Datos actuactualizados correctamente!",
+            "error":"No se pudieron actualizar los datos"
+        },
+
+        "calificacion":{
+            "titulo":"Calificación de perfil",
+            "comentarios":"Comentarios"
+        }
+
+        
     }
+
+
 
 }

@@ -200,6 +200,23 @@
             "seleccionar": "Select a saved route"
         },
         "contenedor": "Taxis around you"
+    },
+
+
+    "perfilUsuario":{
+        "inicio":{
+            "titulo":"User profile",
+            "btnConfiguracion":"Profile settings",
+            "btnCalificacion":"My qualification"
+        },
+        "configuracion":{
+            "confirmacion":"Data updated correctly!",
+            "error":"Could not update data"
+        },
+        "calificacion":{
+            "titulo":"Profile rating",
+            "comentarios":"Comments"
+        }
     }
 
 

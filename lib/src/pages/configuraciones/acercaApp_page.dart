@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
@@ -19,7 +20,7 @@ class AcercaAppPage extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           title: Text(
-            'Acerca de la app',
+            'configuraciones.acercaApp.titulo'.tr(),
             style: TextStyle(
               fontSize: 20,
               color: Colors.black45,
@@ -42,10 +43,10 @@ class _EstructuraPage extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 10,),
-          BtnSimple(texto: 'Reglas del servicio'),
-          BtnSimple(texto: 'Terminós y condiciones'),
-          BtnSimple(texto: 'Política de privacidad'),
-          BtnSimple(texto: 'Versión de la aplicación'),
+          BtnSimple(texto: 'configuraciones.acercaApp.reglas'.tr()),
+          BtnSimple(texto: 'configuraciones.acercaApp.terminos'.tr()),
+          BtnSimple(texto: 'configuraciones.acercaApp.politica'.tr()),
+          BtnSimple(texto: 'configuraciones.acercaApp.version'.tr()),
 
         ],
       ),

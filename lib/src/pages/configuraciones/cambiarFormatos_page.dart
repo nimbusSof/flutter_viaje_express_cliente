@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
@@ -18,7 +19,7 @@ class CambiarFormatosPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(
-          'Formatos',
+          'configuraciones.formatos.titulo'.tr(),
           style: TextStyle(
             fontSize: 20,
             color: Colors.black45,
@@ -53,7 +54,7 @@ class _EstructuraPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            'Formato de 24 horas',
+            'configuraciones.formatos.fhoras'.tr(),
             style: TextStyle(fontSize: 18),
           ),
           Switch(value: true, onChanged: (value) {})
@@ -72,11 +73,11 @@ class _EstructuraPage extends StatelessWidget {
           child: RichText(
               textAlign: TextAlign.start,
               text: TextSpan(
-                  text: 'Unidades de distancia\n',
+                  text: 'configuraciones.formatos.fdistancia'.tr()+'\n',
                   style: TextStyle(color: Colors.black, fontSize: 18),
                   children: [
                     TextSpan(
-                      text: 'Kilómetros',
+                      text: 'configuraciones.formatos.unimedida'.tr(),
                       style: TextStyle(color: Colors.green, fontSize: 18),
                     )
                   ])),

@@ -19,7 +19,8 @@
         "ingresar"  : "Sign In",
         "siguiente"     : "Next",
         "regresar"      : "Back",
-        "finalizarReg"  : "Finish Sign Up"
+        "finalizarReg"  : "Finish Sign Up",
+        "guardar"       : "Save"
     },
     
     "alertsGlobals":{
@@ -74,6 +75,37 @@
     },
 
     "configuraciones":{
+        "inicio":{
+            "cabecera"  : "Settings",
+            "telefono"  : "Change phone number",
+            "idioma"    : "Language",
+            "formato"   : "Date and distance format",
+            "acerca"    : "About the application",
+            "cerrar"    : "Log out"
+
+        },
+
+        "telefono":{
+            "titulo":"Change number",
+            "comentario":"By changing your number, your account and data will be transferred to your new number",
+            "placeHolder":"Enter your phone number"       
+        },
+
+        "formatos": {
+            "titulo"    : "Formats",
+            "fhoras"    : "24 hour format",
+            "fdistancia": "Distance units",
+            "unimedida" : "Kilometers"
+        },
+
+        "acercaApp":{
+            "titulo"        : "About app",
+            "reglas"        : "Service rules",
+            "terminos"      : "Terms and conditions",
+            "politica"      : "Privacy policy",
+            "version"       : "Application version"
+        },
+
         "idiomas":{
             "titulo": "Language"
         }

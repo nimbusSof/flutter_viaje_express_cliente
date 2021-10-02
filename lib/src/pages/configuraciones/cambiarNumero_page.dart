@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -38,7 +39,7 @@ class _CambiarNumeroPageState extends State<CambiarNumeroPage> {
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           title: Text(
-            'Cambiar número',
+            'configuraciones.telefono.titulo'.tr(),
             style: TextStyle(
               fontSize: 20,
               color: Colors.black45,
@@ -90,8 +91,7 @@ class __EstructuraPageState extends State<_EstructuraPage> {
       child: RichText(
         text: TextSpan(
             text:
-                'Al cambiar su número, su cuenta y sus datos se transferiran' +
-                    'a su nuevo número',
+                'configuraciones.telefono.comentario'.tr(),
             style: TextStyle(color: Colors.black54)),
       ),
     );
@@ -100,7 +100,7 @@ class __EstructuraPageState extends State<_EstructuraPage> {
   telefono(TextEditingController telefonoCtrl) {
     return CustomInput(
       icon: Icons.phone,
-      placeHolder: 'Su número de teléfono',
+      placeHolder: 'configuraciones.telefono.placeHolder'.tr(),
       textController: telefonoCtrl,
       keyboardType: TextInputType.phone,
       inputFormatter: [
@@ -113,9 +113,9 @@ class __EstructuraPageState extends State<_EstructuraPage> {
           RegExp regExp = new RegExp(pattern);
           return regExp.hasMatch(value.trim())
               ? null
-              : 'número de teléfono inválido';
+              : 'alertsGlobals.telefono.sintaxis'.tr();
         } else {
-          return 'Porfavor ingresa tu número de teléfono';
+          return 'alertsGlobals.telefono.null'.tr();
         }
       },
     );
@@ -124,7 +124,7 @@ class __EstructuraPageState extends State<_EstructuraPage> {
   boton(TextEditingController telefonoCtrl) {
     final formsCliente = Provider.of<FormsCliente>(context);
     return CustomButton(
-        text: 'Guardar',
+        text: 'buttonsGlobals.guardar'.tr(),
         onPressed: () async {
           //cierra el teclado del telefono
           FocusManager.instance.primaryFocus?.unfocus();
@@ -138,14 +138,14 @@ class __EstructuraPageState extends State<_EstructuraPage> {
                 Provider.of<UpdateClienteService>(context, listen: false);    
 
             String token = await authService.readToken();
-            String idPersona_rol = await authService.readIdPersonaRol();
+            String idPersonarol = await authService.readIdPersonaRol();
 
             
 
             updateClienteService.updateTelefono = telefonoCtrl.text;
 
             final bool? exito = await updateClienteService.updateClienteService(
-                idPersona_rol, token);
+                idPersonarol, token);
 
             if (exito == true) {
               NotificationsService.showSnackbar('¡Teléfono actualizado!');

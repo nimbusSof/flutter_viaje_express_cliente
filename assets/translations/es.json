@@ -19,7 +19,8 @@
         "ingresar"      : "Ingresar",
         "siguiente"     : "Siguiente",
         "regresar"      : "Regresar",
-        "finalizarReg"  : "Finalizar Registro"
+        "finalizarReg"  : "Finalizar Registro",
+        "guardar"       : "Guardar"
     },
     
   
@@ -79,6 +80,37 @@
     },
 
     "configuraciones":{
+        "inicio":{
+            "cabecera"  : "Configuraciones",
+            "telefono"  : "Cambiar número de teléfono",
+            "idioma"    : "Idioma",
+            "formato"   : "Formato de fecha y distancia",
+            "acerca"    : "Acerca de la aplicación",
+            "cerrar"    : "Cerrar sesión"
+
+        },
+
+        "telefono":{
+            "titulo"        :"Cambiar número",
+            "comentario"    :"Al cambiar su número, su cuenta y sus datos se transferiran a su nuevo número",
+            "placeHolder"   :"Ingresa tu número telefónico"     
+        },
+
+        "formatos":{
+            "titulo"        : "Formatos",
+            "fhoras"        : "Formato de 24 horas",
+            "fdistancia"    : "Unidades de distancia",
+            "unimedida"     : "Kilómetros"
+        },
+
+        "acercaApp":{
+            "titulo"        : "Acerca de la app",
+            "reglas"        : "Reglas del servicio",
+            "terminos"      : "Terminós y condiciones",
+            "politica"      : "Política de privacidad",
+            "version"       : "Versión de la aplicación"
+        },
+
         "idiomas":{
             "titulo": "Idioma"
         }

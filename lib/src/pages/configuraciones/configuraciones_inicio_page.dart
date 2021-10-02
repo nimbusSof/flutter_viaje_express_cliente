@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/cabecera_widgets/cabecera_widget.dart';
@@ -55,25 +56,27 @@ class _EstructuraPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Cabecera(titulo: 'Configuraciones', subtitulo: 'Viaje Express'),
+        Cabecera(
+            titulo: 'configuraciones.inicio.cabecera'.tr(),
+            subtitulo: 'Viaje Express'),
         BtnSimple(
-          texto: 'Cambiar número de teléfono',
+          texto: 'configuraciones.inicio.telefono'.tr(),
           ruta: 'cambiarNumero',
         ),
         BtnSimple(
-          texto: 'Idioma',
+          texto: 'configuraciones.inicio.idioma'.tr(),
           ruta: 'cambiarIdioma',
         ),
         BtnSimple(
-          texto: 'Formato de fecha y distancia',
+          texto: 'configuraciones.inicio.formato'.tr(),
           ruta: 'cambiarFormatos',
         ),
         BtnSimple(
-          texto: 'Acerca de la aplicación',
+          texto: 'configuraciones.inicio.acerca'.tr(),
           ruta: 'acercaApp',
         ),
         BtnSimple(
-          texto: 'Cerrar sesión',
+          texto: 'configuraciones.inicio.cerrar'.tr(),
           ruta: 'login',
         ),
       ],

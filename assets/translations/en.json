@@ -155,13 +155,16 @@
                     "null": "Please enter the security code of your card"
                 }
             }
-        }    
+        } 
 
+    },
 
-
+    "rutaGuardada": {
+        "inicio":{
+            "titulo"      : "Saved Routes",
+            "vrGuardada": "View saved routes"
+        }
     }
-
-   
 
     
 

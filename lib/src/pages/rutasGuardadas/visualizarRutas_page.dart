@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
@@ -18,7 +19,7 @@ class VisualizarRutasPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(
-          'Rutas Guardadas',
+          'rutaGuardada.inicio.titulo'.tr(),
           style: TextStyle(
             fontSize: 20,
             color: Colors.black45,

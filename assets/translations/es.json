@@ -160,6 +160,13 @@
                 }
             }
         }
+    },
+
+    "rutaGuardada":{
+        "inicio":{
+            "titulo"        :"Rutas Guardadas",
+            "vrGuardada"  :"Visualizar rutas guardadas"
+        }
     }
 
 }

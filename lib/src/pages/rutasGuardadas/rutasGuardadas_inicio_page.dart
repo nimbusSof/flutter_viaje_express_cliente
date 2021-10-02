@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
@@ -55,9 +56,9 @@ class _EstructuraPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Cabecera(titulo: 'Rutas Guardadas', subtitulo: 'Viaje Express'),
+        Cabecera(titulo: 'rutaGuardada.inicio.titulo'.tr(), subtitulo: 'Viaje Express'),
         BtnSimpleIcon(
-          texto: 'Visualizar rutas guardadas',
+          texto: 'rutaGuardada.inicio.vrGuardada'.tr(),
           icono: Icons.star,
           color: yellowColor,
           ruta: 'visualizarRutas',

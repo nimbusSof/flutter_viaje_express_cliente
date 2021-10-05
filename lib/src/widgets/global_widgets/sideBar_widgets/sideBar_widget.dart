@@ -125,6 +125,7 @@ class _SideBarState extends State<SideBar> {
                       if(idiomaDispositivo=='es' || idiomaDispositivo=='en'){
                         await context.setLocale(Locale(idiomaDispositivo));
                       }else{
+                        //se coloca idioma ingles por defecto
                         context.setLocale(context.locale);
                       }
 

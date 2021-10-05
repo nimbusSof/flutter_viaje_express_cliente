@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 
 class BtnViajar extends StatelessWidget {
@@ -10,11 +12,15 @@ class BtnViajar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mapaBloc = BlocProvider.of<MapaBloc>(context);
     return Container(
       padding: EdgeInsets.only(top: 50),
       margin: EdgeInsets.symmetric(horizontal: 25),
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+             mapaBloc.add(OnMapaCerrado());
+             Navigator.pushReplacementNamed(context, 'loadingMapa');
+          },
           style: ElevatedButton.styleFrom(
             // aquí se le da estilo al botón
             elevation: 2,
@@ -64,7 +70,9 @@ class BtnRutasGuardadas extends StatelessWidget {
       padding: EdgeInsets.only(top: 30),
       margin: EdgeInsets.symmetric(horizontal: 25),
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, 'visualizarRutas');
+          },
           style: ElevatedButton.styleFrom(
             // aquí se le da estilo al botón
             elevation: 2,

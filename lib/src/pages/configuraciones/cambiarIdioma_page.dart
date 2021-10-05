@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/datosConfiguraciones_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
 import 'package:provider/provider.dart';
@@ -42,9 +43,8 @@ class CambiarIdiomaPage extends StatelessWidget {
 class _EstructuraPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     final datosConfi = Provider.of<DatosConfiguraciones>(context);
-    datosConfi.inicializar();
+    inicializar(context);
     /* datosConfi.idioma1 = prefs.idioma1;
     datosConfi.idioma2 = prefs.idioma2; */
 
@@ -60,6 +60,15 @@ class _EstructuraPage extends StatelessWidget {
     );
   }
 
+  void inicializar(BuildContext context) async {
+    final datosConfi = Provider.of<DatosConfiguraciones>(context);
+    final authService = Provider.of<AuthService>(context, listen: false);
+    String token = await authService.readToken();
+    String idPersonarol = await authService.readIdPersonaRol();
+    print('token inicializar: ' + token);
+    datosConfi.inicializar(token, idPersonarol);
+  }
+
   idioma(String texto, bool bandera, int numero, BuildContext context) {
     final prefs = new PreferenciasUsuario();
     final datosConfi = Provider.of<DatosConfiguraciones>(context);
@@ -68,21 +77,19 @@ class _EstructuraPage extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(top: 10, bottom: 11),
         child: GestureDetector(
-          onTap: () async{
+          onTap: () async {
+
+            final authService =
+              Provider.of<AuthService>(context, listen: false);
+              String token = await authService.readToken();
+              String idPersonarol = await authService.readIdPersonaRol();
+
             if (numero == 1) {
-              datosConfi.idioma1 = true;
-              datosConfi.idioma2 = false;
-              prefs.idioma1 = datosConfi.idioma1;
-              prefs.idioma2 = datosConfi.idioma2;
-              print(datosConfi.idioma1);
+              datosConfi.putIdioma1(token, idPersonarol);
               await context.setLocale(Locale('es'));
             }
             if (numero == 2) {
-              datosConfi.idioma2 = true;
-              datosConfi.idioma1 = false;
-              prefs.idioma1 = datosConfi.idioma1;
-              prefs.idioma2 = datosConfi.idioma2;
-              print(datosConfi.idioma2);
+              datosConfi.putIdioma2(token, idPersonarol);
               await context.setLocale(Locale('en'));
             }
           },

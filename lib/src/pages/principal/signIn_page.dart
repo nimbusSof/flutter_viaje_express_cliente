@@ -27,13 +27,12 @@ class LoginPage extends StatelessWidget {
                 Logo(
                   titulo: 'signIn.frase'.tr(),
                 ),
-                ChangeNotifierProvider(
-                    create: (_) => SignInFormProvider(), child: _Form()),
-                Labels(
-                  ruta: 'signin',
-                  titulo: 'signIn.cuentaPregunta'.tr(),
-                  subtitulo: 'signIn.crearCuenta'.tr(),
-                ),
+                _Form(),
+                
+                LabelOlvideClave(subtitulo: 'signIn.reiniciarClave'.tr()),
+
+                LabelSignUp(ruta: 'signin', subtitulo: 'signIn.crearCuenta'.tr()),    
+                
               ],
             ),
           ),

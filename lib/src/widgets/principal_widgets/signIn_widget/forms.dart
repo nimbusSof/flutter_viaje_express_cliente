@@ -8,7 +8,7 @@ import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/forms_signIn_signUp_provider.dart';
 
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/datosSignUp_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/principal/datosSignUp_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/Validaciones/validaciones.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_dropDown.dart';

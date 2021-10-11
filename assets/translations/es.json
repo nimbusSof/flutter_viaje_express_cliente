@@ -59,8 +59,9 @@
 
     "signIn"     :{
         "frase"             :"Hacia tu destino",
+        "reiniciarClave"    : "¿Olvidaste tu clave?",
         "cuentaPregunta"    : "¿No tienes cuenta?",
-        "crearCuenta"       : "¡Crea una ahora!",
+        "crearCuenta"       : "Registrate",
         "mensaje":{
             "credenciales"      : "Credenciales erroneas"
         }  
@@ -77,6 +78,13 @@
             "error"         : "No se pudo registrar el usuario"
         }  
 
+    },
+
+
+    "reiniciarClave":{
+        "titulo"        : "Recuperación de la cuenta",
+        "btnReiniciar"  : "Reiniciar clave",
+        "regresar"      : "Regresar"
     },
 
     "configuraciones":{

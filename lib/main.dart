@@ -47,6 +47,7 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => new UpdateClienteService()),
         ChangeNotifierProvider(create: (_) => new PreferenciasUsuario()),
         ChangeNotifierProvider(create: (_) => new DatosConfiguraciones()),
+        ChangeNotifierProvider(create: (_) => new SignInFormProvider())
       ],
       child: MyApp(),
     );

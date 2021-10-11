@@ -67,10 +67,10 @@ class _EstructuraPage extends StatelessWidget {
           texto: 'configuraciones.inicio.idioma'.tr(),
           ruta: 'cambiarIdioma',
         ),
-        BtnSimple(
+        /* BtnSimple(
           texto: 'configuraciones.inicio.formato'.tr(),
           ruta: 'cambiarFormatos',
-        ),
+        ), */
         BtnSimple(
           texto: 'configuraciones.inicio.acerca'.tr(),
           ruta: 'acercaApp',

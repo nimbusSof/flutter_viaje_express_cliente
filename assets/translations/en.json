@@ -59,8 +59,9 @@
 
     "signIn"     :{
         "frase"             :"Towards your destination",
+        "reiniciarClave"    : "Did you forget your password?",
         "cuentaPregunta"    : "do not have an account yet?",
-        "crearCuenta"       : "¡Create one now!",
+        "crearCuenta"       : "Sign Up",
         "mensaje":{
             "credenciales"      : "Wrong credentials"
         }   
@@ -72,6 +73,12 @@
         "cuentaIngresar"    : "¡Sign in now!",
         "cancelar"          : "Cancel"
 
+    },
+
+    "reiniciarClave":{
+        "titulo"        : "Account recovery",
+        "btnReiniciar"  : "Reset password",
+        "regresar"      : "Back"
     },
 
     "configuraciones":{

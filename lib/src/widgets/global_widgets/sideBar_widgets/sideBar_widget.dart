@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
-import 'package:flutter_viaje_express_cliente/src/services/auth_service.dart';
+import 'package:flutter_viaje_express_cliente/src/services/signin/auth_service.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
@@ -135,7 +135,7 @@ class _SideBarState extends State<SideBar> {
 
 
             Navigator.pushNamedAndRemoveUntil(
-                context, 'login', (route) => false);
+                context, 'signin', (route) => false);
           },
         )
       ]),

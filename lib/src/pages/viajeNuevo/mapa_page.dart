@@ -6,7 +6,7 @@ import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.da
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 
-import 'package:flutter_viaje_express_cliente/src/providers/slidingUpPanel_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/viajeNuevo/slidingUpPanel_provider.dart';
 
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar_widgets/sideBar_widget.dart';

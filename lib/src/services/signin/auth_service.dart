@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_viaje_express_cliente/src/models/personaCliente.dart';
-import 'package:flutter_viaje_express_cliente/src/services/viajeExpressApi_service.dart';
+import 'package:flutter_viaje_express_cliente/src/services/global/viajeExpressApi_service.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:http/http.dart' as http;
 

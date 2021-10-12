@@ -1,9 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/datosConfPerfil_provider.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/formsCliente_provider.dart';
-import 'package:flutter_viaje_express_cliente/src/services/perfil_services/updateCliente_service.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/perfil/datosConfPerfil_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/global/formsCliente_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/services/perfil/updateCliente_service.dart';
+
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';

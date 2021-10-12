@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/models/updateCliente.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:http/http.dart' as http;
-import '../viajeExpressApi_service.dart';
+import '../global/viajeExpressApi_service.dart';
 
 class UpdateClienteService extends ChangeNotifier {
   late UpdateCliente _updateCliente;

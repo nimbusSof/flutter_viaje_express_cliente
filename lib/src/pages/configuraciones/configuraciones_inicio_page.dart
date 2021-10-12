@@ -77,7 +77,7 @@ class _EstructuraPage extends StatelessWidget {
         ),
         BtnSimple(
           texto: 'configuraciones.inicio.cerrar'.tr(),
-          ruta: 'login',
+          ruta: 'signin',
         ),
       ],
     );

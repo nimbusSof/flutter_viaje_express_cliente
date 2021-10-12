@@ -15,25 +15,28 @@ import 'package:flutter_viaje_express_cliente/src/pages/metodoPago/pagoTarjeta_p
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/clasificacionPerfil_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/configuracionPerfil_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/perfil/perfil_inicio_page.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/principal/check_auth_screen.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/principal/reiniciarClave_page.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/principal/signIn_page.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/principal/signUp_page.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/principal/splash_screen_page.dart';
+
 import 'package:flutter_viaje_express_cliente/src/pages/rutasGuardadas/rutasGuardadas_inicio_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/rutasGuardadas/visualizarRutas_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/signin/check_auth_screen.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/signin/reiniciarClave_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/signin/signIn_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/signin/splash_screen_page.dart';
+import 'package:flutter_viaje_express_cliente/src/pages/signup/signUp_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/acceso_gps_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/loading_page.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/mapa_page.dart';
 
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
-  //PRINCIPAL
+  //MODULO SIGN IN
   '/'                            :  (_) => SplashScreen(),
-  'login'                        :  (_) => LoginPage(),
-  'signin'                       :  (_) => SignInPage(), 
+  'signin'                       :  (_) => SignInPage(),
   'checking'                     :  (_) => CheckAuthScreen(), 
   'reiniciar_clave'              :  (_) => ReiniciarClave(),
+
+  //MODULO SIGN UP
+  'signup'                       :  (_) => SignUpPage(), 
 
   //MODULO VIAJE NUEVO
   'inicio'                       :  (_) => InicioPage(),

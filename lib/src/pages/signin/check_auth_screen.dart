@@ -1,9 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 //import 'package:flutter_viaje_express_cliente/src/pages/inicio/inicio_page.dart';
-import 'package:flutter_viaje_express_cliente/src/pages/principal/signIn_page.dart';
-import 'package:flutter_viaje_express_cliente/src/services/auth_service.dart';
-import 'package:flutter_viaje_express_cliente/src/services/configuraciones/idiomaUser_service.dart';
+
+import 'package:flutter_viaje_express_cliente/src/pages/signin/signIn_page.dart';
+import 'package:flutter_viaje_express_cliente/src/services/signin/auth_service.dart';
+
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +27,7 @@ class CheckAuthScreen extends StatelessWidget {
                 Navigator.pushReplacement(
                     context,
                     PageRouteBuilder(
-                        pageBuilder: (_, __, ___) => LoginPage(),
+                        pageBuilder: (_, __, ___) =>  SignInPage(),
                         transitionDuration: Duration(seconds: 0)));
               });
             } else {

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/forms_signIn_signUp_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/signin/forms_signIn_provider.dart';
+
 import 'package:flutter_viaje_express_cliente/src/services/configuraciones/idiomaUser_service.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 
@@ -10,7 +11,7 @@ import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/labe
 import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/login_widget/logo.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatelessWidget {
+class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

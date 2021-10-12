@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/signUp_bloc/signUp_bloc.dart';
 
 import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/forms_signIn_signUp_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/signup/forms_signUp_provider.dart';
 
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/principal/datosSignUp_provider.dart';
@@ -35,7 +35,7 @@ class FormState extends State<Form0> {
   Widget build(BuildContext context) {
     final signUpBloc = BlocProvider.of<SignUpBloc>(context);
     final signUpService = Provider.of<SignUpProvider>(context);
-    final signInForm = Provider.of<SignInFormProvider>(context);
+    final signInForm = Provider.of<SignUpFormProvider>(context);
 
     // se pone fecha por defecto al signUp
     /* if (signUpService.cliente.fechaNacimiento == null) {
@@ -150,7 +150,7 @@ class Form1State extends State<Form1> {
   Widget build(BuildContext context) {
     final signUpBloc = BlocProvider.of<SignUpBloc>(context);
     final signUpService = Provider.of<SignUpProvider>(context);
-    final signInForm = Provider.of<SignInFormProvider>(context);
+    final signInForm = Provider.of<SignUpFormProvider>(context);
 
     telefonoCtrl.text = signUpService.cliente.telefono;
 
@@ -230,7 +230,7 @@ class Form2State extends State<Form2> {
   @override
   Widget build(BuildContext context) {
     final signUpService = Provider.of<SignUpProvider>(context);
-    final signInForm = Provider.of<SignInFormProvider>(context);
+    final signInForm = Provider.of<SignUpFormProvider>(context);
 
     emailCtrl.text = signUpService.cliente.correo;
     passCtrl.text = signUpService.cliente.clave;

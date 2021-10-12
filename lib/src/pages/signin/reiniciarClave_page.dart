@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/signin/forms_signIn_provider.dart';
+
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_input.dart';
 import 'package:provider/provider.dart';
@@ -94,7 +95,7 @@ class _EstructuraPage extends StatelessWidget {
   botonRegresar(BuildContext context) {
     return TextButton(
         onPressed: () {
-          Navigator.pushReplacementNamed(context, 'login');
+          Navigator.pushReplacementNamed(context, 'signin');
         },
         child: Text(
           'reiniciarClave.regresar'.tr(),

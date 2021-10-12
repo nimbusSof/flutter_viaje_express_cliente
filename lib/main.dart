@@ -5,17 +5,19 @@ import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.da
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/localization/supported_locales.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/datosConfPerfil_provider.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/datosConfiguraciones_provider.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/datosViajeNuevo_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/perfil/datosConfPerfil_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/configuraciones/datosConfiguraciones_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/signin/forms_signIn_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/viajeNuevo/datosViajeNuevo_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/slidingUpPanel_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/viajeNuevo/slidingUpPanel_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/routes/routes.dart';
+import 'package:flutter_viaje_express_cliente/src/services/perfil/updateCliente_service.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:provider/provider.dart';
 
-import 'src/services/perfil_services/updateCliente_service.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,6 +49,7 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => new UpdateClienteService()),
         ChangeNotifierProvider(create: (_) => new PreferenciasUsuario()),
         ChangeNotifierProvider(create: (_) => new DatosConfiguraciones()),
+        ChangeNotifierProvider(create: (_) => new SignUpFormProvider()),
         ChangeNotifierProvider(create: (_) => new SignInFormProvider())
       ],
       child: MyApp(),

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_viaje_express_cliente/src/models/registroCliente.dart';
-import 'package:flutter_viaje_express_cliente/src/services/viajeExpressApi_service.dart';
+import 'package:flutter_viaje_express_cliente/src/services/global/viajeExpressApi_service.dart';
 import 'package:http/http.dart' as http;
 
 class SignUpService {

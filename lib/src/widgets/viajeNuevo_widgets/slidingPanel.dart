@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/busqueda/busqueda_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/estructuraPage.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/slidingUpPanel_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/viajeNuevo/slidingUpPanel_provider.dart';
 import 'package:provider/provider.dart';
 //import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_seguir_ubicacion.dart';
 //import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_ubicacion.dart';

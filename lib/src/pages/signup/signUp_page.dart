@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/signUp_bloc/signUp_bloc.dart';
 
 
-import 'package:flutter_viaje_express_cliente/src/providers/forms_signIn_signUp_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/signup/forms_signUp_provider.dart';
 
 import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/signIn_widget/forms.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/signIn_widget/logo_signUp.dart';
@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 
 
 
-class SignInPage extends StatelessWidget {
+class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -50,19 +50,19 @@ class SiguientePanel extends StatelessWidget {
     return BlocBuilder<SignUpBloc, SignUpState>(builder: (_, state) {
       if (state.opcion == 0) {
         return ChangeNotifierProvider(
-          create: (_) => SignInFormProvider(),
+          create: (_) => SignUpFormProvider(),
           child: Form0());
       } else if (state.opcion == 1) {
         return ChangeNotifierProvider(
-          create: (_) => SignInFormProvider(),
+          create: (_) => SignUpFormProvider(),
           child: Form1());
       } else if (state.opcion == 2) {
         return ChangeNotifierProvider(
-          create: (_) => SignInFormProvider(),
+          create: (_) => SignUpFormProvider(),
           child: Form2());
       } else {
         return ChangeNotifierProvider(
-          create: (_) => SignInFormProvider(),
+          create: (_) => SignUpFormProvider(),
           child: Form0());
       }
     });

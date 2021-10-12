@@ -28,35 +28,49 @@ import 'package:flutter_viaje_express_cliente/src/pages/viajeNuevo/mapa_page.dar
 
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
+  //PRINCIPAL
   '/'                            :  (_) => SplashScreen(),
   'login'                        :  (_) => LoginPage(),
   'signin'                       :  (_) => SignInPage(), 
   'checking'                     :  (_) => CheckAuthScreen(), 
-  'inicio'                       :  (_) => InicioPage(),
-  'metodoPago_inicio'            :  (_) => MetodoPagoInicioPage(),
-  'historialViajes_inicio'       :  (_) => HistorialViajesInicioPage(),
-  'configuraciones_inicio'       :  (_) => ConfiguracionesInicioPage(),
-  'rutasGuardadas_inicio'        :  (_) => RutasGuardadasInicioPage(),
-  'perfil_inicio'                :  (_) => PerfilInicioPage(),
   'reiniciar_clave'              :  (_) => ReiniciarClave(),
-  
+
+  //MODULO VIAJE NUEVO
+  'inicio'                       :  (_) => InicioPage(),
+  'acceso_gps'                   :  (_) => AccesoGpsPage(),
+  'loadingMapa'                  :  (_) => LoadingPage(),
+  'mapa_page'                    :  (_) => MapaPage(),
+
+
+  // MODULO PERFIL
+  'perfil_inicio'                :  (_) => PerfilInicioPage(),
   'configuracionPerfil'          :  (_) => ConfiguracionPerfilPage(),
   'clasificaciónPerfil'          :  (_) => ClasificacionPerfilPage(),
+
+  //MODULO CONFIGURACIONES
+  'configuraciones_inicio'       :  (_) => ConfiguracionesInicioPage(),
   'cambiarNumero'                :  (_) => CambiarNumeroPage(),
   'cambiarIdioma'                :  (_) => CambiarIdiomaPage(),
   'cambiarFormatos'              :  (_) => CambiarFormatosPage(),
   'acercaApp'                    :  (_) => AcercaAppPage(),
+  
+
+  //MODULO RUTAS GUARDADAS
+  'rutasGuardadas_inicio'        :  (_) => RutasGuardadasInicioPage(),
+  'visualizarRutas'              :  (_) => VisualizarRutasPage(),
+
+  //MODULO HISTORIAL DE VIAJES
+  'historialViajes_inicio'       :  (_) => HistorialViajesInicioPage(),
   'viajesConcluidos'             :  (_) => ViajesConcluidosPage(),
   'viajesCancelados'             :  (_) => ViajesCanceladosPage(),
-  'visualizarRutas'              :  (_) => VisualizarRutasPage(),
+
+  //MODULO METODO DE PAGO
+  'metodoPago_inicio'            :  (_) => MetodoPagoInicioPage(),
   'pagoTarjeta'                  :  (_) => PagoTarjetaPage(),
   'pagoEfectivo'                 :  (_) => PagoEfectivoPage(),
 
 
-  //mapas
-  'acceso_gps'                   :  (_) => AccesoGpsPage(),
-  'loadingMapa'                  :  (_) => LoadingPage(),
-  'mapa_page'                    :  (_) => MapaPage(),
+
 
 
 };

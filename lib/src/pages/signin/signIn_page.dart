@@ -29,11 +29,9 @@ class SignInPage extends StatelessWidget {
                   titulo: 'signIn.frase'.tr(),
                 ),
                 _Form(),
-                
                 LabelOlvideClave(subtitulo: 'signIn.reiniciarClave'.tr()),
-
-                LabelSignUp(ruta: 'signin', subtitulo: 'signIn.crearCuenta'.tr()),    
-                
+                LabelSignUp(
+                    ruta: 'signup', subtitulo: 'signIn.crearCuenta'.tr()),
               ],
             ),
           ),

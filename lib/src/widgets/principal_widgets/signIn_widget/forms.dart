@@ -124,7 +124,7 @@ class FormState extends State<Form0> {
                 }),
             SizedBox(height: 35),
             Labels(
-              ruta      : 'login',
+              ruta      : 'signin',
               titulo    : 'signUp.cuentaPregunta'.tr(),
               subtitulo : 'signUp.cuentaIngresar'.tr(),
             ),
@@ -336,7 +336,7 @@ class Form2State extends State<Form2> {
                       signUpService.removerCliente();
                       NotificationsService.showSnackbar(
                           'signUp.mensaje.confirmacion'.tr());
-                      Navigator.pushReplacementNamed(context, 'login');
+                      Navigator.pushReplacementNamed(context, 'signin');
                     } else {
                       // mostrar error en pantalla
                       NotificationsService.showSnackbar(

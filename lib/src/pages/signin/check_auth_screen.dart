@@ -1,4 +1,4 @@
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_viaje_express_cliente/src/pages/inicio/inicio_page.dart';
 
@@ -23,11 +23,21 @@ class CheckAuthScreen extends StatelessWidget {
               return Text('Espere');
             }
             if (snapshot.data == '') {
+              String idiomaDispositivo =
+                  context.deviceLocale.toString().substring(0, 2);
+
+              if (idiomaDispositivo == 'es' || idiomaDispositivo == 'en') {
+                context.setLocale(Locale(idiomaDispositivo));
+              }else{
+                context.setLocale(Locale('en'));
+              }
+              
+
               Future.microtask(() {
                 Navigator.pushReplacement(
                     context,
                     PageRouteBuilder(
-                        pageBuilder: (_, __, ___) =>  SignInPage(),
+                        pageBuilder: (_, __, ___) => SignInPage(),
                         transitionDuration: Duration(seconds: 0)));
               });
             } else {

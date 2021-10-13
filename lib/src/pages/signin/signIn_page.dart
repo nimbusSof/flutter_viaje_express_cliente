@@ -14,6 +14,9 @@ import 'package:provider/provider.dart';
 class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String idiomaDispositivo =
+          context.deviceLocale.toString().substring(0, 2);
+          
     return Scaffold(
       backgroundColor: Color(0xffF2F2F2),
       body: SafeArea(

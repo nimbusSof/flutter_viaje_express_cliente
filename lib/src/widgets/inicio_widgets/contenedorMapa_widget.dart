@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
+import 'package:flutter_viaje_express_cliente/src/themes/colors.dart';
 
 class ContenedorMapa extends StatelessWidget {
   @override

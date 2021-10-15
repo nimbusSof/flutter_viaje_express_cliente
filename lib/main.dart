@@ -20,6 +20,7 @@ import 'package:provider/provider.dart';
 
 
 void main() async {
+  //instancias de shared preferences
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = new PreferenciasUsuario();
   await prefs.initPrefs();

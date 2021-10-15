@@ -11,9 +11,10 @@ import 'package:flutter_viaje_express_cliente/src/providers/viajeNuevo/slidingUp
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar_widgets/sideBar_widget.dart';
 
-import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_seguir_ubicacion.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/mapa_widgets/btn_ubicacion.dart';
+
 import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/customButtomDrawer.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/mapa_widgets/btn_seguir_ubicacion.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/mapa_widgets/btn_ubicacion.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/marcador_manualDestino.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/marcador_manualRecogida.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/viajeNuevo_widgets/slidingPanel.dart';

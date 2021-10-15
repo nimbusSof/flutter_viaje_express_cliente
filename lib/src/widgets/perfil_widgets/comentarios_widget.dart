@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
+import 'package:flutter_viaje_express_cliente/src/themes/colors.dart';
 
 class Comentarios extends StatelessWidget {
   @override

@@ -2,6 +2,16 @@ import 'dart:async';
 // Creditos
 // https://stackoverflow.com/a/52922130/7834829
 
+//Objetivo de la clse Debouncer
+//Emitir el valor que se captura en el parámetro onVlaue 
+//a un stream luego de que pase el tiempo determinado
+//afignado a el parámetro duration
+
+//Esta clase es utilizada en el SearchDelegate para emitir
+//el servicio de busqueda con el nombre del lugar 
+//luego de que se termine de escribir y no con cada letra que se presione
+
+
 class Debouncer<T> {
 
   Debouncer({ 

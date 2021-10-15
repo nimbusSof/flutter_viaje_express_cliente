@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
-import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
+import 'package:flutter_viaje_express_cliente/src/themes/colors.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/cabecera_widgets/cabecera_widget.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/sideBar_widgets/sideBar_widget.dart';

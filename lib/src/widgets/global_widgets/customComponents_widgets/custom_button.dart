@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
-import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
+import 'package:flutter_viaje_express_cliente/src/themes/colors.dart';
 import 'package:provider/provider.dart';
 
 class CustomButton extends StatelessWidget {

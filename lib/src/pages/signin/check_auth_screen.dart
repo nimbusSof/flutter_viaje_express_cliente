@@ -22,7 +22,12 @@ class CheckAuthScreen extends StatelessWidget {
             if (!snapshot.hasData) {
               return Text('Espere');
             }
+            // si regrsa cadena vacía es porque no tiene el token de autenticacion guardado
+            //es decir, no ha iniciado sesion
+            
             if (snapshot.data == '') {
+
+              //insernacionalización de la app según el idioma del dispositivo
               String idiomaDispositivo =
                   context.deviceLocale.toString().substring(0, 2);
 

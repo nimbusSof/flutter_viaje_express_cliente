@@ -5,7 +5,7 @@ import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/services/signin/auth_service.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
-import 'package:flutter_viaje_express_cliente/src/utils/colors.dart';
+import 'package:flutter_viaje_express_cliente/src/themes/colors.dart';
 import 'package:provider/provider.dart';
 
 class SideBar extends StatefulWidget {

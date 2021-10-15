@@ -8,14 +8,14 @@ import 'package:flutter_viaje_express_cliente/src/providers/providers.dart';
 import 'package:flutter_viaje_express_cliente/src/providers/signup/forms_signUp_provider.dart';
 
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
-import 'package:flutter_viaje_express_cliente/src/providers/principal/datosSignUp_provider.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/signup/datosSignUp_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/utils/Validaciones/validaciones.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_dropDown.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_input.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_selectDate.dart';
 
-import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/labels.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/labels.dart';
 
 import 'package:provider/provider.dart';
 
@@ -35,7 +35,7 @@ class FormState extends State<Form0> {
   Widget build(BuildContext context) {
     final signUpBloc = BlocProvider.of<SignUpBloc>(context);
     final signUpService = Provider.of<SignUpProvider>(context);
-    final signInForm = Provider.of<SignUpFormProvider>(context);
+    final signUpForm = Provider.of<SignUpFormProvider>(context);
 
     // se pone fecha por defecto al signUp
     /* if (signUpService.cliente.fechaNacimiento == null) {
@@ -50,7 +50,7 @@ class FormState extends State<Form0> {
       margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.symmetric(horizontal: 50),
       child: Form(
-        key: signInForm.formkey0,
+        key: signUpForm.formkey0,
         child: Column(
           children: <Widget>[
             CustomInput(
@@ -110,12 +110,12 @@ class FormState extends State<Form0> {
                   ]),
             ),
             CustomButton(
-                text: 'buttonsGlobals.ingresar'.tr(),
+                text: 'buttonsGlobals.siguiente'.tr(),
                 onPressed: () {
                   //cierra el teclado del telefono
                   FocusManager.instance.primaryFocus?.unfocus();
                   //ejecuta validaciones
-                  if (signInForm.isValidForm0()) {
+                  if (signUpForm.isValidForm0()) {
                     signUpService.agregarCedula(cedulaCtrl.text);
                     signUpService.agregarNombres(nombresCtrl.text);
                     signUpService.agregarApellidos(apellidosCtrl.text);
@@ -150,7 +150,7 @@ class Form1State extends State<Form1> {
   Widget build(BuildContext context) {
     final signUpBloc = BlocProvider.of<SignUpBloc>(context);
     final signUpService = Provider.of<SignUpProvider>(context);
-    final signInForm = Provider.of<SignUpFormProvider>(context);
+    final signUpForm = Provider.of<SignUpFormProvider>(context);
 
     telefonoCtrl.text = signUpService.cliente.telefono;
 
@@ -163,7 +163,7 @@ class Form1State extends State<Form1> {
       margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.symmetric(horizontal: 50),
       child: Form(
-        key: signInForm.formkey1,
+        key: signUpForm.formkey1,
         child: Column(
           children: <Widget>[
             CustomInput(
@@ -195,7 +195,7 @@ class Form1State extends State<Form1> {
                   FocusManager.instance.primaryFocus?.unfocus();
                   //FocusScope.of(context).unfocus(); //activar esta linea provoca un bug en el teclado
                   //validacion del formulario
-                  if (signInForm.isValidForm1()) {
+                  if (signUpForm.isValidForm1()) {
                     signUpService.agregarTelefono(telefonoCtrl.text);
                     signUpService
                         .agregarFechaNacimiento(DateTime.parse(dateCtrl.text));
@@ -230,7 +230,7 @@ class Form2State extends State<Form2> {
   @override
   Widget build(BuildContext context) {
     final signUpService = Provider.of<SignUpProvider>(context);
-    final signInForm = Provider.of<SignUpFormProvider>(context);
+    final signUpForm = Provider.of<SignUpFormProvider>(context);
 
     emailCtrl.text = signUpService.cliente.correo;
     passCtrl.text = signUpService.cliente.clave;
@@ -239,7 +239,7 @@ class Form2State extends State<Form2> {
       margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.symmetric(horizontal: 50),
       child: Form(
-        key: signInForm.formkey2,
+        key: signUpForm.formkey2,
         child: Column(
           children: <Widget>[
             CustomInput(
@@ -308,7 +308,7 @@ class Form2State extends State<Form2> {
                   FocusManager.instance.primaryFocus?.unfocus();
                   //FocusScope.of(context).unfocus(); //linea bug (cierra el teclado pero muestra el en los input el estado anterior)
                   //providers
-                  if (signInForm.isValidForm2()) {
+                  if (signUpForm.isValidForm2()) {
                     //ejecuta validaciones
                     final SignUpService signUp = new SignUpService();
                     final signUpService =

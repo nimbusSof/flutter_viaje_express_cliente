@@ -5,8 +5,9 @@ import 'package:flutter_viaje_express_cliente/src/bloc/signUp_bloc/signUp_bloc.d
 
 import 'package:flutter_viaje_express_cliente/src/providers/signup/forms_signUp_provider.dart';
 
-import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/signIn_widget/forms.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/signIn_widget/logo_signUp.dart';
+
+import 'package:flutter_viaje_express_cliente/src/widgets/signUp_widget/forms.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/signUp_widget/logo_signUp.dart';
 import 'package:provider/provider.dart';
 
 

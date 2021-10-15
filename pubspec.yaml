@@ -13,24 +13,30 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+# Visuales
   cupertino_icons: ^1.0.2
-  font_awesome_flutter: ^9.1.0
   flutter_rating_bar: ^4.0.0
+  animate_do: ^2.0.0
+  sliding_up_panel: ^2.0.0+1
+# Almacenamiento local
   flutter_secure_storage: ^4.2.1
   shared_preferences: ^2.0.7
+# Gestión de estados 
   provider: ^5.0.0
   flutter_bloc: ^7.1.0
   bloc: ^7.1.0
-  http: ^0.13.3
+# Mapas 
   geolocator: ^7.4.0
   permission_handler: ^8.1.4+2
   google_maps_flutter: ^2.0.6
-  dio: ^4.0.0
-  animate_do: ^2.0.0
-  sliding_up_panel: ^2.0.0+1
-  polyline_do: ^0.1.0
   easy_localization: ^3.0.0
+  polyline_do: ^0.1.0
+# Consumo de servicios
+  http: ^0.13.3
+  dio: ^4.0.0
+  
+  
+  
 
 dev_dependencies:
   flutter_test:

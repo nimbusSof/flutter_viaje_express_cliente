@@ -8,7 +8,8 @@ import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_button.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/global_widgets/customComponents_widgets/custom_input.dart';
 import 'package:flutter_viaje_express_cliente/src/widgets/labels.dart';
-import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/login_widget/logo.dart';
+import 'package:flutter_viaje_express_cliente/src/widgets/signIn_widget/logo.dart';
+
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatelessWidget {

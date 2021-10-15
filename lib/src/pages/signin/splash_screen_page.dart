@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_viaje_express_cliente/src/themes/colors.dart' as colors;
-import 'package:flutter_viaje_express_cliente/src/widgets/principal_widgets/splashScreen_widget/splash_screen_widget.dart';
+
+import 'package:flutter_viaje_express_cliente/src/widgets/splashScreen_widget/splash_screen_widget.dart';
 
 
 class SplashScreen extends StatefulWidget {

@@ -21,17 +21,18 @@ class CustomInputSearchRecogida extends StatelessWidget {
     return BlocBuilder<MiUbicacionBloc, MiUbicacionState>(
       builder: (context, stateUbicacion) {
         if (stateUbicacion.ubicacion != null) {
-
           return BlocBuilder<MapaBloc, MapaState>(
             builder: (context, stateMapa) {
-
-              if(stateMapa.nombrePuntoInicial==''){
+              if (stateMapa.nombrePuntoInicial == '') {
                 _mostrarNombreUbicacion(context);
               }
 
               return SafeArea(
                 child: Container(
                   //padding: EdgeInsets.symmetric(horizontal: 5),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
                   width: width,
                   child: GestureDetector(
                     onTap: () async {
@@ -97,7 +98,6 @@ class CustomInputSearchRecogida extends StatelessWidget {
 
     if (destinoSeleccionado != null) {
       _crearRutaInicioDestino(context, recogida!, destinoSeleccionado, result);
-      
     } else {
       final trafficService = new TrafficService();
       //obtener informacion del lugar de recogida
@@ -142,8 +142,8 @@ class CustomInputSearchRecogida extends StatelessWidget {
         .toList();
 
     mapaBloc.add(OnCrearRutaInicioDestino(
-        rutaCoordenadas: rutaCoordenadas, 
-        distancia: distancia, 
+        rutaCoordenadas: rutaCoordenadas,
+        distancia: distancia,
         duracion: duracion,
         nombreInicio: nombreInicio));
 

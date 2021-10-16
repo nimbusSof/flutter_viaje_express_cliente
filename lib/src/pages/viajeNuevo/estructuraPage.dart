@@ -58,6 +58,7 @@ class Estructura extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
+                
                 children: [
                   SizedBox(
                     height: 20,
@@ -78,6 +79,8 @@ class Estructura extends StatelessWidget {
 
                   CustomInputSearchRecogida(),
                   
+                  SizedBox(height: 15,),
+
                     //aqui va el input
                   CustomInputSearchDestino(),
                   

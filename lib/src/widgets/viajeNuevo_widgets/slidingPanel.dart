@@ -51,7 +51,9 @@ class _CustomSlidingPanelState extends State<CustomSlidingPanel> {
         //body:
         panelBuilder: (controller) => EstructuraPage(
             controller: controller, panelController: panelController),
+
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+
         onPanelSlide: (position) => setState(() {
           final panelMaxScrollExtent = panelHeightOpen - panelHeightClosed;
           panel.fabHeight =

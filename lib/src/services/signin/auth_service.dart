@@ -32,16 +32,14 @@ class AuthService extends ChangeNotifier {
     //final decodedData = json.decode(resp.body);
     this._personaCliente = personaClienteFromJson(resp.body);
     //se guarda los nombres y apellidos en el storage
-    prefs.nombreUsuario     = personaCliente.data?.nombre??'null';
-    prefs.apellidoUsuario   = personaCliente.data?.apellido??'null';
-    prefs.correoUsuario     = personaCliente.data?.correo??'null';
-    prefs.fechaNacimiento   = personaCliente.data?.fechaNacimiento??'null';
-    prefs.clave             = personaCliente.data?.clave??'null';
-    prefs.genero            = personaCliente.data?.genero??'null';
-    prefs.telefono          = personaCliente.data?.telefono??'null';
-    prefs.pathFoto          = personaCliente.data?.pathFoto??'null';
-   
-
+    prefs.nombreUsuario = personaCliente.data?.nombre ?? 'null';
+    prefs.apellidoUsuario = personaCliente.data?.apellido ?? 'null';
+    prefs.correoUsuario = personaCliente.data?.correo ?? 'null';
+    prefs.fechaNacimiento = personaCliente.data?.fechaNacimiento ?? 'null';
+    prefs.clave = personaCliente.data?.clave ?? 'null';
+    prefs.genero = personaCliente.data?.genero ?? 'null';
+    prefs.telefono = personaCliente.data?.telefono ?? 'null';
+    prefs.pathFoto = personaCliente.data?.pathFoto ?? 'null';
 
     return personaCliente;
   }
@@ -77,8 +75,8 @@ class AuthService extends ChangeNotifier {
 
     //se decodifica la respuesta del api
     final Map<String, dynamic> decodedResp = json.decode(resp.body);
-    print(decodedResp['token']);
-    if (decodedResp['token']!=null) {
+    print('Token user: ' + decodedResp['token']);
+    if (decodedResp['token'] != null) {
       // El token se guarda en un lugar seguro
       await storage.write(key: 'token', value: decodedResp['token']);
       await storage.write(
@@ -87,7 +85,6 @@ class AuthService extends ChangeNotifier {
       //se traen los datos del cliente
       await datosCliente(
           decodedResp['id_persona_rol'].toString(), decodedResp['token']);
-      
     }
     return decodedResp['exito'];
   }

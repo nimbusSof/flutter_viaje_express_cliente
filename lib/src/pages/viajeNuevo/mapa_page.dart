@@ -35,7 +35,7 @@ class _MapaPageState extends State<MapaPage> {
 
   @override
   void initState() {
-    context.read<SlidingUpPanelProvider>().reiniciar();
+    //context.read<SlidingUpPanelProvider>().reiniciar();
     BlocProvider.of<MiUbicacionBloc>(context).iniciarSeguimiento();
     super.initState();
   }
@@ -49,12 +49,12 @@ class _MapaPageState extends State<MapaPage> {
   @override
   Widget build(BuildContext context) {
     prefs.ultimaPagina = 'loadingMapa';
-    final panel = Provider.of<SlidingUpPanelProvider>(context);
+    //final panel = Provider.of<SlidingUpPanelProvider>(context);
 
     return BlocBuilder<BusquedaBloc, BusquedaState>(
       builder: (BuildContext context, state) {
         if (state.seleccionManual || state.seleccionManualRecogida) {
-          panel.reiniciar();
+          //panel.reiniciar();
           return _estructuraPage();
         } else {
           return _estructuraPage();
@@ -76,9 +76,7 @@ class _MapaPageState extends State<MapaPage> {
                 builder: (_, state) => crearMapa(state)),
             MarcadorManual(),
             MarcadorManualRecogida(),
-            FadeInUp(
-                duration: Duration(milliseconds: 250),
-                child: CustomSlidingPanel(fabHeightClosed: fabHeightClosed)),
+            CustomSlidingPanel(fabHeightClosed: fabHeightClosed),
             Positioned(
               top: 10,
               child: Row(

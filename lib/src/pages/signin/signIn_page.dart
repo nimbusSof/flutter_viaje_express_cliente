@@ -140,7 +140,8 @@ class __FormState extends State<_Form> {
     String idioma =
         await idiomaUserService.idiomaClienteService(idPersonarol, token);
     String idiomita = '';
-
+    
+  // capturar el idioma de preferencia del usuario desde el backend
     if (idioma == 'español') {
       await context.setLocale(Locale('es'));
     } else if (idioma == 'ingles') {

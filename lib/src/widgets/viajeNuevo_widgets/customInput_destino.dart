@@ -20,8 +20,11 @@ class CustomInputSearchDestino extends StatelessWidget {
 
     return BlocBuilder<MapaBloc, MapaState>(
       builder: (context, state) {
-       return SafeArea(
+        return SafeArea(
           child: Container(
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.all(Radius.circular(20))),
             //padding: EdgeInsets.symmetric(horizontal: 5),
             width: width,
             child: GestureDetector(
@@ -29,7 +32,7 @@ class CustomInputSearchDestino extends StatelessWidget {
                 final proximidad =
                     context.read<MiUbicacionBloc>().state.ubicacion;
                 final historial = context.read<BusquedaBloc>().state.historial;
-                
+
                 final resultado = await showSearch(
                     context: context,
                     delegate: SearchDestino(proximidad!, historial!));
@@ -38,7 +41,9 @@ class CustomInputSearchDestino extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 width: double.infinity,
-                child: Text(state.nombreDestino?? 'viajeNuevo.input.destino.placeholder'.tr(),
+                child: Text(
+                    state.nombreDestino ??
+                        'viajeNuevo.input.destino.placeholder'.tr(),
                     style: TextStyle(color: Colors.black87)),
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -98,9 +103,9 @@ class CustomInputSearchDestino extends StatelessWidget {
         .toList();
 
     mapaBloc.add(OnCrearRutaInicioDestino(
-        rutaCoordenadas: rutaCoordenadas, 
-        distancia: distancia, 
-        duracion: duracion, 
+        rutaCoordenadas: rutaCoordenadas,
+        distancia: distancia,
+        duracion: duracion,
         nombreDestino: nombreDestino!,
         nombreInicio: nombreInicio));
 

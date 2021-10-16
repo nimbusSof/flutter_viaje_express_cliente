@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_viaje_express_cliente/src/bloc/mapa/mapa_bloc.dart';
+import 'package:flutter_viaje_express_cliente/src/providers/viajeNuevo/slidingUpPanel_provider.dart';
 import 'package:flutter_viaje_express_cliente/src/services/signin/auth_service.dart';
 import 'package:flutter_viaje_express_cliente/src/services/services.dart';
 import 'package:flutter_viaje_express_cliente/src/share_prefs/preferencias_usuario.dart';
@@ -16,6 +17,7 @@ class SideBar extends StatefulWidget {
 class _SideBarState extends State<SideBar> {
   @override
   Widget build(BuildContext context) {
+    final panel = Provider.of<SlidingUpPanelProvider>(context);
     final mapaBloc = BlocProvider.of<MapaBloc>(context);
     final authService = Provider.of<AuthService>(context, listen: false);
     final prefs = new PreferenciasUsuario();
@@ -24,6 +26,7 @@ class _SideBarState extends State<SideBar> {
       child: ListView(padding: EdgeInsets.zero, children: <Widget>[
         GestureDetector(
           onTap: () {
+            panel.reiniciar();
             mapaBloc.add(OnMapaCerrado());
             Navigator.pushReplacementNamed(context, 'perfil_inicio');
           },
@@ -70,6 +73,7 @@ class _SideBarState extends State<SideBar> {
           onTap: () {
             mapaBloc.add(OnMapaCerrado());
             Navigator.pushReplacementNamed(context, 'inicio');
+            panel.reiniciar();
           },
         ),
         ListTile(
@@ -84,6 +88,7 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.save),
           title: Text('sideBar.destinosFav'.tr()),
           onTap: () {
+            panel.reiniciar();
             mapaBloc.add(OnMapaCerrado());
             Navigator.pushReplacementNamed(context, 'rutasGuardadas_inicio');
           },
@@ -92,6 +97,7 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.credit_card),
           title: Text('sideBar.metodoPago'.tr()),
           onTap: () {
+            panel.reiniciar();
             mapaBloc.add(OnMapaCerrado());
             Navigator.pushReplacementNamed(context, 'metodoPago_inicio');
           },
@@ -100,6 +106,7 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.history),
           title: Text('sideBar.historial'.tr()),
           onTap: () {
+            panel.reiniciar();
             mapaBloc.add(OnMapaCerrado());
             Navigator.pushReplacementNamed(context, 'historialViajes_inicio');
           },
@@ -108,6 +115,7 @@ class _SideBarState extends State<SideBar> {
           leading: Icon(Icons.settings),
           title: Text('sideBar.configuraciones'.tr()),
           onTap: () {
+            panel.reiniciar();
             mapaBloc.add(OnMapaCerrado());
             Navigator.pushReplacementNamed(context, 'configuraciones_inicio');
           },
@@ -115,24 +123,22 @@ class _SideBarState extends State<SideBar> {
         ListTile(
           leading: Icon(Icons.logout),
           title: Text('sideBar.salir'.tr()),
-          onTap: () async{
-
+          onTap: () async {
+            panel.reiniciar();
             //al salir se restablecerá la aplicación con el idioma que tenga configurado
             //el dispositivo, ya que el idioma es una preferencia de usuario
             String idiomaDispositivo =
-                          context.deviceLocale.toString().substring(0, 2);
-                      print(idiomaDispositivo);
-                      if(idiomaDispositivo=='es' || idiomaDispositivo=='en'){
-                        await context.setLocale(Locale(idiomaDispositivo));
-                      }else{
-                        //se coloca idioma ingles por defecto
-                        context.setLocale(context.locale);
-                      }
+                context.deviceLocale.toString().substring(0, 2);
+            print(idiomaDispositivo);
+            if (idiomaDispositivo == 'es' || idiomaDispositivo == 'en') {
+              await context.setLocale(Locale(idiomaDispositivo));
+            } else {
+              //se coloca idioma ingles por defecto
+              context.setLocale(context.locale);
+            }
 
             mapaBloc.add(OnMapaCerrado());
             authService.logout();
-            
-
 
             Navigator.pushNamedAndRemoveUntil(
                 context, 'signin', (route) => false);
